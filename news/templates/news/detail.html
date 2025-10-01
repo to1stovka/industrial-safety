@@ -1,0 +1,46 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block title %}{{ news.title }} - Учебный центр Безопасность Промышленности{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/news/detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="news-detail-section py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+
+        <article class="news-detail">
+          <!-- Заголовок и мета-информация -->
+          <header class="news-header mb-4">
+            <h1 class="news-title">{{ news.title }}</h1>
+            <div class="news-meta">
+              <span class="news-date">{{ news.russian_date }}</span>
+            </div>
+          </header>
+
+          {% if news.image %}
+          <div class="news-image mb-4">
+            <img src="{{ news.image.url }}" alt="{{ news.title }}" class="img-fluid rounded">
+          </div>
+          {% endif %}
+
+          <div class="news-content">
+            {{ news.description|linebreaks }}
+          </div>
+
+          <div class="news-footer mt-5">
+            <a href="#" class="btn btn-primary">
+              ← Вернуться к списку новостей
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

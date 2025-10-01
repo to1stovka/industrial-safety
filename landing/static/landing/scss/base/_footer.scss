@@ -1,0 +1,65 @@
+@use "../variables" as *;
+
+.footer {
+  background: $primary !important;
+
+  .footer-content {
+    .footer-logo {
+      .logo-img {
+        height: 4.375rem;
+        width: auto;
+      }
+    }
+
+    .footer-contacts {
+      .contact-item {
+        .contact-icon {
+          width: 1.3rem;
+          height: 1.3rem;
+        }
+
+        .contact-text {
+          font-size: 1.125rem;
+          color: $white;
+        }
+      }
+
+      .btn {
+        background: $orange;
+        white-space: nowrap;
+        border: none;
+        color: $white;
+        font-weight: 400;
+        border-radius: 20px;
+        padding: 0.4rem 1rem;
+        font-size: 1.125rem;
+
+        &:hover {
+          background: $hover_orange;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    .footer-content {
+      text-align: center;
+
+      .footer-logo {
+        margin-bottom: 1.5rem;
+
+        .logo-img {
+          height: 50px;
+        }
+      }
+
+      .footer-contacts {
+        .contact-item {
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block title %}Учебный центр Безопасность Промышленности - Обучение и аттестация{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/index/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="news-section py-5">
+  <div class="container">
+    <h2 class="section-title text-left mb-5">Новости</h2>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="left-news-column">
+          <!-- горизонтальная карточка -->
+          {% if latest_news.0 %}
+          <div class="main-news-card mb-4">
+            <div class="row g-0">
+              <div class="col-md-6">
+                {% if latest_news.0.image %}
+                <div class="main-news-image">
+                  <img src="{{ latest_news.0.image.url }}" alt="{{ latest_news.0.title }}" class="img-fluid">
+                  {% if latest_news.0.category %}
+                  <span class="news-badge {{ latest_news.0.category }}">
+                    {{ latest_news.0.get_category_display }}
+                  </span>
+                  {% endif %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="col-md-6">
+                <div class="main-news-content">
+                  <h3 class="main-news-title">{{ latest_news.0.title }}</h3>
+                  <a href="{% url 'news:news_detail' latest_news.0.pk %}" class="read-more-btn">Читать далее</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          
+          <!-- вертикальные карточки -->
+          <div class="row">
+            {% for news in latest_news|slice:"1:3" %}
+            <div class="col-md-6">
+              <div class="vertical-news-card">
+                {% if news.image %}
+                <div class="vertical-news-image">
+                  <img src="{{ news.image.url }}" alt="{{ news.title }}" class="img-fluid">
+                  {% if news.category %}
+                  <span class="news-badge {{ news.category }}">
+                    {{ news.get_category_display }}
+                  </span>
+                  {% endif %}
+                </div>
+                {% endif %}
+                <div class="vertical-news-content">
+                  <h4 class="vertical-news-title">{{ news.title }}</h4>
+                  <a href="{% url 'news:news_detail' news.pk %}" class="read-more-btn">Читать далее</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      
+      <!-- блок со списком новостей -->
+      <div class="col-lg-6">
+        <div class="news-list-card">
+          <div class="news-list-content">
+            {% for news in latest_news %}
+            <div class="news-list-item {% if not forloop.last %}mb-4{% endif %}">
+              <h5 class="news-list-title">{{ news.title }}</h5>
+              <p class="news-list-text">{{ news.description|truncatechars:150 }}</p>
+              <div class="news-list-date">{{ news.russian_date }}</div>
+              {% if not forloop.last %}
+              
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+          <div class="news-list-footer">
+            <a href="#" class="more-news-btn">Больше новостей</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
