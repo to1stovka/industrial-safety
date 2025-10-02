@@ -34,7 +34,6 @@
     height: 4.375rem;
   }
 
-
   .contact-info {
     .contact-items {
       .contact-item {
@@ -111,187 +110,172 @@
   }
 }
 
-// Адаптивность
-@media (max-width: 768px) {
+@media (max-width: 575.98px) {
   .top-bar {
-    .text-md-end {
-      text-align: left !important;
-      margin-top: 0.5rem;
+    height: auto;
+    padding: 0.5rem 0;
+
+    .container {
+      padding: 0;
     }
 
-    small {
-      display: block;
-      margin-bottom: 0.25rem;
+    .row {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+    }
 
-      &.ms-3 {
-        margin-left: 0 !important;
+    .top-bar-logo {
+      margin-bottom: 0.5rem;
+      height: 2rem;
+      width: auto;
+    }
+
+    .contact-info {
+      flex-direction: column !important;
+      align-items: flex-start;
+      width: 100%;
+      padding: 0 1rem;
+
+      .contact-items {
+        width: 100%;
+
+        .contact-item {
+          margin-bottom: 0.6rem;
+          justify-content: flex-start;
+          align-items: center;
+
+          .contact-icon {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.4rem;
+          }
+
+          small {
+            font-size: 0.85rem;
+            line-height: 1.3;
+            word-wrap: break-word;
+          }
+        }
       }
-    }
 
-    .btn {
-      margin-top: 0.5rem;
-      margin-left: 0 !important;
-    }
-  }
-
-  .navbar-nav {
-    .nav-item {
-      border-bottom: 1px solid #f8f9fa;
-
-      &:last-child {
-        border-bottom: none;
-      }
-    }
-
-    .dropdown-menu {
-      border: none;
-      box-shadow: none;
-      background-color: #f8f9fa;
-
-      .dropdown-item {
-        padding-left: 2rem;
+      .btn {
+        font-size: 0.85rem;
+        padding: 0.3rem 1rem;
+        margin-top: 0.3rem;
+        width: fit-content;
       }
     }
   }
 }
+// плавающий бургер
+.floating-burger {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: $orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 
+  &:hover {
+    background-color: $hover_orange;
+  }
 
+  .burger-icon {
+    width: 1.5rem;
+    height: 0.125rem;
+    background-color: #fff;
+    position: relative;
 
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 0.125rem;
+      background-color: #fff;
+      left: 0;
+      transition: all 0.3s ease;
+    }
 
+    &::before {
+      top: -0.5rem;
+    }
 
+    &::after {
+      bottom: -0.5rem;
+    }
+  }
+}
 
+// Мобильное меню
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80%;
+  max-width: 300px;
+  height: 100%;
+  background-color: $primary;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1050;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 
+  &.active {
+    transform: translateX(0);
+  }
 
+  .nav-link,
+  .dropdown-item {
+    font-size: 0.95rem;
+    color: $white;
 
+    &:hover {
+      color: $hover_orange;
+    }
+  }
 
-
-
-// Hero секция
-.hero-section {
-  height: 500px;
-  overflow: hidden;
-
-  .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .dropdown-menu {
+    position: static;
     width: 100%;
-    height: 100%;
-
-    img {
-      object-fit: cover;
-      height: 100%;
-    }
-  }
-
-  .hero-overlay {
-    background: rgba(
-      44,
-      62,
-      80,
-      0.7
-    ); // Полупрозрачная заливка поверх изображения
-    z-index: 1;
-  }
-
-  .hero-content {
-    z-index: 2;
-    padding-top: 120px;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-  .hero-text {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 0.25rem;
   }
 }
 
-// Адаптивность для hero-секции
-@media (max-width: 768px) {
-  .hero-section {
-    height: 400px;
-
-    .hero-content {
-      padding-top: 80px;
-    }
-
-    .hero-title {
-      font-size: 2rem;
-    }
-
-    .hero-text {
-      font-size: 1rem;
-    }
+// Скрываем navbar-toggler на мобилках
+@media (max-width: 767.98px) {
+  .navbar .navbar-toggler {
+    display: none;
   }
 }
 
-// Hero секция
-.hero-section {
-  height: 500px;
-  overflow: hidden;
-
-  .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    img {
-      object-fit: cover;
-      height: 100%;
-    }
-  }
-
-  .hero-overlay {
-    background: rgba(
-      44,
-      62,
-      80,
-      0.7
-    ); // Полупрозрачная заливка поверх изображения
-    z-index: 1;
-  }
-
-  .hero-content {
-    z-index: 2;
-    padding-top: 120px;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-  .hero-text {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  }
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1040;
 }
 
-// Адаптивность для hero-секции
-@media (max-width: 768px) {
-  .hero-section {
-    height: 400px;
-
-    .hero-content {
-      padding-top: 80px;
-    }
-
-    .hero-title {
-      font-size: 2rem;
-    }
-
-    .hero-text {
-      font-size: 1rem;
-    }
-  }
+.mobile-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }

@@ -1,7 +1,7 @@
 {% extends 'landing/base.html' %}
 {% load static %}
 
-{% block title %}{{ news.title }} - Учебный центр Безопасность Промышленности{% endblock %}
+{% block title %}{{ news.title }} - Учебный центр Безопасность в промышленности{% endblock %}
 
 {% block extra_css %}
 {{ block.super }}
@@ -34,7 +34,7 @@
           </div>
 
           <div class="news-footer mt-5">
-            <a href="#" class="btn btn-primary">
+            <a href="{% url 'news:news_list' %}" class="btn btn-primary">
               ← Вернуться к списку новостей
             </a>
           </div>

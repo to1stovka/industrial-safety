@@ -159,24 +159,100 @@
   background: rgba(179, 61, 11, 0.8);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 575.98px) {
+  .news-section {
+    padding: 1rem 1rem;
+  }
   .news-section .section-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
   }
-  .main-news-card .main-news-content {
-    padding: 1.5rem;
+  .left-news-column .row, .left-news-column .col-md-6, .left-news-column .col-lg-6 {
+    width: 100% !important;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
   }
-  .vertical-news-card {
+  .left-news-column .main-news-card,
+  .left-news-column .vertical-news-card {
+    width: 100% !important;
+    height: auto;
+    border-radius: 1.5rem;
     margin-bottom: 1rem;
   }
-  .vertical-news-card .vertical-news-content {
+  .left-news-column .main-news-card .main-news-image img,
+  .left-news-column .main-news-card .vertical-news-image img,
+  .left-news-column .vertical-news-card .main-news-image img,
+  .left-news-column .vertical-news-card .vertical-news-image img {
+    width: 100%;
+    height: 12rem;
+  }
+  .left-news-column .main-news-card .main-news-content,
+  .left-news-column .main-news-card .vertical-news-content,
+  .left-news-column .vertical-news-card .main-news-content,
+  .left-news-column .vertical-news-card .vertical-news-content {
     padding: 1rem;
   }
+  .left-news-column .main-news-card .main-news-content h3, .left-news-column .main-news-card .main-news-content h4,
+  .left-news-column .main-news-card .vertical-news-content h3,
+  .left-news-column .main-news-card .vertical-news-content h4,
+  .left-news-column .vertical-news-card .main-news-content h3,
+  .left-news-column .vertical-news-card .main-news-content h4,
+  .left-news-column .vertical-news-card .vertical-news-content h3,
+  .left-news-column .vertical-news-card .vertical-news-content h4 {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  .left-news-column .main-news-card .main-news-content .read-more-btn,
+  .left-news-column .main-news-card .vertical-news-content .read-more-btn,
+  .left-news-column .vertical-news-card .main-news-content .read-more-btn,
+  .left-news-column .vertical-news-card .vertical-news-content .read-more-btn {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    max-width: 7rem;
+  }
+  .left-news-column .news-badge {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    top: 0.5rem;
+    left: 0.5rem;
+  }
   .news-list-card {
-    margin-top: 2rem;
+    width: 100%;
+    height: auto;
+    border-radius: 1.5rem;
   }
   .news-list-card .news-list-content {
     padding: 1.5rem;
+  }
+  .news-list-card .news-list-item .news-list-title {
+    font-size: 0.9rem;
+  }
+  .news-list-card .news-list-item .news-list-text {
+    font-size: 0.75rem;
+  }
+  .news-list-card .news-list-item .news-list-date {
+    font-size: 0.7rem;
+  }
+  .news-list-card .news-list-footer {
+    padding: 1rem;
+  }
+  .news-list-card .news-list-footer .more-news-btn {
+    width: 100%;
+    font-size: 0.75rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    padding: 0;
+    bottom: 1rem;
+    right: 0;
+    position: relative;
+  }
+  .row > .col-lg-6 {
+    margin-bottom: 1.5rem;
+    width: 100% !important;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 

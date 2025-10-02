@@ -64,3 +64,32 @@
       }
     }
 }
+
+@media (max-width: 768px) {
+  .news-detail-section {
+    padding: 1rem 0.5rem;
+  }
+
+  .news-header {
+    .news-title {
+      font-size: 1.25rem;
+    }
+
+    .news-meta {
+      font-size: 0.75rem;
+    }
+  }
+
+  .news-content {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .news-footer {
+    .btn {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      width: 100%;
+    }
+  }
+}

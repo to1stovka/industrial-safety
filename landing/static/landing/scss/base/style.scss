@@ -2,3 +2,20 @@
 
 @use "footer" as *;
 @use "header" as *;
+
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Исправляем контейнер */
+.container {
+    max-width: 1400px;
+}
+
+/* Исправляем строки */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}

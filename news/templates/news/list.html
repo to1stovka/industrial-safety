@@ -1,0 +1,124 @@
+
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block title %}Новости - Учебный центр Безопасность в промышленности{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/news/list.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="news-list-section py-5">
+  <div class="container-fluid">
+    <div class="news-wrapper"> 
+    <div class="row">
+      <div class="col-3">
+        <h1 class="page-title mb-5">Новости</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Список новостей -->
+        <div class="news-list">
+          {% for news in news_list %}
+          <article class="news-item mb-5">
+            
+            <div class="news-content">
+              <h2 class="news-title">
+                <a href="{% url 'news:news_detail' news.pk %}" class="text-decoration-none">
+                  {{ news.title }}
+                </a>
+              </h2>
+              <p class="news-description">{{ news.description|truncatewords:50 }}</p>
+              <div class="news-meta mb-3">
+                <span class="news-date">{{ news.russian_date }}</span>
+                {% if news.category %}
+                <span class="news-category {{ news.category }}">
+                  {{ news.get_category_display }}
+                </span>
+                {% endif %}
+              </div>
+              
+              
+            </div>
+          </article>
+          
+          {% if not forloop.last %}
+          {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- пагинация -->
+{% if page_obj.has_other_pages %}
+<nav aria-label="Page navigation" class="mt-5">
+  <ul class="pagination justify-content-center">
+
+    <!-- влево -->
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link arrow" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <img src="{% static 'landing/img/VectorPagL.svg' %}">
+      </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <span class="page-link arrow" aria-label="Previous">
+        <img src="{% static 'landing/img/VectorPagL.svg' %}">
+      </span>
+    </li>
+    {% endif %}
+
+    <!-- первая страница -->
+    {% if page_obj.number > 2 %}
+    <li class="page-item">
+      <a class="page-link" href="?page=1">1</a>
+    </li>
+    <li class="page-item disabled"><span class="page-link">...</span></li>
+    {% endif %}
+
+    <!-- страницы вокруг текущей -->
+    {% for i in page_obj.paginator.page_range %}
+      {% if i >= page_obj.number|add:"-1" and i <= page_obj.number|add:"1" %}
+        {% if i == page_obj.number %}
+        <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    <!-- последняя страница -->
+    {% if page_obj.number < page_obj.paginator.num_pages|add:"-1" %}
+    <li class="page-item disabled"><span class="page-link">...</span></li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+    </li>
+    {% endif %}
+
+    <!-- вправо -->
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link arrow" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <img src="{% static 'landing/img/VectorPag.svg' %}">
+      </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <span class="page-link arrow" aria-label="Next">
+        <img src="{% static 'landing/img/VectorPag.svg' %}">
+      </span>
+    </li>
+    {% endif %}
+
+  </ul>
+</nav>
+{% endif %}
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
