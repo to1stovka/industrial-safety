@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class News(models.Model):
     CATEGORY_CHOICES = [
@@ -7,7 +8,8 @@ class News(models.Model):
     ]
 
     title = models.CharField(max_length=255, verbose_name="Заголовок")
-    description = models.TextField(verbose_name="Описание")
+    description = models.TextField(verbose_name="Краткое описание")
+    content = RichTextUploadingField(verbose_name="Содержание", blank=True, null=True)
     image = models.ImageField(
         upload_to="news/images",
         blank=True,

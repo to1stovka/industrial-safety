@@ -1,0 +1,194 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block title %}Контакты - Учебный центр Безопасность в промышленности{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<style>
+  .contact-section {
+    padding: 60px 0;
+  }
+
+  .contact-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
+  .about-center {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+  }
+
+  .about-center p {
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+
+  .contact-info-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+  }
+
+  .contact-info-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-detail:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact-detail-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .contact-detail-content {
+    flex: 1;
+  }
+
+  .contact-detail-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-detail-value {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .working-hours {
+    background-color: #e8f4f8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+
+  .working-hours-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .working-hours-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+
+  .map-container {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .map-placeholder {
+    height: 400px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+  <div class="container">
+    <h1 class="contact-title">Контакты</h1>
+
+    <!-- О центре -->
+    <div class="about-center">
+      <h2 class="contact-info-title">О центре</h2>
+      <p>
+        Экзаменационный центр АНО ДПО «УЦ «Безопасность в промышленности» является экзаменационной площадкой (ЭП-2749) Центра оценки квалификации (АО «НТЦ «Промышленная безопасность»)
+      </p>
+      <p>
+        Одним из важнейших условий безопасной деятельности опасного производственного предприятия является качественная и своевременная подготовка руководителей и специалистов в области промышленной безопасности. Учебный центр предлагает свою помощь руководителям, экспертам, инженерам и специалистам организаций, поднадзорных Федеральной службе по экологическому, технологическому и атомному надзору (Ростехнадзор) в прохождении подготовки к профессиональному экзамену в рамках независимой оценки квалификации.
+      </p>
+      <p>
+        На нашей базе проводится профессиональный экзамен в рамках независимой оценки квалификаций по Профессиональному стандарту «Специалист в сфере промышленной безопасности» Приказ Министерства труда и социальной защиты Российской Федерации от 16.12.2020 № 911н.
+      </p>
+    </div>
+
+    <div class="row">
+      <!-- Контактная информация -->
+      <div class="col-lg-6">
+        <div class="contact-info-card">
+          <h2 class="contact-info-title">Контактная информация</h2>
+
+          <div class="contact-detail">
+            <img src="{% static 'landing/img/location.svg' %}" class="contact-detail-icon" alt="Адрес">
+            <div class="contact-detail-content">
+              <div class="contact-detail-label">Адрес:</div>
+              <div class="contact-detail-value">Россия, 115280, Москва, 3-й Автозаводский проезд д.4, корп.1</div>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <img src="{% static 'landing/img/phone.svg' %}" class="contact-detail-icon" alt="Телефон">
+            <div class="contact-detail-content">
+              <div class="contact-detail-label">Телефон:</div>
+              <div class="contact-detail-value">8 (495) 230-12-14</div>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <img src="{% static 'landing/img/email.svg' %}" class="contact-detail-icon" alt="Email">
+            <div class="contact-detail-content">
+              <div class="contact-detail-label">Электронная почта:</div>
+              <div class="contact-detail-value">ucbp@bezopprom.ru</div>
+            </div>
+          </div>
+
+          <div class="working-hours">
+            <div class="working-hours-title">График работы:</div>
+            <div class="working-hours-item">
+              <span>Понедельник - Четверг</span>
+              <span>9:00 - 18:00</span>
+            </div>
+            <div class="working-hours-item">
+              <span>Пятница</span>
+              <span>9:00 - 16:45</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Карта -->
+      <div class="col-lg-6">
+        <div class="map-container">
+          <div class="map-placeholder">
+            <p>Карта (интеграция с Яндекс.Картами или Google Maps)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

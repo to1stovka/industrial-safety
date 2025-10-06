@@ -74,7 +74,7 @@
           <a class="nav-link" href="{% url 'news:news_list' %}">Новости</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Контакты</a>
+          <a class="nav-link" href="{% url 'contact' %}">Контакты</a>
         </li>
       </ul>
     </div>
@@ -85,10 +85,12 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6">
-            <img
-              src="{% static 'landing/img/лого белый 2.svg' %}"
-              class="top-bar-logo"
-            />
+            <a href="{% url 'index' %}">
+              <img
+                src="{% static 'landing/img/лого белый 2.svg' %}"
+                class="top-bar-logo"
+              />
+            </a>
           </div>
           <div class="col-md-6">
             <div
@@ -187,7 +189,7 @@
               <a class="nav-link" href="{% url 'news:news_list' %}">Новости</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Контакты</a>
+              <a class="nav-link" href="{% url 'contact' %}">Контакты</a>
             </li>
           </ul>
         </div>
@@ -234,11 +236,13 @@
             <!-- Логотип слева -->
             <div class="col-md-3">
               <div class="footer-logo">
-                <img
-                  src="{% static 'landing/img/лого белый 2.svg' %}"
-                  class="logo-img"
-                  alt="Логотип"
-                />
+                <a href="{% url 'index' %}">
+                  <img
+                    src="{% static 'landing/img/лого белый 2.svg' %}"
+                    class="logo-img"
+                    alt="Логотип"
+                  />
+                </a>
               </div>
             </div>
 

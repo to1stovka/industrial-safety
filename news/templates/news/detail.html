@@ -30,7 +30,11 @@
           {% endif %}
 
           <div class="news-content">
-            {{ news.description|linebreaks }}
+            {% if news.content %}
+              {{ news.content|safe }}
+            {% else %}
+              {{ news.description|linebreaks }}
+            {% endif %}
           </div>
 
           <div class="news-footer mt-5">
