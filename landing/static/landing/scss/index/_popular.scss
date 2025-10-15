@@ -1,0 +1,175 @@
+@use "../variables" as *;
+
+.popular-section {
+  background-color: #fff;
+  padding-top: 3rem;
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+  }
+
+  .icon-dot {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    background: url("../../img/fire.svg") no-repeat center / contain;
+  }
+
+  .row {
+    margin-top: 2rem;
+  }
+
+  // 🔸 Карточка курса
+  .course-card {
+    background: $card;
+    border-radius: 30px;
+    padding: 1.8rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    // 🔹 Верхняя часть: рейтинг справа
+    &__header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 1.5rem;
+
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.8125rem;
+        color: #000;
+
+        span {
+          display: inline-block;
+          line-height: 1;
+        }
+
+        &__star {
+          color: #D5A812;
+          font-size: .9rem;
+
+          &--empty {
+            color: rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+
+    // Лейблы форматов обучения
+    &__modes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+      width: 100%;
+
+      .mode-badge {
+        background: white;
+        color: #000;
+        border-radius: 30px;
+        padding: 0.35rem 0.9rem;
+        font-size: .6rem;
+        font-weight: 400;
+        white-space: nowrap;
+        
+
+        &.active {
+          background: $grey_dark;
+        }
+      }
+    }
+
+
+    // 🔹 Заголовок курса
+    &__title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #18233a;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
+      min-height: 2.8em;
+    }
+
+    // цена, даты и кнопка
+    &__footer {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 0.5rem;
+
+      // Левая часть (цена + даты)
+      .price-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        .price {
+          font-size: .9375rem;
+          font-weight: 400;
+          color: #000;
+          margin-bottom: 0.2rem;
+        }
+
+        .dates {
+          font-size: 0.6875rem;
+          color: #000;
+        }
+      }
+
+      // Кнопка справа
+      .btn {
+        background: $orange;
+        color: #fff;
+        border-radius: 30px;
+        font-size: .8125rem;
+        font-weight: 400;
+        padding: 0.45rem 1.5rem;
+        text-decoration: none;
+        border: none;
+        transition: all 0.2s ease;
+        height: 2.75rem;
+        width: 7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background: $hover_orange;
+        }
+      }
+    }
+  }
+
+  // 🔹 Адаптивность
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 1.7rem;
+      text-align: center;
+    }
+
+    .course-card {
+      padding: 1.2rem;
+      border-radius: 20px;
+
+      &__title {
+        font-size: 1rem;
+      }
+
+      .btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
+      }
+    }
+  }
+}

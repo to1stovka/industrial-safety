@@ -10,6 +10,281 @@
 
 {% block content %}
 
+<section class="hero-banner">
+  <div class="hero-overlay">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Учись новому!
+        </h1>
+        <ul class="hero-list">
+          <li>Обучение в удобное время из любой точки России</li>
+          <li>Соответствие требованиям Ростехнадзора</li>
+          <li>Быстрая проверка знаний и выдача документов</li>
+        </ul>
+        <a href="#" class="hero-btn">Оформить заявку</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Популярные направления -->
+{% load static ui_extras %}
+
+<section class="popular-section py-5">
+  <div class="container">
+    <div class="d-flex align-items-center gap-2 mb-4">
+      <h2 class="section-title m-0">Популярные направления</h2>
+      <span class="icon-dot"></span>
+    </div>
+
+    {% if popular_courses %}
+      <div class="row g-4">
+        {% for course in popular_courses %}
+          <div class="col-md-4">
+            <div class="course-card h-100">
+              <div class="course-card__header">
+                <div class="rating">
+                  <span>{{ course.rating }}</span>
+                  {% for _ in course.rating|times %}
+                    <span class="rating__star">★</span>
+                  {% endfor %}
+                  {% for _ in course.rating|empty_stars %}
+                    <span class="rating__star rating__star--empty">★</span>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="course-card__modes">
+                {% for mode_key, mode_label in course.Mode.choices %}
+                  <span class="mode-badge {% if course.mode == mode_key %}active{% endif %}">
+                    {{ mode_label }}
+                  </span>
+                {% endfor %}
+              </div>
+
+              <h3 class="course-card__title">{{ course.title }}</h3>
+
+              <div class="course-card__footer">
+                <div class="price-block">
+                  <div class="price">от {{ course.price|money }} руб.</div>
+                  <div class="dates">с {{ course.start_date|date:"d.m.Y" }} по {{ course.end_date|date:"d.m.Y" }}</div>
+                </div>
+                <a href="#" class="btn">Записаться</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>Пока нет доступных направлений.</p>
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- О компании -->
+<section class="about-section py-5">
+  <div class="container">
+    <h2 class="section-title mb-4">О компании</h2>
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <div class="about-text">
+          <p>
+            Экзаменационный центр АНО ДПО «УЦ «Безопасность в промышленности» является экзаменационной площадкой (ЭП-2749) Центра оценки квалификации (АО «НТЦ «Промышленная безопасность») 
+          </p>
+          <p>
+            Одним из важнейших условий безопасной деятельности опасного производственного предприятия является качественная и своевременная подготовка руководителей и специалистов в области промышленной безопасности.
+          </p>
+          <p>
+             Учебный центр предлагает свою помощь руководителям, экспертам, инженерам и специалистам организаций, поднадзорных Федеральной службе по экологическому, технологическому и атомному надзору (Ростехнадзор) в прохождении подготовки к профессиональному экзамену в рамках независимой оценки квалификации. 
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="about-image">
+          <img src="{% static 'landing/img/d0d61333e22f30b9a31e99cdee13fb8d74a23b4a.jpg' %}" alt="Аудитория учебного центра" class="img-fluid w-100">
+        </div>
+      </div>
+    </div>
+
+    <div class="about-stats row">
+      <div class="col-2">
+        <div class="stat">
+          <div class="stat__value">15</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="stat">
+          <div class="stat__value">4000</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat">
+          <div class="stat__value">30</div>
+        </div>
+      </div>
+    </div>
+    <div class="about row">
+      <div class="col-3">
+        <div class="label">
+          <div class="stat__label">лет<br>опыта</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="label">
+          <div class="stat__label">аттестованных<br>специалистов</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="label">
+          <div class="stat__label">специальностей/<br>квалификаций</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Отзывы -->
+<section class="reviews-section py-5">
+  <div class="container">
+    <h2 class="section-title mb-4">Отзывы</h2>
+
+    <!-- Используем стандартный Bootstrap Carousel -->
+    <div id="reviewsCarousel" class="carousel slide" data-bs-ride="false">
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="review-card h-100">
+                <div class="review-card__meta">
+                  <div class="review-card__title">Аттестация в Минстрое</div>
+                  <div class="review-card__stars">★★★★★</div>
+                </div>
+                <p class="review-card__text">
+                  Прошла обучение быстро и без лишней бюрократии. Удобные материалы и отличные преподаватели!
+                </p>
+                <div class="review-card__author">— Анна К.</div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="review-card h-100">
+                <div class="review-card__meta">
+                  <div class="review-card__title">Аттестация в Минтруде</div>
+                  <div class="review-card__stars">★★★★★</div>
+                </div>
+                <p class="review-card__text">
+                  Спасибо центру за подготовку. Экзамен сдал с первого раза, все четко и по делу.
+                </p>
+                <div class="review-card__author">— Сергей П.</div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="review-card h-100">
+                <div class="review-card__meta">
+                  <div class="review-card__title">Министерство энергетики</div>
+                  <div class="review-card__stars">★★★★★</div>
+                </div>
+                <p class="review-card__text">
+                  Понравилась организация, поддержка куратора и реальные кейсы на занятиях.
+                </p>
+                <div class="review-card__author">— Дмитрий Н.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- вторая «страница» отзывов -->
+        <div class="carousel-item">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="review-card h-100">
+                <div class="review-card__meta">
+                  <div class="review-card__title">Охрана труда</div>
+                  <div class="review-card__stars">★★★★★</div>
+                </div>
+                <p class="review-card__text">
+                  Отличные методички и возможность задать вопросы преподавателю в чате.
+                </p>
+                <div class="review-card__author">— Ирина Л.</div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="review-card h-100">
+                <div class="review-card__meta">
+                  <div class="review-card__title">Промышленная безопасность</div>
+                  <div class="review-card__stars">★★★★★</div>
+                </div>
+                <p class="review-card__text">
+                  Всё структурировано, удобно и с примерами из практики. Рекомендую!
+                </p>
+                <div class="review-card__author">— Алексей Г.</div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="review-card h-100">
+                <div class="review-card__meta">
+                  <div class="review-card__title">Электробезопасность</div>
+                  <div class="review-card__stars">★★★★★</div>
+                </div>
+                <p class="review-card__text">
+                  Сервис отличный: напоминания, быстрые ответы, помощь с документами.
+                </p>
+                <div class="review-card__author">— Олег С.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Предыдущий</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Следующий</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Наши клиенты -->
+<section class="clients-section pb-5">
+  <div class="container">
+    <h2 class="section-title mb-4">Наши клиенты</h2>
+
+    <div class="clients-logos row g-4 align-items-center">
+      <!-- замените src на реальные логотипы -->
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+        <img src="{% static 'landing/img/clients/client-01.png' %}" alt="Клиент 1" class="img-fluid client-logo">
+      </div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+        <img src="{% static 'landing/img/clients/client-02.png' %}" alt="Клиент 2" class="img-fluid client-logo">
+      </div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+        <img src="{% static 'landing/img/clients/client-03.png' %}" alt="Клиент 3" class="img-fluid client-logo">
+      </div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+        <img src="{% static 'landing/img/clients/client-04.png' %}" alt="Клиент 4" class="img-fluid client-logo">
+      </div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+        <img src="{% static 'landing/img/clients/client-05.png' %}" alt="Клиент 5" class="img-fluid client-logo">
+      </div>
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+        <img src="{% static 'landing/img/clients/client-06.png' %}" alt="Клиент 6" class="img-fluid client-logo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Новости -->
 <section class="news-section py-5">
   <div class="container">
     <h2 class="section-title text-left mb-5">Новости</h2>

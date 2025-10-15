@@ -97,8 +97,7 @@
   align-items: center;
 }
 .top-bar.top-bar-with-bg {
-  background: url("/static/landing/img/ingener3.svg") center top no-repeat;
-  background-size: auto 100%;
+  background: url("/static/landing/img/ingener3.svg") center center/cover no-repeat;
 }
 .top-bar.top-bar-with-bg::before {
   content: "";
@@ -142,6 +141,7 @@
 
 .navbar {
   background-color: #18233A !important;
+  border-bottom: none !important;
 }
 .navbar .navbar-nav .nav-link {
   color: white;
@@ -160,7 +160,6 @@
 }
 .navbar .navbar-nav .dropdown-menu {
   border: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 0.375rem;
   margin-top: 0.5rem;
 }
@@ -325,6 +324,7 @@
 html, body {
   overflow-x: hidden;
   max-width: 100%;
+  font-family: "Inter", sans-serif;
 }
 
 /* Исправляем контейнер */
@@ -336,6 +336,4 @@ html, body {
 .row {
   margin-left: 0;
   margin-right: 0;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
