@@ -22,7 +22,7 @@
     margin-top: 2rem;
   }
 
-  // 🔸 Карточка курса
+  // Карточка курса
   .course-card {
     background: $card;
     border-radius: 30px;
@@ -31,7 +31,7 @@
     flex-direction: column;
     height: 100%;
 
-    // 🔹 Верхняя часть: рейтинг справа
+    // Верхняя часть: рейтинг справа
     &__header {
       display: flex;
       justify-content: flex-end;
@@ -76,7 +76,7 @@
         color: #000;
         border-radius: 30px;
         padding: 0.35rem 0.9rem;
-        font-size: .6rem;
+        font-size: .65rem;
         font-weight: 400;
         white-space: nowrap;
         
@@ -88,15 +88,16 @@
     }
 
 
-    // 🔹 Заголовок курса
+    // Заголовок курса
     &__title {
       font-size: 1.25rem;
       font-weight: 600;
       color: #18233a;
       line-height: 1.4;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
       margin-top: 1.5rem;
       min-height: 2.8em;
+      max-width: 15rem;
     }
 
     // цена, даты и кнопка
@@ -151,7 +152,7 @@
     }
   }
 
-  // 🔹 Адаптивность
+  // Адаптивность
   @media (max-width: 768px) {
     .section-title {
       font-size: 1.7rem;

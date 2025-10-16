@@ -147,142 +147,87 @@
 
 <!-- Отзывы -->
 <section class="reviews-section py-5">
-  <div class="container">
+  <div class="container position-relative">
     <h2 class="section-title mb-4">Отзывы</h2>
 
-    <!-- Используем стандартный Bootstrap Carousel -->
-    <div id="reviewsCarousel" class="carousel slide" data-bs-ride="false">
-      <div class="carousel-inner">
-
-        <div class="carousel-item active">
-          <div class="row g-4">
-            <div class="col-md-4">
-              <div class="review-card h-100">
-                <div class="review-card__meta">
-                  <div class="review-card__title">Аттестация в Минстрое</div>
-                  <div class="review-card__stars">★★★★★</div>
-                </div>
-                <p class="review-card__text">
-                  Прошла обучение быстро и без лишней бюрократии. Удобные материалы и отличные преподаватели!
-                </p>
-                <div class="review-card__author">— Анна К.</div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="review-card h-100">
-                <div class="review-card__meta">
-                  <div class="review-card__title">Аттестация в Минтруде</div>
-                  <div class="review-card__stars">★★★★★</div>
-                </div>
-                <p class="review-card__text">
-                  Спасибо центру за подготовку. Экзамен сдал с первого раза, все четко и по делу.
-                </p>
-                <div class="review-card__author">— Сергей П.</div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="review-card h-100">
-                <div class="review-card__meta">
-                  <div class="review-card__title">Министерство энергетики</div>
-                  <div class="review-card__stars">★★★★★</div>
-                </div>
-                <p class="review-card__text">
-                  Понравилась организация, поддержка куратора и реальные кейсы на занятиях.
-                </p>
-                <div class="review-card__author">— Дмитрий Н.</div>
-              </div>
+    {% if reviews %}
+    <div class="swiper reviews-swiper">
+      <div class="swiper-wrapper">
+        {% for review in reviews %}
+        <div class="swiper-slide">
+          <div class="review-card">
+            <span class="review-card__label">{{ review.get_category_display }}</span>
+            <p class="review-card__text">{{ review.text }}</p>
+            <div class="review-card__stars">
+              {% for i in "12345"|slice:":review.rating" %}
+              <span class="star">★</span>
+              {% endfor %}
             </div>
           </div>
         </div>
-
-        <!-- вторая «страница» отзывов -->
-        <div class="carousel-item">
-          <div class="row g-4">
-            <div class="col-md-4">
-              <div class="review-card h-100">
-                <div class="review-card__meta">
-                  <div class="review-card__title">Охрана труда</div>
-                  <div class="review-card__stars">★★★★★</div>
-                </div>
-                <p class="review-card__text">
-                  Отличные методички и возможность задать вопросы преподавателю в чате.
-                </p>
-                <div class="review-card__author">— Ирина Л.</div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="review-card h-100">
-                <div class="review-card__meta">
-                  <div class="review-card__title">Промышленная безопасность</div>
-                  <div class="review-card__stars">★★★★★</div>
-                </div>
-                <p class="review-card__text">
-                  Всё структурировано, удобно и с примерами из практики. Рекомендую!
-                </p>
-                <div class="review-card__author">— Алексей Г.</div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="review-card h-100">
-                <div class="review-card__meta">
-                  <div class="review-card__title">Электробезопасность</div>
-                  <div class="review-card__stars">★★★★★</div>
-                </div>
-                <p class="review-card__text">
-                  Сервис отличный: напоминания, быстрые ответы, помощь с документами.
-                </p>
-                <div class="review-card__author">— Олег С.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        {% endfor %}
       </div>
 
-      <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Предыдущий</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Следующий</span>
-      </button>
     </div>
+    <!-- Стрелки -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    {% else %}
+    <p>Пока нет отзывов.</p>
+    {% endif %}
   </div>
 </section>
+
 
 <!-- Наши клиенты -->
-<section class="clients-section pb-5">
-  <div class="container">
+<section class="clients-section py-5">
+  <div class="container position-relative">
     <h2 class="section-title mb-4">Наши клиенты</h2>
 
-    <div class="clients-logos row g-4 align-items-center">
-      <!-- замените src на реальные логотипы -->
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
-        <img src="{% static 'landing/img/clients/client-01.png' %}" alt="Клиент 1" class="img-fluid client-logo">
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
-        <img src="{% static 'landing/img/clients/client-02.png' %}" alt="Клиент 2" class="img-fluid client-logo">
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
-        <img src="{% static 'landing/img/clients/client-03.png' %}" alt="Клиент 3" class="img-fluid client-logo">
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
-        <img src="{% static 'landing/img/clients/client-04.png' %}" alt="Клиент 4" class="img-fluid client-logo">
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
-        <img src="{% static 'landing/img/clients/client-05.png' %}" alt="Клиент 5" class="img-fluid client-logo">
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
-        <img src="{% static 'landing/img/clients/client-06.png' %}" alt="Клиент 6" class="img-fluid client-logo">
+    <div class="swiper clients-swiper">
+      <div class="swiper-wrapper">
+        <!-- Слайд 1 -->
+        <div class="swiper-slide">
+          <div class="clients-grid">
+            <div class="client-logo"><img src="{% static 'landing/img/clients/1.png' %}" alt="Лукойл" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/2.png' %}" alt="ТГК-2" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/3.png' %}" alt="Компания 3" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/4.png' %}" alt="Компания 4" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/5.png' %}" alt="Компания 5" /></div>
+
+            <div class="client-logo"><img src="{% static 'landing/img/clients/6.png' %}" alt="Компания 6" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/7.png' %}" alt="Компания 7" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/8.png' %}" alt="Компания 8" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/9.png' %}" alt="Компания 9" /></div>
+          </div>
+        </div>
+
+        <!-- Слайд 2 -->
+        <div class="swiper-slide">
+          <div class="clients-grid">
+            <div class="client-logo"><img src="{% static 'landing/img/clients/10.png' %}" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/11.png' %}" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/12.png' %}" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/13.png' %}" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/14.png' %}" /></div>
+
+            <div class="client-logo"><img src="{% static 'landing/img/clients/15.png' %}" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/16.png' %}" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/17.png' %}" /></div>
+            <div class="client-logo"><img src="{% static 'landing/img/clients/18.png' %}" /></div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Стрелки -->
+    <div class="clients-button-prev"></div>
+    <div class="clients-button-next"></div>
   </div>
 </section>
+
+
+
 
 <!-- Новости -->
 <section class="news-section py-5">

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Мобильное меню
   const burger = document.getElementById('floatingBurger');
   const mobileMenu = document.getElementById('mobileMenu');
   const overlay = document.getElementById('mobileMenuOverlay');
@@ -16,36 +17,80 @@ document.addEventListener('DOMContentLoaded', function () {
     overlay.classList.remove('active');
   }
 
-  burger.addEventListener('click', () => {
-    if (mobileMenu.classList.contains('active')) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
+  if (burger) {
+    burger.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+  }
 
-  overlay.addEventListener('click', closeMenu);
+  if (overlay) overlay.addEventListener('click', closeMenu);
 
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
 
-  // Свайп вправо для закрытия меню
-  mobileMenu.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
+    // свайп вправо для закрытия меню
+    mobileMenu.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
 
-  mobileMenu.addEventListener('touchmove', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-  });
+    mobileMenu.addEventListener('touchmove', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+    });
 
-  mobileMenu.addEventListener('touchend', () => {
-    // если конец свайпа больше начала + порог
-    if (touchEndX - touchStartX > 50) { // порог 50px
-      closeMenu();
-    }
-    // Сбрасываем значения
-    touchStartX = 0;
-    touchEndX = 0;
-  });
+    mobileMenu.addEventListener('touchend', () => {
+      if (touchEndX - touchStartX > 50) closeMenu(); // порог 50px
+      touchStartX = 0;
+      touchEndX = 0;
+    });
+  }
+
+  // Swiper (Отзывы)
+  if (document.querySelector('.reviews-swiper')) {
+    new Swiper('.reviews-swiper', {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      loop: true,
+      centeredSlides: false,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 8000,
+        disableOnInteraction: false,
+      },
+      speed: 600,
+      breakpoints: {
+        0: { slidesPerView: 1.1, spaceBetween: 16 },
+        768: { slidesPerView: 2, spaceBetween: 20 },
+        1024: { slidesPerView: 3, spaceBetween: 20 },
+      },
+    });
+  }
+
+  // Swiper (Наши клиенты)
+  if (document.querySelector('.clients-swiper')) {
+    new Swiper('.clients-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      navigation: {
+        nextEl: '.clients-button-next',
+        prevEl: '.client-button-prev',
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      speed: 700,
+    });
+  }
+
+
 });

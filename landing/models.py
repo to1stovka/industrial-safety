@@ -29,3 +29,23 @@ class CourseDirection(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Review(models.Model):
+    CATEGORY_CHOICES = [
+        ('NK', 'Аттестация специалистов НК'),
+        ('PB', 'Промышленная безопасность'),
+        ('OT', 'Охрана труда'),
+        ('EB', 'Электробезопасность'),
+    ]
+
+    category = models.CharField('Категория', max_length=50, choices=CATEGORY_CHOICES)
+    text = models.TextField('Текст отзыва')
+    rating = models.PositiveSmallIntegerField('Рейтинг', default=5)
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        return f"{self.get_category_display()}"

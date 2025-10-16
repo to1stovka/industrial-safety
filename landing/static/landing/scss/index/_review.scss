@@ -1,0 +1,122 @@
+@use "../variables" as *;
+
+.reviews-section {
+  background: #fff;
+  position: relative;
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 2rem;
+  }
+
+  .reviews-swiper-wrapper {
+    position: relative;
+    padding: 0 3rem;
+  }
+
+  .reviews-swiper {
+    overflow: hidden;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    height: auto;
+    flex-shrink: 0;
+    width: calc((100% - 60px) / 3);
+  }
+
+  .review-card {
+    background: $card;
+    border-radius: 30px;
+    padding: 1.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__label {
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.25rem 0.8rem;
+      font-size: 0.87rem;
+      font-weight: 400;
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #000;
+      width: 60%;
+    }
+
+    &__text {
+      font-size: 0.875rem;
+      color: #000;
+      line-height: 1.5;
+      margin-bottom: 0rem;
+      flex-grow: 1;
+    }
+
+    &__stars {
+      display: flex;
+      gap: 0.25rem;
+      color: $yellow;
+      font-size: 1.5rem;
+      margin-left: auto;
+    }
+  }
+
+  // стрелки
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(50%);
+  width: 45px;
+  height: 45px;
+  background: none;
+  border: none;
+  z-index: 10;
+  cursor: pointer;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: brightness(0) saturate(100%) invert(97%) sepia(5%) saturate(47%) hue-rotate(314deg) brightness(97%) contrast(86%);
+    transition: all 0.2s ease;
+  }
+
+  &:hover::after {
+    filter: brightness(0) saturate(100%) invert(44%) sepia(22%) saturate(0%) hue-rotate(195deg) brightness(95%) contrast(90%);
+  }
+}
+
+.swiper-button-prev {
+  &::after {
+    background-image: url("../../img/left.svg");
+  }
+}
+
+.swiper-button-next {
+  &::after {
+    background-image: url("../../img/right.svg");
+  }
+}
+
+
+}
