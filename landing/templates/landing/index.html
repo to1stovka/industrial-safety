@@ -10,6 +10,7 @@
 
 {% block content %}
 
+{% comment %}
 <section class="hero-banner">
   <div class="hero-overlay">
     <div class="container">
@@ -27,8 +28,9 @@
     </div>
   </div>
 </section>
+{% endcomment %}
 
-<!-- Популярные направления -->
+{% comment %}
 {% load static ui_extras %}
 
 <section class="popular-section py-5">
@@ -82,8 +84,9 @@
 
   </div>
 </section>
+{% endcomment %}
 
-<!-- О компании -->
+{% comment %}
 <section class="about-section py-5">
   <div class="container">
     <h2 class="section-title mb-4">О компании</h2>
@@ -144,8 +147,9 @@
     </div>
   </div>
 </section>
+{% endcomment %}
 
-<!-- Отзывы -->
+{% comment %}
 <section class="reviews-section py-5">
   <div class="container position-relative">
     <h2 class="section-title mb-4">Отзывы</h2>
@@ -169,7 +173,6 @@
       </div>
 
     </div>
-    <!-- Стрелки -->
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     {% else %}
@@ -177,16 +180,16 @@
     {% endif %}
   </div>
 </section>
+{% endcomment %}
 
 
-<!-- Наши клиенты -->
+{% comment %}
 <section class="clients-section py-5">
   <div class="container position-relative">
     <h2 class="section-title mb-4">Наши клиенты</h2>
 
     <div class="swiper clients-swiper">
       <div class="swiper-wrapper">
-        <!-- Слайд 1 -->
         <div class="swiper-slide">
           <div class="clients-grid">
             <div class="client-logo"><img src="{% static 'landing/img/clients/1.png' %}" alt="Лукойл" /></div>
@@ -202,7 +205,6 @@
           </div>
         </div>
 
-        <!-- Слайд 2 -->
         <div class="swiper-slide">
           <div class="clients-grid">
             <div class="client-logo"><img src="{% static 'landing/img/clients/10.png' %}" /></div>
@@ -220,14 +222,11 @@
       </div>
     </div>
 
-    <!-- Стрелки -->
     <div class="clients-button-prev"></div>
     <div class="clients-button-next"></div>
   </div>
 </section>
-
-
-
+{% endcomment %}
 
 <!-- Новости -->
 <section class="news-section py-5">
