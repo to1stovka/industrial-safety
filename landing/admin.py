@@ -1,5 +1,5 @@
 from django.contrib import admin
-from landing.models import CourseDirection, Review
+from landing.models import CourseDirection, Review, Chunk
 
 @admin.register(CourseDirection)
 class CourseDirectionAdmin(admin.ModelAdmin):
@@ -17,3 +17,16 @@ class ReviewAdmin(admin.ModelAdmin):
         return (obj.text[:80] + "...") if len(obj.text) > 80 else obj.text
 
     short_text.short_description = "Текст отзыва"
+
+
+@admin.register(Chunk)
+class ChunkAdmin(admin.ModelAdmin):
+    list_display = ("key",)
+    search_fields = ("key", "content")
+
+    def get_changeform_initial_data(self, request):
+        """Pre-fill the key field when adding a new chunk via URL parameter"""
+        initial = super().get_changeform_initial_data(request)
+        if 'key' in request.GET:
+            initial['key'] = request.GET['key']
+        return initial

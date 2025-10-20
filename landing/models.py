@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class CourseDirection(models.Model):
     class Mode(models.TextChoices):
@@ -49,3 +50,24 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.get_category_display()}"
+
+
+class Chunk(models.Model):
+    """Модель для управления фрагментами контента на сайте"""
+    key = models.CharField(
+        max_length=255,
+        unique=True,
+        verbose_name='Ключ'
+    )
+    content = RichTextUploadingField(
+        verbose_name='Содержание',
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = 'Фрагмент контента'
+        verbose_name_plural = 'Фрагменты контента'
+        ordering = ['key']
+
+    def __str__(self):
+        return self.key
