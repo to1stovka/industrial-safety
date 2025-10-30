@@ -92,5 +92,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+// Модалка обратного звонка
+const callbackForm = document.getElementById("callbackForm");
+const formStep = document.getElementById("callbackFormStep");
+const successStep = document.getElementById("callbackSuccessStep");
+
+if (callbackForm) {
+  callbackForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(callbackForm);
+
+    try {
+      const response = await fetch("", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        formStep.style.display = "none";
+        successStep.style.display = "block";
+      } else {
+        alert("Ошибка при отправке. Попробуйте снова.");
+      }
+    } catch (error) {
+      console.error("Ошибка запроса:", error);
+      alert("Ошибка при соединении с сервером.");
+    }
+  });
+}
 
 });

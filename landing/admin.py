@@ -1,5 +1,5 @@
 from django.contrib import admin
-from landing.models import CourseDirection, Review, Chunk
+from landing.models import CourseDirection, Review, Chunk, CallbackRequest, Expert
 
 @admin.register(CourseDirection)
 class CourseDirectionAdmin(admin.ModelAdmin):
@@ -30,3 +30,11 @@ class ChunkAdmin(admin.ModelAdmin):
         if 'key' in request.GET:
             initial['key'] = request.GET['key']
         return initial
+    
+@admin.register(CallbackRequest)
+class CallbackAdmin(admin.ModelAdmin):
+    list_display = ('name', 'phone', 'created_at',)
+
+@admin.register(Expert)
+class CallbackExpertAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'photo',)

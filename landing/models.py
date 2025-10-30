@@ -71,3 +71,25 @@ class Chunk(models.Model):
 
     def __str__(self):
         return self.key
+
+
+class CallbackRequest(models.Model):
+    name = models.CharField("Имя", max_length=100)
+    phone = models.CharField("Телефон", max_length=30)
+    created_at = models.DateTimeField("Дата отправки", auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.phone})"
+    class Meta:
+        verbose_name = 'Запрос на звонок'
+        verbose_name_plural = 'Запросы на звонок'
+
+class Expert(models.Model):
+    full_name = models.CharField("ФИО", max_length=255)
+    photo = models.ImageField("Фото", upload_to="experts/", blank=True, null=True)
+    
+    def __str__(self):
+        return self.full_name
+    class Meta: 
+        verbose_name = 'Эксперт'
+        verbose_name_plural = 'Эксперты'

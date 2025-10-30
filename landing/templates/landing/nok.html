@@ -1,0 +1,223 @@
+{% extends "landing/base.html" %}
+{% load static %}
+
+{% block title %}Подготовка экспертов и специалистов к Независимой оценке квалификации (НОК){% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/nok/style.css' %}">
+{% endblock %}
+
+{% block content %}
+{% if request.get_host == '127.0.0.1:8000' or request.get_host == 'localhost' %}
+<div class="nok-page">
+    <section class="container py-5">
+        <h2 class="nok-title">
+            Подготовка экспертов и специалистов<br>
+            к Независимой оценке квалификации (НОК)
+        </h2>
+    <h2 class="steps-title">Как отправить заявку</h2>
+
+    <div class="steps-grid">
+        <div class="step-item">
+        <div class="step-number">1<span>шаг</span></div>
+        <p>Выберите<br>программу</p>
+        </div>
+
+        <div class="step-item">
+        <div class="step-number">2<span>шаг</span></div>
+        <p>Скачайте и<br>заполните заявление</p>
+        </div>
+
+        <div class="step-item">
+        <div class="step-number">3<span>шаг</span></div>
+        <p>Оформите заявку<br>и прикрепите заявление</p>
+        </div>
+
+        <div class="step-item">
+        <div class="step-number">4<span>шаг</span></div>
+        <p>Ожидайте с вами<br>свяжутся</p>
+        </div>
+    </div>
+    </section>
+
+
+  <!-- Таблица -->
+  <section class="container py-4">
+    <h4 class="nok-table-title">
+      Подготовка специалистов по следующим профессиональным квалификациям:
+    </h4>
+    <table class="nok-table mt-3">
+      <thead>
+        <tr><th>Код</th><th>Наименование профессиональных квалификаций</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>40.20900.07</td>
+          <td>Специалист по техническому диагностированию и освидетельствованию технических устройств на опасных производственных объектах химической промышленности, а также других взрывопожароопасных и вредных производств (6-й уровень квалификации)</td>
+        </tr>
+        <tr class="gray">
+          <td>40.20900.104</td>
+          <td>Эксперт I категории в области промышленной безопасности технических устройств на опасных производственных объектах I, II, III и IV класса опасности газоснабжения (7-й уровень квалификации)</td>
+        </tr>
+        <tr>
+          <td>40.20900.105</td>
+          <td>Эксперт II категории в области промышленной безопасности технических устройств на опасных производственных объектах II, III и IV класса опасности газоснабжения (7-й уровень квалификации)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+      <a href="#" class="btn btn-orange">Смотреть больше</a>
+    </div>
+  </section>
+
+  <!-- Наши эксперты -->
+  <section class="experts-section py-5">
+    <div class="container position-relative">
+        <h4 class="nok-experts-title">Наши эксперты</h4>
+
+        <div class="swiper nok-swiper">
+        <div class="swiper-wrapper">
+            {% for expert in experts %}
+            <div class="swiper-slide expert-card">
+            {% if expert.photo %}
+                <div class="expert-photo" style="background-image: url('{{ expert.photo.url }}');"></div>
+            {% else %}
+                <div class="expert-photo" style="background-image: url('{% static "landing/img/avatar-placeholder.png" %}');"></div>
+            {% endif %}
+            <div class="expert-name">{{ expert.full_name }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    </section>
+
+  <!-- Кнопки заявлений -->
+  <section class="container py-4">
+    <h5 class="nok-apply-title">Заявление на подготовку к профессиональному экзамену</h5>
+    <div class="apply-buttons">
+      <a href="#" class="btn btn-nok">Заявление на подготовку эксперта к НОК</a>
+      <a href="#" class="btn btn-nok">Заявление на подготовку специалиста к НОК</a>
+    </div>
+  </section>
+
+  <!-- Оставить заявку -->
+    <section class="container py-5">
+    <h5 class="form-title">Оставить заявку</h5>
+
+    <form class="nok-form" action="#" method="post" enctype="multipart/form-data">
+        <div class="form-grid">
+        <!-- Левая колонка -->
+        <div class="form-col">
+            <div class="form-item small">
+            <input type="text" name="name" placeholder="Имя" required>
+            <img src="{% static 'landing/img/icon-user.svg' %}" alt="user" class="form-icon">
+            </div>
+            <div class="form-item small">
+            <input type="email" name="email" placeholder="Электронная почта" required>
+            <img src="{% static 'landing/img/icon-mail.svg' %}" alt="mail" class="form-icon">
+            </div>
+        </div>
+
+        <!-- Центральная колонка -->
+        <div class="form-item large">
+            <textarea name="message" placeholder="Введите сообщение"></textarea>
+            <img src="{% static 'landing/img/icon-pen.svg' %}" alt="pen" class="form-icon">
+        </div>
+
+        <!-- Правая колонка -->
+        <div class="form-col">
+            <div class="form-item small file-item">
+            <label>
+                <input type="file" name="file">
+                <span>Прикрепите заявление</span>
+                <img src="{% static 'landing/img/icon-clip.svg' %}" alt="clip" class="form-icon">
+            </label>
+            </div>
+            <button type="submit" class="btn btn-nok-submit">Отправить</button>
+        </div>
+        </div>
+
+        <p class="form-hint mt-3">Задайте нам любой интересующий Вас вопрос</p>
+    </form>
+    </section>
+
+
+
+  <!-- Гармошка -->
+  <section class="container py-5">
+    <div class="accordion-wrapper">
+        <button class="accordion-toggle" id="normative-toggle">
+        Нормативные документы в сфере независимой оценки квалификации
+        <img
+            src="{% static 'landing/img/Vector.svg' %}"
+            alt="toggle"
+            class="accordion-icon"
+        />
+        </button>
+
+        <div class="accordion-content" id="normative-content">
+        <ul class="normative-list">
+            <li>Приказ Минтруда России от 16.12.2020 N 911н "Об утверждении профессионального стандарта "Специалист в сфере промышленной безопасности"</li>
+            <li>Федеральный закон от 21.07.1997 N 116-ФЗ "О промышленной безопасности опасных производственных объектов"</li>
+            <li>Приказ Ростехнадзора от 20.02.2024 N 60 "О внесении изменений в федеральные нормы и правила в области промышленной безопасности "Правила проведения экспертизы промышленной безопасности", утвержденные приказом Федеральной службы по экологическому, технологическому и атомному надзору от 20 октября 2020 г. N 420"</li>
+            <li>Приказ Ростехнадзора от 20.10.2020 N 420 "Об утверждении федеральных норм и правил в области промышленной безопасности "Правила проведения экспертизы промышленной безопасности"</li>
+            <li>Федеральный закон от 25.12.2023 N 637-ФЗ "О внесении изменений в Федеральный закон "О промышленной безопасности опасных производственных объектов" и отдельные законодательные акты Российской Федерации"</li>
+            <li>Федеральный закон от 03.07.2016 N 238-ФЗ "О независимой оценке квалификации"</li>
+            <li>Постановление Правительства РФ от 16.11.2016 N 1204 "Об утверждении Правил проведения центром оценки квалификаций независимой оценки квалификации в форме профессионального экзамена"</li>
+            <li>Приказ Минтруда России от 19.12.2016 N 759н "Об утверждении требований к центрам оценки квалификаций и Порядка отбора организаций для наделения их полномочиями по проведению независимой оценки квалификации и прекращения этих полномочий"</li>
+            <li>Постановление от 27 июня 2016 г. n 584 Об особенностях применения профессиональных стандартов в части требований, обязательных для применения государственными внебюджетными фондами российской федерации, государственными или муниципальными учреждениями, государственными или муниципальными унитарными предприятиями, а также государственными корпорациями, государственными компаниями и хозяйственными обществами, более пятидесяти процентов акций (долей) в уставном капитале которых находится в государственной собственности или муниципальной собственности</li>
+            <li>Приказ Минтруда России от 01.11.2016 N 601н "Об утверждении Положения о разработке оценочных средств для проведения независимой оценки квалификации"</li>
+            <li>Приказ Минтруда России от 01.12.2016 N 701н "Об утверждении Положения об апелляционной комиссии по рассмотрению жалоб, связанных с результатами прохождения профессионального экзамена и выдачей свидетельства о квалификации"</li>
+            <li>Приказ Минтруда России от 02.12.2016 N 706н"Об утверждении образца заявления для проведения независимой оценки квалификации и Порядка подачи такого заявления"</li>
+            <li>Приказ Минтруда России от 11.07.2022 N 410н "Об утверждении Положения о разработке наименований квалификаций и требований к квалификации, на соответствие которым проводится независимая оценка квалификации"</li>
+            <li>Приказ Минтруда России от 12.12.2016 N 725н "Об утверждении формы бланка свидетельства о квалификации и приложения к нему, технических требований к бланку свидетельства о квалификации, порядка заполнения бланка свидетельства о квалификации и выдачи его дубликата, а также формы заключения о прохождении профессионального экзамена"</li>
+            <li>Приказ Минтруда России от 14.12.2016 N 729н "Об утверждении Порядка осуществления мониторинга и контроля в сфере независимой оценки квалификации"</li>
+            <li>Приказ Минтруда России от 15.11.2016 N 649н "Об утверждении Порядка формирования и ведения реестра сведений о проведении независимой оценки квалификации и доступа к ним, а также перечня сведений, содержащихся в указанном реестре"</li>
+            <li>Приказ Минтруда России от 19.12.2016 N 758н "Об утверждении Примерного положения о совете по профессиональным квалификациям и Порядка наделения совета по профессиональным квалификациям полномочиями по организации проведения независимой оценки квалификации по определенному виду профессиональной деятельности и прекращения этих полномочий"</li>
+        </ul>
+        </div>
+    </div>
+    </section>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper(".nok-swiper", {
+    slidesPerView: 4,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+    breakpoints: {
+      320: { slidesPerView: 1.2 },
+      768: { slidesPerView: 2 },
+      992: { slidesPerView: 3 },
+      1200: { slidesPerView: 4 }
+    }
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.getElementById("normative-toggle");
+  const content = document.getElementById("normative-content");
+
+  toggle.addEventListener("click", () => {
+    content.classList.toggle("open");
+    toggle.classList.toggle("active");
+  });
+});
+</script>
+
+
+{% endblock %}

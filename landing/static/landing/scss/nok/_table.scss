@@ -1,0 +1,48 @@
+@use "../variables" as *;
+
+/* Заголовок таблицы */
+.nok-table-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Контейнер таблицы */
+.nok-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+
+  th {
+    background: inherit;
+    font-weight: 400;
+    font-size: 1.125rem;
+    padding: 10px 12px;
+    text-align: left;
+  }
+
+  /* Ячейки тела таблицы */
+  td {
+    padding: 10px 12px;
+    border: none;
+    font-weight: 400;
+    font-size: 1.125rem;
+    padding: 30px 12px;
+  }
+
+  /* Чередование строк */
+  tbody tr:nth-child(odd) td {
+    background: #6091F980;
+  }
+
+  tbody tr:nth-child(even) td {
+    background: #E3E1E1;
+  }
+
+th:first-child,
+td:first-child {
+    width: 16%;
+    min-width: 160px;
+    white-space: nowrap;
+}
+}
