@@ -101,23 +101,39 @@ if (callbackForm) {
   callbackForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(callbackForm);
+    const name = document.getElementById("callback_name").value.trim();
+    const phone = document.getElementById("callback_phone").value.trim();
+    const csrf = callbackForm.querySelector("[name='csrfmiddlewaretoken']").value;
+    const postUrl = callbackForm.getAttribute("action");
+
+    if (!name || !phone) {
+      alert("Заполните оба поля.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("phone", phone);
+    formData.append("csrfmiddlewaretoken", csrf);
 
     try {
-      const response = await fetch("", {
+      const response = await fetch(postUrl, {
         method: "POST",
         body: formData,
+        headers: { "X-Requested-With": "XMLHttpRequest" },
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         formStep.style.display = "none";
         successStep.style.display = "block";
       } else {
-        alert("Ошибка при отправке. Попробуйте снова.");
+        alert(data.error || "Ошибка при отправке. Попробуйте снова.");
       }
     } catch (error) {
       console.error("Ошибка запроса:", error);
-      alert("Ошибка при соединении с сервером.");
+      alert("Ошибка соединения с сервером.");
     }
   });
 }

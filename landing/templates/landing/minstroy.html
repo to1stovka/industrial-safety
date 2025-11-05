@@ -1,0 +1,253 @@
+{% extends "landing/base.html" %}
+{% load static %}
+
+{% block title %}Подготовка экспертов к аттестации в Минстрое РФ{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/minstroy/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="minstroy-page">
+
+  <section class="container py-5">
+    <h2 class="page-title">Подготовка экспертов к аттестации в Минстрое РФ</h2>
+    <p class="lead-text">
+      АНО ДПО «УЦ Безопасность в промышленности» предоставляет услуги по подготовке к аттестации и переаттестации экспертов в Минстрое РФ, которые проводятся в формате компьютерного тестирования, письменного экзамена и собеседования.
+    </p>
+  </section>
+
+  <section class="advantages-section container py-4">
+    <h3 class="section-title">Наши преимущества</h3>
+    <div class="advantages-grid">
+      <div class="advantage-item">
+        <div class="adv-num">1</div>
+        <p>Мы проводим дистанционную подготовку… без отрыва от основной работы.</p>
+      </div>
+      <div class="advantage-item">
+        <div class="adv-num">2</div>
+        <p>Все программы соответствуют направлениям деятельности экспертов, утверждённым Приказом Минстроя РФ № 955/пр.</p>
+      </div>
+      <div class="advantage-item">
+        <div class="adv-num">3</div>
+        <p>Письменные экзамены в системе School-Exam, полностью соответствующие экзаменам Минстроя РФ.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-4">
+    <h3 class="section-title">При подготовке используются:</h3>
+    <ul class="methods-list">
+      <li>метод пробного тестирования по реальным вопросам и ответам компьютерного тестирования;</li>
+      <li>метод изучения полного правильного ответа к вопросам, выносимым на письменный экзамен и собеседование.</li>
+    </ul>
+    <div class="notice">
+      На предаттестационную подготовку мы предоставляем от 30 до 45 календарных дней с момента подтверждения оплаты от Заказчика.
+    </div>
+  </section>
+
+  <section class="container py-5">
+        <h2 class="nok-title">
+            Подготовка экспертов и специалистов<br>
+            к Независимой оценке квалификации (НОК)
+        </h2>
+    <h2 class="steps-title">Как отправить заявку</h2>
+
+    <div class="steps-grid">
+        <div class="step-item">
+        <div class="step-number">1<span>шаг</span></div>
+        <p>Выберите<br>программу</p>
+        </div>
+
+        <div class="step-item">
+        <div class="step-number">2<span>шаг</span></div>
+        <p>Скачайте и<br>заполните заявление</p>
+        </div>
+
+        <div class="step-item">
+        <div class="step-number">3<span>шаг</span></div>
+        <p>Оформите заявку<br>и прикрепите заявление</p>
+        </div>
+
+        <div class="step-item">
+        <div class="step-number">4<span>шаг</span></div>
+        <p>Ожидайте с вами<br>свяжутся</p>
+        </div>
+    </div>
+    </section>
+
+  <section class="programs-section container py-5">
+    <h4 class="programs-title">Перечень программ, соответствующих направлениям деятельности экспертов</h4>
+    <p class="programs-subtitle">Утверждён Приказом Минстроя РФ от 3 ноября 2022 г. № 955/пр, вступившим в силу 6 февраля 2023 г.</p>
+
+    <div class="programs-list mt-4">
+      {% for program in programs %}
+        <div class="program-item">
+          <span class="program-num">{{ forloop.counter }}.</span>
+          <div class="program-text">
+            <strong>{{ program.title }}</strong><br>
+            {{ program.description|safe }}
+          </div>
+        </div>
+      {% empty %}
+        <p>Пока нет доступных программ.</p>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="#" class="btn btn-orange">Смотреть больше</a>
+    </div>
+  </section>
+
+  <section class="apply-section container py-5">
+    <h5 class="apply-title">Заявление на подготовку к профессиональному экзамену</h5>
+    <div class="text-center mt-3">
+      <a href="#" class="btn btn-nok">Заявление на подготовку эксперта</a>
+    </div>
+  </section>
+
+  <!-- Ниже — форма КАК НА СТРАНИЦЕ НОК. Копируем 1:1 -->
+  <section class="container py-5">
+    <h5 class="form-title">Оставить заявку</h5>
+    <div class="form-wrapper">
+      <form class="nok-form" method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="form-grid">
+          <div class="form-col">
+            <div class="form-item small {% if form.name.errors %}has-error{% endif %}">
+              {{ form.name }}
+              <img src="{% static 'landing/img/icon-user.svg' %}" alt="user" class="form-icon">
+            </div>
+            <div class="form-item small {% if form.email.errors %}has-error{% endif %}">
+              {{ form.email }}
+              <img src="{% static 'landing/img/icon-mail.svg' %}" alt="mail" class="form-icon">
+            </div>
+          </div>
+
+          <div class="form-item large {% if form.message.errors %}has-error{% endif %}">
+            {{ form.message }}
+            <img src="{% static 'landing/img/icon-pen.svg' %}" alt="pen" class="form-icon">
+          </div>
+
+          <div class="form-col">
+            <div class="form-item small file-item {% if form.file.errors %}has-error{% endif %}">
+              <label>
+                {{ form.file }}
+                <span class="file-name">Прикрепите заявление</span>
+                <img src="{% static 'landing/img/icon-clip.svg' %}" alt="clip" class="form-icon">
+              </label>
+            </div>
+            <button type="submit" class="btn btn-nok-submit">Отправить</button>
+          </div>
+        </div>
+        <p class="form-hint mt-3">Задайте нам любой интересующий Вас вопрос</p>
+      </form>
+
+      <div class="form-success hidden">
+        <h5>Заявка отправлена</h5>
+        <img src="{% static 'landing/img/check.svg' %}" alt="✓" class="success-icon">
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+{# Полностью копируем JS со страницы НОК — он отправляет в {% url 'nok' %} #}
+<script>
+{% comment %} Слайдер экспертов (если понадобится) {% endcomment %}
+const swiper = new Swiper(".nok-swiper", {
+  slidesPerView: 4,
+  spaceBetween: 20,
+  loop: true,
+  navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+  breakpoints: { 320:{slidesPerView:1.2},768:{slidesPerView:2},992:{slidesPerView:3},1200:{slidesPerView:4} }
+});
+</script>
+
+<script>
+{% comment %} имя файла для инпута {% endcomment %}
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.querySelector("#id_file");
+  const fileNameSpan = document.querySelector(".file-name");
+  if (fileInput && fileNameSpan) {
+    fileInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        let name = file.name;
+        if (name.length > 25) name = name.substring(0, 25) + "...";
+        fileNameSpan.textContent = name;
+        fileNameSpan.classList.add("active");
+      } else {
+        fileNameSpan.textContent = "Прикрепите заявление";
+        fileNameSpan.classList.remove("active");
+      }
+    });
+  }
+});
+</script>
+
+<script>
+{% comment %} отправка формы на URL 'nok' (как на предыдущей странице) {% endcomment %}
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector(".nok-form");
+  const successBlock = document.querySelector(".form-success");
+  if (!form) return;
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    form.querySelectorAll(".form-item").forEach(i => i.classList.remove("has-error"));
+
+    let valid = true;
+    const name = form.querySelector("#id_name");
+    const email = form.querySelector("#id_email");
+    const message = form.querySelector("#id_message");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (name.value.trim().length < 2) { name.closest(".form-item").classList.add("has-error"); valid = false; }
+    if (!emailRegex.test(email.value.trim())) { email.closest(".form-item").classList.add("has-error"); valid = false; }
+    if (message.value.trim().length < 5) { message.closest(".form-item").classList.add("has-error"); valid = false; }
+    if (!valid) return;
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("{% url 'nok' %}", {
+        method: "POST",
+        body: formData,
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+      });
+
+      if (response.ok) {
+        form.style.transition = "opacity 0.3s ease";
+        form.style.opacity = "0";
+        setTimeout(() => {
+          form.style.display = "none";
+          successBlock.style.display = "flex";
+          successBlock.style.opacity = "0";
+          successBlock.style.transition = "opacity 0.4s ease";
+          setTimeout(() => successBlock.style.opacity = "1", 50);
+        }, 300);
+      } else {
+        console.error("Ошибка при отправке формы");
+      }
+    } catch (error) {
+      console.error("Ошибка сети:", error);
+    }
+  });
+
+  form.querySelectorAll("input, textarea").forEach(input => {
+    input.addEventListener("input", () => {
+      const wrapper = input.closest(".form-item");
+      if (wrapper) wrapper.classList.remove("has-error");
+    });
+  });
+});
+</script>
+{% endblock %}

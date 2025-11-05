@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-{% if request.get_host == '127.0.0.1:8000' or request.get_host == 'localhost' %}
 <div class="nok-page">
     <section class="container py-5">
         <h2 class="nok-title">
@@ -107,50 +106,57 @@
   </section>
 
   <!-- Оставить заявку -->
-    <section class="container py-5">
+  <section class="container py-5">
     <h5 class="form-title">Оставить заявку</h5>
-
-    <form class="nok-form" action="#" method="post" enctype="multipart/form-data">
-        <div class="form-grid">
+    <div class="form-wrapper">
+    <form class="nok-form" method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      <div class="form-grid">
         <!-- Левая колонка -->
         <div class="form-col">
-            <div class="form-item small">
-            <input type="text" name="name" placeholder="Имя" required>
+          <div class="form-item small {% if form.name.errors %}has-error{% endif %}">
+            {{ form.name }}
             <img src="{% static 'landing/img/icon-user.svg' %}" alt="user" class="form-icon">
-            </div>
-            <div class="form-item small">
-            <input type="email" name="email" placeholder="Электронная почта" required>
+          </div>
+          <div class="form-item small {% if form.email.errors %}has-error{% endif %}">
+            {{ form.email }}
             <img src="{% static 'landing/img/icon-mail.svg' %}" alt="mail" class="form-icon">
-            </div>
+          </div>
         </div>
 
         <!-- Центральная колонка -->
-        <div class="form-item large">
-            <textarea name="message" placeholder="Введите сообщение"></textarea>
-            <img src="{% static 'landing/img/icon-pen.svg' %}" alt="pen" class="form-icon">
+        <div class="form-item large {% if form.message.errors %}has-error{% endif %}">
+          {{ form.message }}
+          <img src="{% static 'landing/img/icon-pen.svg' %}" alt="pen" class="form-icon">
         </div>
 
         <!-- Правая колонка -->
         <div class="form-col">
-            <div class="form-item small file-item">
+          <div class="form-item small file-item {% if form.file.errors %}has-error{% endif %}">
             <label>
-                <input type="file" name="file">
-                <span>Прикрепите заявление</span>
-                <img src="{% static 'landing/img/icon-clip.svg' %}" alt="clip" class="form-icon">
+              {{ form.file }}
+              <span class="file-name">Прикрепите заявление</span>
+              <img src="{% static 'landing/img/icon-clip.svg' %}" alt="clip" class="form-icon">
             </label>
-            </div>
-            <button type="submit" class="btn btn-nok-submit">Отправить</button>
+          </div>
+          <button type="submit" class="btn btn-nok-submit">Отправить</button>
         </div>
-        </div>
-
-        <p class="form-hint mt-3">Задайте нам любой интересующий Вас вопрос</p>
+      </div>
+      <p class="form-hint mt-3">Задайте нам любой интересующий Вас вопрос</p>
     </form>
-    </section>
+
+    <!-- Успешная отправка -->
+    <div class="form-success hidden">
+      <h5>Заявка отправлена</h5>
+      <img src="{% static 'landing/img/check.svg' %}" alt="✓" class="success-icon">
+    </div>
+    </div>
+  </section>
 
 
 
   <!-- Гармошка -->
-  <section class="container py-5">
+  <section class="container py-5" style="padding-top: 1rem !important; padding-bottom: 1rem !important;">
     <div class="accordion-wrapper">
         <button class="accordion-toggle" id="normative-toggle">
         Нормативные документы в сфере независимой оценки квалификации
@@ -185,39 +191,126 @@
     </div>
     </section>
 </div>
-{% endif %}
 {% endblock %}
 
 {% block extra_js %}
+{{ block.super }}
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  const swiper = new Swiper(".nok-swiper", {
-    slidesPerView: 4,
-    spaceBetween: 20,
-    loop: true,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    },
-    breakpoints: {
-      320: { slidesPerView: 1.2 },
-      768: { slidesPerView: 2 },
-      992: { slidesPerView: 3 },
-      1200: { slidesPerView: 4 }
-    }
-  });
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const toggle = document.getElementById("normative-toggle");
-  const content = document.getElementById("normative-content");
-
-  toggle.addEventListener("click", () => {
-    content.classList.toggle("open");
-    toggle.classList.toggle("active");
-  });
+{% comment %} Слайдер экспертов {% endcomment %}
+const swiper = new Swiper(".nok-swiper", {
+  slidesPerView: 4,
+  spaceBetween: 20,
+  loop: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+  breakpoints: {
+    320: { slidesPerView: 1.2 },
+    768: { slidesPerView: 2 },
+    992: { slidesPerView: 3 },
+    1200: { slidesPerView: 4 }
+  }
 });
 </script>
 
+<script>
+{% comment %} аккордеон доков {% endcomment %}
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.getElementById("normative-toggle");
+  const content = document.getElementById("normative-content");
+  if (toggle && content) {
+    toggle.addEventListener("click", () => {
+      content.classList.toggle("open");
+      toggle.classList.toggle("active");
+    });
+  }
+});
+</script>
+
+<script>
+{% comment %} имя файла {% endcomment %}
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.querySelector("#id_file");
+  const fileNameSpan = document.querySelector(".file-name");
+
+  if (fileInput && fileNameSpan) {
+    fileInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        let name = file.name;
+        if (name.length > 25) name = name.substring(0, 25) + "...";
+        fileNameSpan.textContent = name;
+        fileNameSpan.classList.add("active");
+      } else {
+        fileNameSpan.textContent = "Прикрепите заявление";
+        fileNameSpan.classList.remove("active");
+      }
+    });
+  }
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector(".nok-form");
+  const successBlock = document.querySelector(".form-success");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    form.querySelectorAll(".form-item").forEach(i => i.classList.remove("has-error"));
+
+    let valid = true;
+    const name = form.querySelector("#id_name");
+    const email = form.querySelector("#id_email");
+    const message = form.querySelector("#id_message");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (name.value.trim().length < 2) { name.closest(".form-item").classList.add("has-error"); valid = false; }
+    if (!emailRegex.test(email.value.trim())) { email.closest(".form-item").classList.add("has-error"); valid = false; }
+    if (message.value.trim().length < 5) { message.closest(".form-item").classList.add("has-error"); valid = false; }
+
+    if (!valid) return;
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("{% url 'nok' %}", {
+        method: "POST",
+        body: formData,
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+      });
+
+      if (response.ok) {
+        form.style.transition = "opacity 0.3s ease";
+        form.style.opacity = "0";
+
+        setTimeout(() => {
+          form.style.display = "none";
+          successBlock.style.display = "flex";
+          successBlock.style.opacity = "0";
+          successBlock.style.transition = "opacity 0.4s ease";
+          setTimeout(() => successBlock.style.opacity = "1", 50);
+        }, 300);
+      } else {
+        console.error("Ошибка при отправке формы");
+      }
+    } catch (error) {
+      console.error("Ошибка сети:", error);
+    }
+  });
+
+  form.querySelectorAll("input, textarea").forEach(input => {
+    input.addEventListener("input", () => {
+      const wrapper = input.closest(".form-item");
+      if (wrapper) wrapper.classList.remove("has-error");
+    });
+  });
+});
+</script>
 
 {% endblock %}

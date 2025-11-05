@@ -291,15 +291,25 @@
             Отправьте нам свой номер телефона<br>и мы Вам перезвоним
           </p>
 
-          <form id="callbackForm" method="post">
+          <form id="callbackForm"
+                method="post"
+                action="{% url 'callback_request' %}">
             {% csrf_token %}
             <div class="form-group mb-3 position-relative">
-              <input type="text" name="name" class="form-control callback-input ps-3 pe-5" placeholder="Имя" required>
+              <input type="text"
+                    id="callback_name"
+                    class="form-control callback-input ps-3 pe-5"
+                    placeholder="Имя"
+                    required>
               <i class="bi bi-person position-absolute top-50 end-0 translate-middle-y me-3"></i>
             </div>
 
             <div class="form-group mb-4 position-relative">
-              <input type="tel" name="phone" class="form-control callback-input ps-3 pe-5" placeholder="Телефон" required>
+              <input type="tel"
+                    id="callback_phone"
+                    class="form-control callback-input ps-3 pe-5"
+                    placeholder="Телефон"
+                    required>
               <i class="bi bi-telephone position-absolute top-50 end-0 translate-middle-y me-3"></i>
             </div>
 
@@ -313,7 +323,7 @@
         <div class="callback-step text-center" id="callbackSuccessStep" style="display: none;">
           <h5 class="fw-semibold mb-3">Заявка отправлена</h5>
           <div class="checkmark-wrapper">
-            <div class="checkmark">&#10003;</div>
+            <img src="{% static 'landing/img/check.svg' %}" alt="✓" class="success-icon">
           </div>
         </div>
       </div>

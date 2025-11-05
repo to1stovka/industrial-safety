@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from ckeditor_uploader.fields import RichTextUploadingField
 
+# Основные направления обучения (главная страница)
 class CourseDirection(models.Model):
     class Mode(models.TextChoices):
         OCHNAYA = "fulltime", "очная"
@@ -32,6 +33,7 @@ class CourseDirection(models.Model):
         return self.title
     
 
+# Отзывы на главной странице (карточки)
 class Review(models.Model):
     CATEGORY_CHOICES = [
         ('NK', 'Аттестация специалистов НК'),
@@ -72,7 +74,7 @@ class Chunk(models.Model):
     def __str__(self):
         return self.key
 
-
+# ЗАпрос обратного звонка
 class CallbackRequest(models.Model):
     name = models.CharField("Имя", max_length=100)
     phone = models.CharField("Телефон", max_length=30)
@@ -84,6 +86,8 @@ class CallbackRequest(models.Model):
         verbose_name = 'Запрос на звонок'
         verbose_name_plural = 'Запросы на звонок'
 
+
+# Эксперты на странице НОК (Фото + ФИО)
 class Expert(models.Model):
     full_name = models.CharField("ФИО", max_length=255)
     photo = models.ImageField("Фото", upload_to="experts/", blank=True, null=True)
@@ -93,3 +97,36 @@ class Expert(models.Model):
     class Meta: 
         verbose_name = 'Эксперт'
         verbose_name_plural = 'Эксперты'
+
+
+# Форма "Оставить заявку" на странице НОК
+class NOCRequest(models.Model):
+    name = models.CharField("Имя", max_length=255)
+    email = models.EmailField("Электронная почта")
+    message = models.TextField("Сообщение", blank=True)
+    file = models.FileField("Прикреплённое заявление", upload_to="noc_requests/", blank=True, null=True)
+    created_at = models.DateTimeField("Дата отправки", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Заявка на НОК"
+        verbose_name_plural = "Заявки на НОК"
+
+    def __str__(self):
+        return f"{self.name} ({self.email})"
+    
+
+# Перечень программ, соответствующих направлениям деятельности экспертов
+class MinstroyProgram(models.Model):
+    order = models.PositiveIntegerField(default=0, help_text="Порядок сортировки")
+    title = models.CharField(max_length=300, verbose_name="Название программы")
+    description = models.TextField(blank=True, verbose_name="Описание")
+    is_active = models.BooleanField(default=True, verbose_name="Показывать на сайте")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Программа Минстроя"
+        verbose_name_plural = "Программы Минстроя"
+        ordering = ("order", "id")
+
+    def __str__(self):
+        return self.title

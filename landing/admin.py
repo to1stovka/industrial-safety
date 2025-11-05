@@ -1,5 +1,5 @@
 from django.contrib import admin
-from landing.models import CourseDirection, Review, Chunk, CallbackRequest, Expert
+from landing.models import CourseDirection, Review, Chunk, CallbackRequest, Expert, NOCRequest, MinstroyProgram
 
 @admin.register(CourseDirection)
 class CourseDirectionAdmin(admin.ModelAdmin):
@@ -38,3 +38,15 @@ class CallbackAdmin(admin.ModelAdmin):
 @admin.register(Expert)
 class CallbackExpertAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'photo',)
+
+@admin.register(NOCRequest)
+class NOCRequestAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'message', 'file', 'created_at')
+
+@admin.register(MinstroyProgram)
+class MinstroyProgramAdmin(admin.ModelAdmin):
+    list_display = ("title", "order", "is_active")
+    list_editable = ("order", "is_active")
+    list_display_links = ("title",)
+    search_fields = ("title", "description")
+

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from news.models import News
-from landing.models import CourseDirection, Review, CallbackRequest, Expert
+from landing.models import CourseDirection, Review, CallbackRequest, Expert, MinstroyProgram
+from landing.forms import NOCRequestForm
+from django.http import JsonResponse, HttpResponse
 
 def index(request):
     if request.method == "POST":
@@ -28,7 +30,7 @@ def index(request):
 def contact(request):
     return render(request, 'landing/contact.html')
 
-from .models import CallbackRequest
+
 
 def callback_request(request):
     if request.method == "POST":
@@ -38,18 +40,46 @@ def callback_request(request):
         if name and phone:
             CallbackRequest.objects.create(name=name, phone=phone)
 
-from django.shortcuts import render, redirect
-from .models import Expert
+            # AJAX-ответ
+            if request.headers.get("x-Requested-With") == "XMLHttpRequest":
+                return JsonResponse({"success": True})
+
+            # fallback для обычной формы
+            return HttpResponse("Заявка отправлена успешно")
+
+        # Ошибка валидации
+        if request.headers.get("x-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "error": "Некорректные данные"}, status=400)
+
+    # Если не POST — ошибка
+    return JsonResponse({"error": "Invalid method"}, status=405)
+
+
 
 def nok_page(request):
     experts = Expert.objects.all()
 
     if request.method == "POST":
-        name = request.POST.get("name")
-        phone = request.POST.get("phone")
-        message = request.POST.get("message")
-        # добавить сохранение в модель CallbackRequest
-        print("Заявка:", name, phone, message)
-        return redirect("nok")
+        form = NOCRequestForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            if request.headers.get("x-requested-with") == "XMLHttpRequest":
+                return JsonResponse({"success": True})
+            return redirect("nok")
+        else:
+            if request.headers.get("x-requested-with") == "XMLHttpRequest":
+                return JsonResponse({"success": False, "errors": form.errors})
+    else:
+        form = NOCRequestForm()
 
-    return render(request, "landing/nok.html", {"experts": experts})
+    return render(request, "landing/nok.html", {"experts": experts, "form": form})
+
+
+def minstroy_page(request):
+    programs = MinstroyProgram.objects.filter(is_active=True).order_by("order", "id")[:4]
+    form = NOCRequestForm()
+    context = {
+        "programs": programs,
+        "form": form,
+    }
+    return render(request, "landing/minstroy.html", context)
