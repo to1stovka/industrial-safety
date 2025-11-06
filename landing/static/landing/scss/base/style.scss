@@ -1,4 +1,9 @@
 @use "./../variables" as *;
+@use "./../partials/pagination" as *;
+@use "./../partials/form"as * ;
+// @use "./../partials/programs" as *;
+@use "./../partials/accordion" as *;
+@use "./../partials/qualifications_list" as *;
 
 @use "footer" as *;
 @use "header" as *;

@@ -1,0 +1,38 @@
+{% extends "landing/base.html" %}
+{% load static %}
+
+{% block title %}Все профессиональные квалификации – Диагност ПБ{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/compiled/landing/qualifications/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="container py-5">
+  <h4 class="nok-table-title mb-4">
+    Подготовка специалистов по следующим профессиональным квалификациям:
+  </h4>
+
+  <table class="nok-table">
+    <thead>
+      <tr>
+        <th>Код</th>
+        <th>Наименование профессиональных квалификаций</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for q in page_obj %}
+        <tr class="{% cycle '' 'gray' %}">
+          <td>{{ q.code }}</td>
+          <td>{{ q.title }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="2" class="text-center text-muted">Нет данных</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+ {% include "landing/partials/pagination.html" %}
+</section>
+{% endblock %}

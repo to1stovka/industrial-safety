@@ -1,0 +1,47 @@
+.exam {
+  max-width: 1400px;
+  margin: auto;
+}
+.exam__title {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  font-family: "Montserrat";
+  margin-top: 2rem;
+}
+.exam__subtitle {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.exam__section-title {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.exam__docs {
+  margin-bottom: 60px;
+}
+.exam__docs-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+.exam__docs-list li {
+  position: relative;
+  padding-left: 50px;
+  padding-top: 10px;
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+.exam__docs-list li .icon-check {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 40px;
+  height: 40px;
+  background: url("../../img/check.svg") no-repeat center;
+  background-size: contain;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,35 @@
+{% load static %}
+
+  <!-- Таблица -->
+<section class="container py-4">
+  <h4 class="nok-table-title">
+    Подготовка специалистов по следующим профессиональным квалификациям:
+  </h4>
+
+  <table class="nok-table mt-3">
+    <thead>
+      <tr>
+        <th>Код</th>
+        <th>Наименование профессиональных квалификаций</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for q in qualifications %}
+        <tr class="{% cycle '' 'gray' %}">
+          <td>{{ q.code }}</td>
+          <td>{{ q.title }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="2" class="text-center text-muted">
+            Пока нет квалификаций.
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="text-center mt-4">
+    <a href="/qualifications/" class="btn btn-orange">Смотреть больше</a>
+  </div>
+</section>

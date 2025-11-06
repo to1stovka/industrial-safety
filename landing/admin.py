@@ -1,5 +1,13 @@
 from django.contrib import admin
-from landing.models import CourseDirection, Review, Chunk, CallbackRequest, Expert, NOCRequest, MinstroyProgram
+from landing.models import (CourseDirection,
+                            Review,
+                            Chunk, 
+                            CallbackRequest, 
+                            Expert, 
+                            NOCRequest, 
+                            MinstroyProgram,
+                            Qualification
+                            )
 
 @admin.register(CourseDirection)
 class CourseDirectionAdmin(admin.ModelAdmin):
@@ -50,3 +58,7 @@ class MinstroyProgramAdmin(admin.ModelAdmin):
     list_display_links = ("title",)
     search_fields = ("title", "description")
 
+@admin.register(Qualification)
+class QualificationAdmin(admin.ModelAdmin):
+    list_display = ("code", "title", "created_at")
+    search_fields = ("code", "title")

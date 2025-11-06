@@ -1,0 +1,139 @@
+@use "./../variables" as *;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+
+  .page-item {
+    .page-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.625rem;
+      background-color: $card;
+      color: #000000;
+      font-size: 1.125rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #727171;
+        border-color: #727171;
+        text-decoration: none;
+      }
+    }
+
+    &.active .page-link {
+      background-color: $orange;
+      border-color: $orange;
+      cursor: default;
+    }
+
+    &.disabled .page-link {
+      background-color: inherit;
+      border: none;
+      cursor: not-allowed;
+    }
+
+    &.ellipsis .page-link {
+      cursor: default;
+      pointer-events: none;
+      background: transparent;
+      border: none;
+      color: #888;
+    }
+  }
+
+  .arrow {
+    background: transparent !important;
+    border: none !important;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    filter: invert(98%) sepia(0%) saturate(5%) hue-rotate(147deg)
+      brightness(94%) contrast(90%);
+
+    img {
+      width: 1rem;
+      height: 1rem;
+      object-fit: contain;
+      transition: filter 0.2s ease;
+    }
+
+    &:hover img {
+      filter: invert(45%) sepia(1%) saturate(0%) hue-rotate(45deg)
+        brightness(95%) contrast(84%);
+    }
+  }
+
+  .page-item.disabled .arrow img {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    gap: 0.15rem;
+
+    .page-item {
+      .page-link {
+        width: 1.8rem;
+        height: 1.8rem;
+        font-size: 0.7rem;
+        padding: 0.15rem;
+      }
+    }
+
+    .arrow {
+      width: 1.8rem;
+      height: 1.8rem;
+
+      img {
+        width: 0.7rem;
+        height: 0.7rem;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .pagination {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 0.5rem 0;
+
+    .page-item {
+      .page-link {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        padding: 0;
+      }
+
+      &.active .page-link {
+        background-color: $orange;
+        color: #fff;
+      }
+    }
+
+    .arrow {
+      width: 2rem;
+      height: 2rem;
+
+      img {
+        width: 0.8rem;
+        height: 0.8rem;
+      }
+    }
+  }
+}

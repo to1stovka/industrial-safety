@@ -1,0 +1,58 @@
+@use "./../variables" as *;
+.preparation-section{
+    margin-top: 4rem; 
+    margin-bottom: 0rem;
+
+    .section-title{ 
+        font-size: 1.5rem; 
+        font-weight: 600; 
+        margin-bottom: 2rem;
+    } 
+    .methods-list{ 
+        font-size: 1.125rem; 
+        max-width: 750px;
+    }
+}
+.notice {
+  display: flex;
+  align-items: center;
+  background-color: #b0c9fc;
+  border-radius: 30px;
+  padding: 23px 30px;
+  max-width: 1400px;
+  margin: 1.5rem 0;
+
+  .notice-icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid $orange;
+    color: $orange;
+    font-weight: 700;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 3rem;
+  }
+
+  p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.125rem;
+    max-width: 1000px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    padding: 14px 16px;
+
+    .notice-icon {
+      width: 24px;
+      height: 24px;
+      font-size: 1rem;
+      margin-right: 10px;
+    }
+  }
+}

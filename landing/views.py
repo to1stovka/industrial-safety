@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from news.models import News
-from landing.models import CourseDirection, Review, CallbackRequest, Expert, MinstroyProgram
+from landing.models import CourseDirection, Review, CallbackRequest, Expert, MinstroyProgram, Qualification
 from landing.forms import NOCRequestForm
 from django.http import JsonResponse, HttpResponse
+from django.core.paginator import Paginator
 
 def index(request):
     if request.method == "POST":
@@ -58,6 +59,7 @@ def callback_request(request):
 
 def nok_page(request):
     experts = Expert.objects.all()
+    qualifications = Qualification.objects.order_by("created_at")[:3]
 
     if request.method == "POST":
         form = NOCRequestForm(request.POST, request.FILES)
@@ -72,7 +74,7 @@ def nok_page(request):
     else:
         form = NOCRequestForm()
 
-    return render(request, "landing/nok.html", {"experts": experts, "form": form})
+    return render(request, "landing/nok.html", {"experts": experts, "form": form, "qualifications": qualifications})
 
 
 def minstroy_page(request):
@@ -83,3 +85,24 @@ def minstroy_page(request):
         "form": form,
     }
     return render(request, "landing/minstroy.html", context)
+
+def minstroy_list(request):
+    programs = MinstroyProgram.objects.all().order_by("order")
+    paginator = Paginator(programs, 14)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, "landing/minstroy_list.html", {"page_obj": page_obj})
+
+def exam(request):
+    programs = MinstroyProgram.objects.filter(is_active=True).order_by("order", "id")[:4]
+    qualifications = Qualification.objects.order_by("created_at")[:3]
+    return render(request, "landing/exam.html", {"programs": programs, "qualifications": qualifications})
+
+
+def qualifications_list(request):
+    qualifications = Qualification.objects.order_by("code")
+    paginator = Paginator(qualifications, 12)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, "landing/qualifications_list.html", {"page_obj": page_obj})

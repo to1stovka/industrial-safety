@@ -1,0 +1,27 @@
+.nok-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 1.4;
+  border-radius: 10px;
+  overflow: hidden;
+
+  th {
+    padding: 12px 16px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  td {
+    padding: 12px 16px;
+    vertical-align: top;
+  }
+
+  tr.gray td {
+    background: #E3E1E1;
+  }
+
+  tr:nth-child(even):not(.gray) td {
+    background: #B0C9FC;
+  }
+}

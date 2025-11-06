@@ -1,0 +1,48 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block title %}Сдача профессионального экзамена – Диагност ПБ{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/exam/style.css' %}">
+{% endblock %}
+
+{% block content %}
+ <section class="container py-3">
+<section class="exam">
+  <div class="container">
+    <h1 class="exam__title">
+      Сдача профессионального экзамена в рамках независимой оценки квалификаций по Профессиональному стандарту «Специалист в сфере промышленной безопасности»
+    </h1>
+    <p class="exam__subtitle">
+      Приказ Министерства труда и социальной защиты Российской Федерации от 16.12.2020 № 911н
+    </p>
+</div>
+
+  {% include "landing/partials/qualifications_table.html" %}
+
+ <section class="container py-3">
+    <div class="exam__docs">
+      <h2 class="exam__section-title">Документы, которые необходимо взять с собой на профессиональный экзамен</h2>
+      <ul class="exam__docs-list">
+        <li><span class="icon-check"></span> Паспорт (оригинал)</li>
+        <li><span class="icon-check"></span> Заявление на проведение независимой оценки квалификации (оригинал)</li>
+        <li><span class="icon-check"></span> Согласие на обработку персональных данных (оригинал)</li>
+        <li><span class="icon-check"></span> Документ, подтверждающий наличие высшего образования (заверенная копия)</li>
+        <li><span class="icon-check"></span> Трудовая книжка (заверенная копия)</li>
+      </ul>
+    </div>
+</section>
+
+ 
+    <!-- Аккордеон -->
+  {% include "landing/partials/accordion.html" %}
+
+
+
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+{% endblock %}

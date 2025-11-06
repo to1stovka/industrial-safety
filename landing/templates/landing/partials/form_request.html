@@ -1,0 +1,49 @@
+{% load static %}
+
+<section class="container py-5">
+  <h5 class="form-title">Оставить заявку</h5>
+  <div class="form-wrapper">
+    <form class="nok-form" method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      <div class="form-grid">
+        <!-- Левая колонка -->
+        <div class="form-col">
+          <div class="form-item small {% if form.name.errors %}has-error{% endif %}">
+            {{ form.name }}
+            <img src="{% static 'landing/img/icon-user.svg' %}" alt="user" class="form-icon">
+          </div>
+          <div class="form-item small {% if form.email.errors %}has-error{% endif %}">
+            {{ form.email }}
+            <img src="{% static 'landing/img/icon-mail.svg' %}" alt="mail" class="form-icon">
+          </div>
+        </div>
+
+        <!-- Центральная колонка -->
+        <div class="form-item large {% if form.message.errors %}has-error{% endif %}">
+          {{ form.message }}
+          <img src="{% static 'landing/img/icon-pen.svg' %}" alt="pen" class="form-icon">
+        </div>
+
+        <!-- Правая колонка -->
+        <div class="form-col">
+          <div class="form-item small file-item {% if form.file.errors %}has-error{% endif %}">
+            <label>
+              {{ form.file }}
+              <span class="file-name">Прикрепите заявление</span>
+              <img src="{% static 'landing/img/icon-clip.svg' %}" alt="clip" class="form-icon">
+            </label>
+          </div>
+          <button type="submit" class="btn btn-nok-submit">Отправить</button>
+        </div>
+      </div>
+
+      <p class="form-hint mt-3">Задайте нам любой интересующий Вас вопрос</p>
+    </form>
+
+    <!-- Успешная отправка -->
+    <div class="form-success hidden">
+      <h5>Заявка отправлена</h5>
+      <img src="{% static 'landing/img/check.svg' %}" alt="✓" class="success-icon">
+    </div>
+  </div>
+</section>

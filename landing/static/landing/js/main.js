@@ -138,4 +138,112 @@ if (callbackForm) {
   });
 }
 
+// Форма"Оставить заявку"
+const nokForm = document.querySelector(".nok-form");
+const successBlock = document.querySelector(".form-success");
+
+if (nokForm) {
+  // Обрезка имени файла
+  const fileInput = nokForm.querySelector("input[type='file']");
+  const fileNameSpan = nokForm.querySelector(".file-name");
+
+  if (fileInput && fileNameSpan) {
+    fileInput.addEventListener("change", function () {
+      const file = this.files && this.files[0];
+      if (file) {
+        let name = file.name;
+        if (name.length > 25) name = name.substring(0, 25) + "...";
+        fileNameSpan.textContent = name;
+        fileNameSpan.classList.add("active");
+      } else {
+        fileNameSpan.textContent = "Прикрепите заявление";
+        fileNameSpan.classList.remove("active");
+      }
+    });
+  }
+
+
+  // Отправка формы AJAX
+  nokForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    nokForm.querySelectorAll(".form-item").forEach(i => i.classList.remove("has-error"));
+
+    let valid = true;
+    const name = nokForm.querySelector("#id_name");
+    const email = nokForm.querySelector("#id_email");
+    const message = nokForm.querySelector("#id_message");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (name && name.value.trim().length < 2) {
+      name.closest(".form-item").classList.add("has-error");
+      valid = false;
+    }
+    if (email && !emailRegex.test(email.value.trim())) {
+      email.closest(".form-item").classList.add("has-error");
+      valid = false;
+    }
+    if (message && message.value.trim().length < 5) {
+      message.closest(".form-item").classList.add("has-error");
+      valid = false;
+    }
+    if (!valid) return;
+
+    const formData = new FormData(nokForm);
+    const postUrl = nokForm.getAttribute("action") || "/nok/";
+
+    try {
+      const response = await fetch(postUrl, {
+        method: "POST",
+        body: formData,
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+      });
+
+      // if (response.ok) {
+      //   nokForm.style.transition = "opacity 0.3s ease";
+      //   nokForm.style.opacity = "0";
+      //   setTimeout(() => {
+      //     nokForm.style.display = "none";
+      //     successBlock.style.display = "flex";
+      //     successBlock.style.opacity = "0";
+      //     successBlock.style.transition = "opacity 0.4s ease";
+      //     setTimeout(() => (successBlock.style.opacity = "1"), 50);
+      //   }, 300);
+      // } else {
+      //   console.error("Ошибка при отправке формы");
+      // }
+      if (response.ok) {
+  const wrapper = nokForm.closest('.form-wrapper');
+  if (wrapper) {
+    wrapper.classList.add('is-success');
+  }
+} else {
+  console.error("Ошибка при отправке формы");
+}
+
+    } catch (error) {
+      console.error("Ошибка сети:", error);
+    }
+  });
+
+  // Убираем ошибку при вводе
+  nokForm.querySelectorAll("input, textarea").forEach(input => {
+    input.addEventListener("input", () => {
+      const wrapper = input.closest(".form-item");
+      if (wrapper) wrapper.classList.remove("has-error");
+    });
+  });
+}
+
+// Аккордеон "Нормативные документы"
+const toggle = document.getElementById("normative-toggle");
+const content = document.getElementById("normative-content");
+
+if (toggle && content) {
+  toggle.addEventListener("click", () => {
+    content.classList.toggle("open");
+    toggle.classList.toggle("active");
+  });
+}
+
 });

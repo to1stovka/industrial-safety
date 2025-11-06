@@ -1,0 +1,53 @@
+.programs-section {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.programs-section .programs-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+.programs-section .programs-subtitle {
+  font-size: 1rem;
+  color: #4E4E4E;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+.programs-section .programs-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+.programs-section .programs-table td {
+  padding: 20px 18px;
+  vertical-align: top;
+  border: none;
+}
+.programs-section .programs-table .program-num {
+  width: 4%;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.programs-section .programs-table .program-text strong {
+  font-weight: 600;
+}
+.programs-section .programs-table tbody tr:nth-child(odd) td {
+  background: #F1F1F1;
+}
+.programs-section .programs-table tbody tr:nth-child(even) td {
+  background: #B0C9FC;
+}
+.programs-section .btn-orange {
+  background-color: #AF4100;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 25px;
+  padding: 10px 30px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+.programs-section .btn-orange:hover {
+  background-color: rgb(134.2, 49.8457142857, 0);
+}/*# sourceMappingURL=list.css.map */

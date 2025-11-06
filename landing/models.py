@@ -130,3 +130,18 @@ class MinstroyProgram(models.Model):
 
     def __str__(self):
         return self.title
+
+
+# Подготовка специалистов по следующим профессиональным квалификациям:
+class Qualification(models.Model):
+    code = models.CharField(max_length=50, verbose_name="Код квалификации")
+    title = models.TextField(verbose_name="Наименование квалификации")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = "Квалификация"
+        verbose_name_plural = "Квалификации"
+
+    def __str__(self):
+        return f"{self.code} – {self.title[:60]}"

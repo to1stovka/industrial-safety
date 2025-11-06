@@ -1,0 +1,42 @@
+@use "../variables" as *;
+
+.apply-section {
+  .apply-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    margin-top: 3rem;
+  }
+
+  .btn-nok {
+    display: inline-block;
+    background-color: $orange;
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 400;
+    padding: 30px 150px;
+    border-radius: 45px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    &:hover {
+      background-color: $hover_orange;
+      color: #fff;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .apply-title {
+      font-size: 1.125rem;
+      text-align: center;
+    }
+
+    .btn-nok {
+      width: 100%;
+      max-width: 320px;
+      padding: 12px 0;
+      font-size: 0.95rem;
+    }
+  }
+}

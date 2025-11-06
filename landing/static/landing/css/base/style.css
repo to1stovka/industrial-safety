@@ -1,4 +1,551 @@
 @charset "UTF-8";
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.pagination .page-item .page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.625rem;
+  background-color: #E3E1E1;
+  color: #000000;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.pagination .page-item .page-link:hover {
+  background-color: #727171;
+  border-color: #727171;
+  text-decoration: none;
+}
+.pagination .page-item.active .page-link {
+  background-color: #AF4100;
+  border-color: #AF4100;
+  cursor: default;
+}
+.pagination .page-item.disabled .page-link {
+  background-color: inherit;
+  border: none;
+  cursor: not-allowed;
+}
+.pagination .page-item.ellipsis .page-link {
+  cursor: default;
+  pointer-events: none;
+  background: transparent;
+  border: none;
+  color: #888;
+}
+.pagination .arrow {
+  background: transparent !important;
+  border: none !important;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  filter: invert(98%) sepia(0%) saturate(5%) hue-rotate(147deg) brightness(94%) contrast(90%);
+}
+.pagination .arrow img {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+  transition: filter 0.2s ease;
+}
+.pagination .arrow:hover img {
+  filter: invert(45%) sepia(1%) saturate(0%) hue-rotate(45deg) brightness(95%) contrast(84%);
+}
+.pagination .page-item.disabled .arrow img {
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    gap: 0.15rem;
+  }
+  .pagination .page-item .page-link {
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 0.7rem;
+    padding: 0.15rem;
+  }
+  .pagination .arrow {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  .pagination .arrow img {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+}
+@media (max-width: 768px) {
+  .pagination {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+  .pagination .page-item .page-link {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0;
+  }
+  .pagination .page-item.active .page-link {
+    background-color: #AF4100;
+    color: #fff;
+  }
+  .pagination .arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+  .pagination .arrow img {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+}
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+}
+
+.nok-form {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.form-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #E3E1E1;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  padding: 0 25px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+.form-item input,
+.form-item textarea {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+  color: #000;
+  resize: none;
+}
+.form-item input::placeholder,
+.form-item textarea::placeholder {
+  color: #4E4E4E;
+}
+.form-item .form-icon {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+}
+.form-item.small {
+  height: 68px;
+}
+.form-item.large {
+  height: 153px;
+  align-items: flex-start;
+  padding-top: 35px;
+}
+
+.file-item label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 30px;
+  background: #E3E1E1;
+  border: 2px solid transparent;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+.file-item label:has(input:focus) {
+  border-color: #AF4100;
+}
+.file-item label input {
+  display: none;
+}
+.file-item label .form-icon {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+}
+.file-item label .file-name {
+  color: #4E4E4E;
+  font-size: 1rem;
+  width: 100%;
+  padding-left: 25px;
+  transition: color 0.3s ease;
+}
+
+.btn-nok-submit {
+  width: 100%;
+  height: 68px;
+  border: none;
+  border-radius: 30px;
+  background: #AF4100;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-nok-submit:hover {
+  background: rgba(179, 61, 11, 0.8);
+  color: #fff;
+}
+
+.form-item.has-error {
+  border: 2px solid #AF4100;
+}
+
+.form-item.large {
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #E3E1E1;
+  padding: 25px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.form-item.large textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #000;
+  line-height: 1.5;
+  overflow-y: auto;
+  padding-right: 45px;
+}
+
+.form-item.large textarea {
+  scrollbar-width: thin;
+  scrollbar-color: #4E4E4E transparent;
+}
+.form-item.large textarea::-webkit-scrollbar {
+  width: 6px;
+}
+.form-item.large textarea::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.form-item.large textarea::-webkit-scrollbar-thumb {
+  background: #4E4E4E;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+.form-item.large textarea::-webkit-scrollbar-thumb:hover {
+  background: #3d3d3d;
+}
+
+.form-wrapper {
+  position: relative;
+  min-height: 220px;
+}
+
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.form-success h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.form-success .success-icon {
+  width: 50px;
+  height: 50px;
+}
+
+@media (max-width: 768px) {
+  .form-title {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .nok-form {
+    padding: 0 10px;
+  }
+  .form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form-col {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .form-item {
+    border-radius: 20px;
+    padding: 0 20px;
+  }
+  .form-item.small {
+    height: 60px;
+  }
+  .form-item.large {
+    height: 180px;
+    padding: 20px;
+  }
+  .form-item.large textarea {
+    font-size: 0.95rem;
+    padding-right: 35px;
+  }
+  .form-item .form-icon {
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+  }
+  .file-item label {
+    border-radius: 20px;
+    height: 60px;
+  }
+  .file-item label .file-name {
+    font-size: 0.95rem;
+    padding-left: 20px;
+  }
+  .file-item label .form-icon {
+    right: 15px;
+    top: 15px;
+    width: 24px;
+    height: 24px;
+  }
+  .btn-nok-submit {
+    height: 60px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .form-hint {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: #4E4E4E;
+  }
+  .form-success {
+    padding: 60px 15px;
+  }
+  .form-success h5 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  .form-success .success-icon {
+    width: 45px;
+    height: 45px;
+  }
+}
+/* Переключатель форма <-> успех через max-height + opacity */
+.form-wrapper {
+  position: relative;
+  /* этот отступ нужен, чтобы ничего не прилипало снизу */
+  margin-bottom: 80px;
+}
+
+/* Базовые состояния */
+.nok-form,
+.form-success {
+  position: static; /* критично: больше НЕТ absolute */
+  width: 100%;
+  overflow: hidden;
+  transition: max-height 0.45s ease, opacity 0.35s ease, padding 0.35s ease, margin 0.35s ease;
+}
+
+/* Форма видима по умолчанию, успех скрыт */
+.nok-form {
+  max-height: 1200px; /* достаточно большая “крышка” под контент */
+  opacity: 1;
+}
+
+.form-success {
+  /* в скрытом состоянии схлопываем всё */
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Когда добавляем .is-success на .form-wrapper — меняем роли местами */
+.form-wrapper.is-success .nok-form {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.form-wrapper.is-success .form-success {
+  /* возвращаем твои исходные отступы успеха */
+  max-height: 1200px; /* тоже “крышка”; если нужно, увеличь */
+  opacity: 1;
+  padding: 80px 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  display: flex; /* чтобы не сломать твою вёрстку успеха */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Мобильная доводка, если хочется пошустрее анимацию */
+@media (max-width: 768px) {
+  .nok-form,
+  .form-success {
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease, margin 0.25s ease;
+  }
+}
+.accordion-wrapper {
+  max-width: 1400px;
+}
+
+.accordion-toggle {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #000;
+  filter: brightness(0%);
+  margin-left: 0rem;
+}
+.accordion-toggle .accordion-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 1.5rem;
+  transition: transform 0.3s ease;
+}
+.accordion-toggle.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+  margin-top: 0;
+}
+.accordion-content.open {
+  max-height: 3000px;
+  opacity: 1;
+  margin-top: 15px;
+}
+
+/* Список документов */
+.normative-list {
+  list-style: disc;
+  background: #E3E1E1;
+  border-radius: 40px;
+  padding: 25px 40px;
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #000;
+}
+.normative-list li {
+  margin-bottom: 1.5rem;
+}
+
+.nok-table-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.nok-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+.nok-table th {
+  background: inherit;
+  font-weight: 400;
+  font-size: 1.125rem;
+  padding: 10px 12px;
+  text-align: left;
+}
+.nok-table td {
+  padding: 10px 12px;
+  border: none;
+  font-weight: 400;
+  font-size: 1.125rem;
+  padding: 30px 12px;
+}
+.nok-table tbody tr:nth-child(odd) td {
+  background: rgba(96, 145, 249, 0.5019607843);
+}
+.nok-table tbody tr:nth-child(even) td {
+  background: #E3E1E1;
+}
+.nok-table th:first-child,
+.nok-table td:first-child {
+  width: 16%;
+  min-width: 160px;
+  white-space: nowrap;
+}
+
+.btn-orange {
+  background-color: #AF4100;
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 30px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+.btn-orange:hover {
+  background-color: rgba(179, 61, 11, 0.8);
+  color: #fff;
+}
+
 .footer {
   background: #18233A !important;
 }
