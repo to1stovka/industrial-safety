@@ -1,0 +1,343 @@
+{% extends "landing/base.html" %}
+{% load static %}
+
+{% block title %}Аттестация специалистов неразрушающего контроля (НК){% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/attestation/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="attestation container py-5">
+
+  <!-- 🔹 Заголовок и описание -->
+  <div class="attestation-intro mb-4">
+    <h2 class="mb-3">Аттестация специалистов неразрушающего контроля (НК)</h2>
+    <p>
+      АНО ДПО «Учебный центр «Безопасность в промышленности» является Экзаменационным центром Независимого органа по аттестации персонала (НОАП) Лидер НК и проводит подготовку и аттестацию специалистов неразрушающего контроля на  I,  II уровни квалификации в соответствии с требованиями правил СДАНК-02-2020
+    </p>
+
+    <div class="notice">
+      <div class="notice-icon">!</div>
+        <p>
+          В Учебном центре работают высококвалифицированные специалисты 2-го и 3-го уровня по всем видам и методам контроля.
+        </p>
+    </div>
+
+    <p class="mt-3">
+      Аттестация специалистов лабораторий неразрушающего контроля (НК) производится в целях установления и подтверждения их компетентности при оценке готовности организаций к выполнению видов деятельности, связанных с применением НК<br>
+    </p>
+    <p>
+      Учебный центр «Безопасность в промышленности» проводит соответствующую профессиональную теоретическую и практическую подготовку персонала лабораторий неразрушающего контроля для последующей аттестации на основании <br>
+      <a href="{% static '#' %}" target="_blank">
+        Свидетельства о признании Экзаменационного центра № 39-01 от 08.11.2022 г.
+      </a>
+    </p>
+  </div>
+
+<!-- Аккордеоны -->
+<div class="accordion-wrapper mb-5">
+  <div class="accordion" id="attestationAccordion">
+
+    <!-- Уровни квалификации -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingLevel">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseLevel"
+          aria-expanded="false"
+          aria-controls="collapseLevel"
+        >
+          1. Уровни квалификации персонала
+        </button>
+      </h2>
+      <div
+        id="collapseLevel"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingLevel"
+        
+      >
+        <div class="accordion-body">
+          <ul class="gray-list">
+            <li>I, II</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Методы контроля -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingMethods">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseMethods"
+          aria-expanded="false"
+          aria-controls="collapseMethods"
+        >
+          2. Виды (методы) неразрушающего контроля
+        </button>
+      </h2>
+      <div
+        id="collapseMethods"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingMethods"
+        
+      >
+        <div class="accordion-body">
+          <ul class="gray-list">
+            <li>Радиационный (радиографический, РК) и радиоскопический (РС)</li>
+            <li>Ультразвуковой</li>
+            <li>Акустико-эмиссионный</li>
+            <li>Магнитный</li>
+            <li>Вихретоковый</li>
+            <li>Капиллярный (ПВК) и течеискание (ПВТ)</li>
+            <li>Вибродиагностический</li>
+            <li>Электрический</li>
+            <li>Тепловой</li>
+            <li>Визуальный и измерительный</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Объекты контроля -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingObjects">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseObjects"
+          aria-expanded="false"
+          aria-controls="collapseObjects"
+        >
+          3. Наименования объектов контроля
+        </button>
+      </h2>
+      <div
+        id="collapseObjects"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingObjects"
+        
+      >
+        <div class="accordion-body">
+          <ul class="gray-list">
+            <li>Оборудование, работающее под избыточным давлением</li>
+            <li>Системы газоснабжения</li>
+            <li>Подъемные сооружения</li>
+            <li>Объекты горнодобывающей промышленности</li>
+            <li>Оборудование нефтяной и газовой промышленности</li>
+            <li>Объекты металлургической промышленности</li>
+            <li>Объекты химической и взрывопожароопасной промышленности</li>
+            <li>Объекты железнодорожного транспорта</li>
+            <li>Здания и сооружения (строительные объекты)</li>
+            <li>Оборудование электроэнергетики</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- 🔹 Примерный график подготовки -->
+  <div class="schedule mb-5">
+    <h5 class="mb-3">
+      Примерный график подготовки специалистов НК с 01.07.2025 по 31.12.2025 г.*
+    </h5>
+    <div class="filters mb-3">
+      <div class="dropdown d-inline-block me-2">
+        <button class="btn btn-orange dropdown-toggle" data-bs-toggle="dropdown">Методы НК</button>
+        <ul class="dropdown-menu">
+          <li><label class="dropdown-item"><input type="checkbox"> Радиационный</label></li>
+          <li><label class="dropdown-item"><input type="checkbox"> Ультразвуковой</label></li>
+          <li><label class="dropdown-item"><input type="checkbox"> Акустико-эмиссионный</label></li>
+          <li><label class="dropdown-item"><input type="checkbox"> Магнитный</label></li>
+          <li><label class="dropdown-item"><input type="checkbox"> Вихретоковый</label></li>
+          <li><label class="dropdown-item"><input type="checkbox"> Капиллярный (ПВК)</label></li>
+          <li><label class="dropdown-item"><input type="checkbox"> Течеискание (ПВТ)</label></li>
+        </ul>
+      </div>
+      <div class="months d-inline-flex flex-wrap gap-2">
+        <button class="btn btn-outline-secondary">Июль</button>
+        <button class="btn btn-outline-secondary">Август</button>
+        <button class="btn btn-outline-secondary">Сентябрь</button>
+        <button class="btn btn-outline-secondary">Октябрь</button>
+        <button class="btn btn-outline-secondary">Ноябрь</button>
+        <button class="btn btn-outline-secondary">Декабрь</button>
+      </div>
+    </div>
+    <p class="small text-muted mb-0">* А также по мере набора группы по соответствующему методу НК</p>
+  </div>
+
+<section class="requirements-section mt-5">
+  <div class="requirements-wrapper">
+
+    <!-- 🔹 Блок 1 -->
+    <div class="requirements-group blue-bg">
+      <h3 class="requirements-title">
+        Общие требования, предъявляемые к кандидатам на аттестацию
+        в области неразрушающего контроля
+      </h3>
+
+      <!-- Аккордеоны внутри -->
+      <div class="accordion" id="reqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingEdu">
+            <button class="accordion-button collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapseEdu"
+              aria-expanded="false" aria-controls="collapseEdu">
+              • Требования к образованию специалистов I, II (СДА НК-02-2020, п. 3.1, Таблица № 1)
+            </button>
+          </h2>
+          <div id="collapseEdu" class="accordion-collapse collapse"
+            aria-labelledby="headingEdu">
+            <div class="accordion-body">
+              <!-- таблица №1 -->
+              <div class="table-wrap text-center">
+                <img
+                    src="{% static 'landing/img/table1.svg' %}"
+                    class="img-fluid rounded shadow-sm"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingHours">
+            <button class="accordion-button collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapseHours"
+              aria-expanded="false" aria-controls="collapseHours">
+              • Минимальные объёмы подготовки (СДА НК-02-2020, п. 3.5, Таблица № 2)
+            </button>
+          </h2>
+          <div id="collapseHours" class="accordion-collapse collapse"
+            aria-labelledby="headingHours">
+            <div class="accordion-body">
+              <div class="table-wrap text-center">
+                <img
+                    src="{% static 'landing/img/table2.svg' %}"
+                    class="img-fluid rounded shadow-sm"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingExp">
+            <button class="accordion-button collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapseExp"
+              aria-expanded="false" aria-controls="collapseExp">
+              • Минимальный производственный стаж (СДА НК-02-2020, п. 3.7, Таблица № 3)
+            </button>
+          </h2>
+          <div id="collapseExp" class="accordion-collapse collapse"
+            aria-labelledby="headingExp">
+            <div class="accordion-body">
+              <div class="table-wrap text-center">
+                <img
+                    src="{% static 'landing/img/table3.svg' %}"
+                    class="img-fluid rounded shadow-sm"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingVision">
+              • Удовлетворительное состояние зрения, подтверждённое медицинским заключением (СДА НК-02-2020, п. 3.11)
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔹 Блок 2 -->
+    <div class="requirements-group">
+      <h3 class="requirements-title">
+        Порядок аттестации персонала в области неразрушающего контроля
+      </h3>
+
+      <div class="accordion" id="procedureAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSteps">
+            <button class="accordion-button collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapseSteps"
+              aria-expanded="false" aria-controls="collapseSteps">
+              Аттестация персонала в области НК предусматривает прохождение следующих процедур
+            </button>
+          </h2>
+          <div id="collapseSteps" class="accordion-collapse collapse"
+            aria-labelledby="headingSteps">
+            <div class="accordion-body gray-panel">
+              <ul>
+                <li>устное или письменное обращение заявителя (организации-работодателя кандидата или самого кандидата) в Экзаменационный центр АНО ДПО «УЦ «Безопасность в промышленности» (далее Экзаменационный центр) с целью получения информации об условиях и сроках аттестации;</li>
+                <li>представление заявителю информации с перечнем требуемых документов;</li>
+                <li>направление заявителем заявки в Экзаменационный центр с приложением документов (в соответствии с п. 5.3 СДАНК-02-2022);</li>
+                <li>регистрация заявки в Экзаменационном центре, уведомление заявителя о получении заявки и определение трудоемкости выполнения работ по аттестации;</li>
+                <li>проведение Экзаменационным центром анализа заявки, достаточности и полноты представленных документов, принятие решения по ним; направление заявителю сообщения о сроках проведения аттестации и, при необходимости, запроса о предоставлении дополнительной информации;</li>
+                <li>проведение экзаменов, оценка результатов экзаменов;</li>
+                <li>анализ результатов и принятие решения о возможности присвоения кандидату соответствующего квалификационного уровня;</li>
+                <li>при положительном решении: оформление, регистрация и выдача удостоверения;</li>
+                <li>при отрицательном решении заявителю сообщается о невозможности аттестации с указанием причин.</li>
+              </ul>
+              <p>Заявитель документально подтверждает достоверность персональной информации о кандидате, включая сведения об образовании, общей и специальной подготовке, времени непрерывной деятельности по заявленному методу (виду) НК.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingDocs">
+            <button class="accordion-button collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapseDocs"
+              aria-expanded="false" aria-controls="collapseDocs">
+              Перечень документов, предоставляемых заявителем
+            </button>
+          </h2>
+          <div id="collapseDocs" class="accordion-collapse collapse"
+            aria-labelledby="headingDocs">
+            <div class="accordion-body gray-panel">
+              <ul>
+                <li>Регистрационная карточка кандидата;</li>
+                <li>Оформленная заявка;</li>
+                <li>Справка о стажe по методу НК;</li>
+                <li>Личное заявление на сдачу экзамена;</li>
+                <li>Согласие на обработку персональных данных;</li>
+                <li>Медицинская справка и фотографии 3×4 см;</li>
+                <li>Копии документов об образовании.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔹 Блок 3 -->
+    <div class="requirements-group">
+      <h3 class="requirements-title">
+        Аттестация специалистов НК соответствует требованиям
+      </h3>
+
+      <ul class="requirements-list">
+        <li>СДАНК-02-2020. Правила аттестации персонала в области неразрушающего контроля (приняты Решением Наблюдательного совета Единой системы оценки соответствия в области промышленной, экологической безопасности, безопасности в энергетике и строительстве от 29.12.2020 N 99-БНС) (ред. от 23.05.2024)</li>
+        <li>Приказ Ростехнадзора от 01.12.2020 N 478 "Об утверждении федеральных норм и правил в области промышленной безопасности "Основные требования к проведению неразрушающего контроля технических устройств, зданий и сооружений на опасных производственных объектах"  (Зарегистрировано в Минюсте России 24.12.2020 N 61795)</li>
+        <li>СДА-13-2009 Требования к независимым органам по аттестации (сертификации) персонала. (ред. от 23.05.2024)</li>
+        <li>СДА-24-2009 Правила аттестации (сертификации) персонала испытательных лабораторий. (ред. от 23.05.2024)</li>
+        <li>Нормативным документам системы неразрушающего контроля Федеральной службы по экологическому, технологическому и атомному надзору.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+
+{% endblock %}

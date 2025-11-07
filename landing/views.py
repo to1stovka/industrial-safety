@@ -106,3 +106,7 @@ def qualifications_list(request):
     page_obj = paginator.get_page(page_number)
 
     return render(request, "landing/qualifications_list.html", {"page_obj": page_obj})
+
+
+def attestation(request):
+    return render(request, 'landing/attestation.html')

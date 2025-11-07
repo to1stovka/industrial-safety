@@ -7,7 +7,8 @@ from landing.views import (
     minstroy_page, 
     minstroy_list,
     exam,
-    qualifications_list
+    qualifications_list,
+    attestation
     )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
     path('minstroy/list/', minstroy_list, name='list'),
     path('exam/', exam, name='exam'),
     path("qualifications/", qualifications_list, name="qualifications"),
+    path("attestation/", attestation, name="attestation"),
 ]
