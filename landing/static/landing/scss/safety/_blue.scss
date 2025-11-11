@@ -1,0 +1,22 @@
+.blue-section {
+  position: relative;
+  background-color: #b0c9fc;
+  margin-bottom: 60px;
+  padding: 60px 0;
+
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  overflow-x: clip;
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .p {
+    font-size: 1.125rem;
+  }
+}

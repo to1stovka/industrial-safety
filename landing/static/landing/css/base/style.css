@@ -11,7 +11,7 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 0.625rem;
-  background-color: #E3E1E1;
+  background-color: #e3e1e1;
   color: #000000;
   font-size: 1.125rem;
   font-weight: 600;
@@ -23,8 +23,8 @@
   text-decoration: none;
 }
 .pagination .page-item.active .page-link {
-  background-color: #AF4100;
-  border-color: #AF4100;
+  background-color: #af4100;
+  border-color: #af4100;
   cursor: default;
 }
 .pagination .page-item.disabled .page-link {
@@ -98,7 +98,7 @@
     padding: 0;
   }
   .pagination .page-item.active .page-link {
-    background-color: #AF4100;
+    background-color: #af4100;
     color: #fff;
   }
   .pagination .arrow {
@@ -137,7 +137,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  background: #E3E1E1;
+  background: #e3e1e1;
   border-radius: 30px;
   border: 1px solid transparent;
   padding: 0 25px;
@@ -155,7 +155,7 @@
 }
 .form-item input::placeholder,
 .form-item textarea::placeholder {
-  color: #4E4E4E;
+  color: #4e4e4e;
 }
 .form-item .form-icon {
   position: absolute;
@@ -183,12 +183,12 @@
   cursor: pointer;
   padding: 0;
   border-radius: 30px;
-  background: #E3E1E1;
+  background: #e3e1e1;
   border: 2px solid transparent;
   transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 .file-item label:has(input:focus) {
-  border-color: #AF4100;
+  border-color: #af4100;
 }
 .file-item label input {
   display: none;
@@ -201,7 +201,7 @@
   height: 28px;
 }
 .file-item label .file-name {
-  color: #4E4E4E;
+  color: #4e4e4e;
   font-size: 1rem;
   width: 100%;
   padding-left: 25px;
@@ -213,7 +213,7 @@
   height: 68px;
   border: none;
   border-radius: 30px;
-  background: #AF4100;
+  background: #af4100;
   color: #fff;
   font-weight: 500;
   font-size: 1rem;
@@ -229,13 +229,13 @@
 }
 
 .form-item.has-error {
-  border: 2px solid #AF4100;
+  border: 2px solid #af4100;
 }
 
 .form-item.large {
   flex-direction: column;
   justify-content: flex-start;
-  background: #E3E1E1;
+  background: #e3e1e1;
   padding: 25px;
   border-radius: 30px;
   overflow: hidden;
@@ -256,7 +256,7 @@
 
 .form-item.large textarea {
   scrollbar-width: thin;
-  scrollbar-color: #4E4E4E transparent;
+  scrollbar-color: #4e4e4e transparent;
 }
 .form-item.large textarea::-webkit-scrollbar {
   width: 6px;
@@ -266,7 +266,7 @@
   border-radius: 10px;
 }
 .form-item.large textarea::-webkit-scrollbar-thumb {
-  background: #4E4E4E;
+  background: #4e4e4e;
   border-radius: 10px;
   transition: background 0.2s ease;
 }
@@ -362,7 +362,7 @@
     text-align: center;
     font-size: 0.9rem;
     margin-top: 1rem;
-    color: #4E4E4E;
+    color: #4e4e4e;
   }
   .form-success {
     padding: 60px 15px;
@@ -473,15 +473,15 @@
   margin-top: 0;
 }
 .accordion-content.open {
-  max-height: 3000px;
+  max-height: 10000px;
   opacity: 1;
   margin-top: 15px;
 }
 
 /* Список документов */
-.normative-list {
+.content {
   list-style: disc;
-  background: #E3E1E1;
+  background: #e3e1e1;
   border-radius: 40px;
   padding: 25px 40px;
   margin: 0;
@@ -490,8 +490,15 @@
   line-height: 1.5;
   color: #000;
 }
-.normative-list li {
+.content li {
   margin-bottom: 1.5rem;
+}
+.content p {
+  font-weight: 400;
+  color: #000;
+}
+.content a {
+  color: #000;
 }
 
 .nok-table-title {
@@ -533,7 +540,7 @@
 }
 
 .btn-orange {
-  background-color: #AF4100;
+  background-color: #af4100;
   color: #fff;
   border-radius: 30px;
   padding: 10px 30px;
@@ -546,8 +553,75 @@
   color: #fff;
 }
 
+/* Контейнер с шагами */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Каждый шаг */
+.step-item {
+  position: relative;
+}
+.step-item .step-number {
+  position: relative;
+  font-size: 130px;
+  font-weight: 700;
+  color: #6091f9;
+  line-height: 1;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-family: "Montserrat";
+}
+.step-item .step-number span {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  font-size: 22px;
+  color: #000;
+  font-weight: 400;
+  z-index: 2;
+  font-family: "Montserrat", sans-serif !important;
+}
+.step-item p {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: #000;
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .steps-grid {
+    grid-template-columns: 2fr 2fr;
+    gap: 30px;
+  }
+  .step-item .step-number {
+    font-size: 100px;
+  }
+  .step-item .step-number span {
+    bottom: 15px;
+    font-size: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .step-item .step-number {
+    font-size: 90px;
+  }
+  .step-item .step-number span {
+    bottom: 10px;
+    font-size: 18px;
+  }
+}
 .footer {
-  background: #18233A !important;
+  background: #18233a !important;
 }
 .footer .footer-content .footer-logo .logo-img {
   height: 4.375rem;
@@ -562,7 +636,7 @@
   color: white;
 }
 .footer .footer-content .footer-contacts .btn {
-  background: #AF4100;
+  background: #af4100;
   white-space: nowrap;
   border: none;
   color: white;
@@ -654,7 +728,7 @@
   z-index: 0;
 }
 .top-bar.top-bar-simple {
-  background: #18233A;
+  background: #18233a;
 }
 .top-bar .container {
   position: relative;
@@ -673,7 +747,7 @@
   order: 2;
 }
 .top-bar .contact-info .btn {
-  background: #AF4100;
+  background: #af4100;
   white-space: nowrap;
   border: none;
   color: white;
@@ -687,7 +761,7 @@
 }
 
 .navbar {
-  background-color: #18233A !important;
+  background-color: #18233a !important;
   border-bottom: none !important;
 }
 .navbar .navbar-nav .nav-link {
@@ -712,7 +786,7 @@
 }
 .navbar .navbar-nav .dropdown-menu .dropdown-item {
   padding: 0.5rem 1rem;
-  color: #18233A;
+  color: #18233a;
   transition: background-color 0.3s ease;
 }
 .navbar .navbar-nav .dropdown-menu .dropdown-item:hover {
@@ -777,7 +851,7 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: #AF4100;
+  background-color: #af4100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -818,7 +892,7 @@
   width: 80%;
   max-width: 300px;
   height: 100%;
-  background-color: #18233A;
+  background-color: #18233a;
   transform: translateX(100%);
   transition: transform 0.3s ease;
   z-index: 1050;
@@ -870,7 +944,7 @@
 
 /* ===== ОБЩЕЕ ===== */
 .callback-modal {
-  background: #E3E1E1;
+  background: #e3e1e1;
   border-radius: 36px !important;
   padding: 50px 40px 45px;
   position: relative;
@@ -927,7 +1001,7 @@
 }
 
 .callback-input:focus {
-  border-color: #AF4100;
+  border-color: #af4100;
   box-shadow: none;
 }
 
@@ -948,7 +1022,7 @@
 
 /* ===== КНОПКА ===== */
 .callback-submit-btn {
-  background-color: #AF4100;
+  background-color: #af4100;
   border-radius: 40px;
   padding: 16px 20px;
   font-size: 1rem;
@@ -1014,19 +1088,25 @@
     padding: 12px 16px;
   }
 }
-html, body {
-  overflow-x: hidden;
-  max-width: 100%;
-  font-family: "Inter", sans-serif;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Исправляем контейнер */
-.container {
-  max-width: 1400px;
+body {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Исправляем строки */
-.row {
-  margin-left: 0;
-  margin-right: 0;
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }/*# sourceMappingURL=style.css.map */

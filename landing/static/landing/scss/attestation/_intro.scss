@@ -1,5 +1,5 @@
-@use "../minstroy/preparation" as *; // для notice "В Учебном центре работают..."
-@use "../variables" as *;
+@use '../minstroy/preparation' as *; // для notice "В Учебном центре работают..."
+@use '../variables' as *;
 
 .attestation-intro {
   h2 {
@@ -20,5 +20,11 @@
         text-decoration: underline;
       }
     }
+  }
+}
+
+.notice {
+  p {
+    font-weight: 400;
   }
 }

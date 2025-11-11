@@ -1,5 +1,6 @@
 {% extends 'landing/base.html' %}
 {% load static %}
+{% load accordion_tags %} 
 
 {% block title %}Сдача профессионального экзамена – Диагност ПБ{% endblock %}
 
@@ -35,9 +36,7 @@
     </div>
 </section>
 
- 
-    <!-- Аккордеон -->
-  {% include "landing/partials/accordion.html" %}
+{% render_accordion "normative-toggle" "Нормативные документы в сфере независимой оценки квалификации" "landing/partials/accordions/accordion_normative_content.html" %}
 
 
 

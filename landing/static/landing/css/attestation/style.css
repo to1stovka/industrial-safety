@@ -6,7 +6,6 @@
 .preparation-section .section-title {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 2rem;
 }
 .preparation-section .methods-list {
   font-size: 1.125rem;
@@ -18,7 +17,7 @@
   align-items: center;
   background-color: #b0c9fc;
   border-radius: 30px;
-  padding: 23px 30px;
+  padding: 30px 30px;
   max-width: 1400px;
   margin: 1.5rem 0;
 }
@@ -27,8 +26,8 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 2px solid #AF4100;
-  color: #AF4100;
+  border: 2px solid #af4100;
+  color: #af4100;
   font-weight: 700;
   font-size: 2rem;
   display: flex;
@@ -41,6 +40,15 @@
   font-weight: 600;
   font-size: 1.125rem;
   max-width: 1000px;
+}
+.notice li {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 0.7rem;
+}
+.notice h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 @media (max-width: 600px) {
   .notice {
@@ -75,19 +83,17 @@
   text-decoration: underline;
 }
 
-.schedule {
-  /* Кнопка "Методы НК" */
-  /* Выпадающее меню */
-  /* Кнопки месяцев */
-  /* Примечание под фильтром */
+.notice p {
+  font-weight: 400;
 }
+
 .schedule h5 {
   font-size: 1.5rem;
   font-weight: 600;
   color: #000;
 }
 .schedule .btn-orange {
-  background-color: #AF4100;
+  background-color: #af4100;
   color: #fff;
   border: none;
   border-radius: 30px;
@@ -106,7 +112,7 @@
   vertical-align: middle;
 }
 .schedule .dropdown-menu {
-  background-color: #E3E1E1;
+  background-color: #e3e1e1;
   border: none;
   border-radius: 30px;
   padding: 10px 20px;
@@ -164,21 +170,67 @@
   font-weight: 500;
   font-size: 1.125rem;
   padding: 10px 20px;
-  border: 1px solid #E3E1E1;
+  border: 1px solid #e3e1e1;
   background: #fff;
   color: #000;
   transition: all 0.2s ease;
   width: 130px;
 }
 .schedule .months button:hover {
-  background-color: #E3E1E1;
+  background-color: #e3e1e1;
 }
 .schedule p.small {
-  color: #4E4E4E;
+  color: #4e4e4e;
   margin-top: 0.5rem;
   font-size: 1.125rem;
 }
 
+@media (max-width: 768px) {
+  .schedule .filters {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .schedule .btn-orange {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+    border-radius: 25px;
+  }
+  .schedule .dropdown-menu {
+    width: 100%;
+    border-radius: 20px;
+    padding: 0.75rem 1rem;
+  }
+  .schedule .dropdown-menu label.dropdown-item {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
+  .schedule .dropdown-menu label.dropdown-item input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+  }
+  .schedule .months {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  .schedule .months button {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.6rem 0.5rem;
+    border-radius: 25px;
+  }
+  .schedule p.small {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    line-height: 1.3;
+  }
+}
 .requirements-section {
   /* Заголовки групп */
   /* Голубой блок */
@@ -256,7 +308,7 @@
   color: #000;
 }
 .requirements-section .gray-panel {
-  background: #E3E1E1 !important;
+  background: #e3e1e1 !important;
   border-radius: 40px;
   padding: 2rem 4rem !important;
   color: #000;
@@ -350,7 +402,7 @@
 
 .gray-list,
 .normative-list {
-  background: #E3E1E1;
+  background: #e3e1e1;
   border-radius: 30px;
   padding: 25px 40px;
   margin: 0;

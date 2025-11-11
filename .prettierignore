@@ -1,0 +1,21 @@
+# зависимости и окружения
+node_modules/
+.venv/
+venv/
+.env
+.env.*
+
+# сборка/артефакты
+**/static/**/css/**    # готовые css (компилируются из scss)
+**/static/**/js/compiled/**
+dist/
+build/
+coverage/
+
+# карты и минификация
+*.min.css
+*.map
+
+# кеши IDE
+.vscode/
+.idea/

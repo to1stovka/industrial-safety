@@ -1,0 +1,39 @@
+{% extends "landing/base.html" %}
+{% load static %}
+{% load accordion_tags %} 
+
+{% block title %}Аттестация специалистов по техническому диагностированию (ТД){% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/docs/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="docs-page" style="background-image: url('{% static 'landing/img/BGDocs.png' %}');">
+  <div class="container">
+    <div class="docs-content">
+      <h3>Разрешительные документы АНО ДПО "УЦ «Безопасность в промышленности»"</h3>
+      <p>
+        Учебный центр имеет государственную образовательную лицензию. Ознакомиться со всеми документами можно на нашем сайте.
+        Чтобы проверить данные лицензии, нужно просто перейти на сайт и ввести номер нашей лицензии.
+      </p>
+
+      <ul class="docs-list">
+        <li><strong>Лицензия на образовательную деятельность №041004 от 25.09.2020 г.</strong></li>
+        <li>Аттестат ЭЦ (НОК)</li>
+        <li>Свидетельство ЭЦ (НОАП)</li>
+        <li>Свидетельство НОАЛ</li>
+        <li>Свидетельство ТУО</li>
+        <li>Свидетельство НОА эксперты ИО</li>
+        <li>Свидетельство НОА специалисты ТД</li>
+        <li>Выписка из реестра (ОТ)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+{% endblock %}

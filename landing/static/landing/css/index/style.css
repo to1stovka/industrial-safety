@@ -9,7 +9,7 @@
 }
 
 .left-news-column .main-news-card {
-  background: #E3E1E1;
+  background: #e3e1e1;
   border-radius: 2.5rem;
   overflow: hidden;
   height: 16.875rem;
@@ -45,7 +45,7 @@
   line-height: 1.4;
 }
 .left-news-column .vertical-news-card {
-  background: #E3E1E1;
+  background: #e3e1e1;
   border-radius: 2.5rem;
   overflow: hidden;
   display: flex;
@@ -83,7 +83,7 @@
   border-radius: 1.25rem;
   font-size: 0.75rem;
   font-weight: 400;
-  background: #18233A;
+  background: #18233a;
   color: white;
 }
 .left-news-column .read-more-btn {
@@ -92,7 +92,7 @@
   text-decoration: none;
   font-weight: 400;
   font-size: 1rem;
-  background: #AF4100;
+  background: #af4100;
   border: none;
   border-radius: 20px;
   font-size: 0.8125rem;
@@ -106,7 +106,7 @@
 }
 
 .news-list-card {
-  background: #E3E1E1;
+  background: #e3e1e1;
   border-radius: 2.5rem;
   overflow: hidden;
   height: 42.8125rem;
@@ -144,7 +144,7 @@
   text-decoration: none;
   font-weight: 400;
   font-size: 1rem;
-  background: #AF4100;
+  background: #af4100;
   border: none;
   border-radius: 30px;
   font-size: 0.8125rem;
@@ -275,7 +275,7 @@
   margin-top: 2rem;
 }
 .popular-section .course-card {
-  background: #E3E1E1;
+  background: #e3e1e1;
   border-radius: 30px;
   padding: 1.8rem 1.5rem;
   display: flex;
@@ -300,7 +300,7 @@
   line-height: 1;
 }
 .popular-section .course-card__header .rating__star {
-  color: #D5A812;
+  color: #d5a812;
   font-size: 0.9rem;
 }
 .popular-section .course-card__header .rating__star--empty {
@@ -325,7 +325,7 @@
   white-space: nowrap;
 }
 .popular-section .course-card__modes .mode-badge.active {
-  background: #A4A2A2;
+  background: #a4a2a2;
 }
 .popular-section .course-card__title {
   font-size: 1.25rem;
@@ -361,7 +361,7 @@
   color: #000;
 }
 .popular-section .course-card__footer .btn {
-  background: #AF4100;
+  background: #af4100;
   color: #fff;
   border-radius: 30px;
   font-size: 0.8125rem;
@@ -397,6 +397,55 @@
   }
 }
 
+@media (max-width: 992px) {
+  .popular-section .course-card {
+    border-radius: 20px;
+    padding: 1.2rem;
+  }
+}
+@media (max-width: 768px) {
+  .popular-section {
+    padding: 2rem 1rem;
+  }
+  .popular-section .section-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .popular-section .icon-dot {
+    display: none;
+  }
+  .popular-section .course-card {
+    padding: 1.2rem;
+    text-align: center;
+  }
+  .popular-section .course-card__title {
+    font-size: 1rem;
+  }
+  .popular-section .course-card__footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .popular-section .course-card__footer .price-block {
+    align-items: center;
+  }
+  .popular-section .course-card__footer .price-block .price {
+    font-size: 1rem;
+  }
+  .popular-section .course-card__footer .btn {
+    width: 100%;
+    max-width: 9rem;
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 480px) {
+  .popular-section .course-card__title {
+    font-size: 0.9rem;
+  }
+  .popular-section .course-card .btn {
+    width: 100%;
+  }
+}
 .about-section {
   background-color: #fff;
   padding: 3rem 0;
@@ -443,7 +492,7 @@
   line-height: 100%;
   letter-spacing: 0;
   text-align: center;
-  color: #6091F9;
+  color: #6091f9;
   margin-bottom: -1.8rem;
 }
 .about-section .about {
@@ -471,6 +520,58 @@
   margin-left: -6.7rem;
 }
 
+@media (max-width: 768px) {
+  .about-section .about-image {
+    margin-top: 0;
+  }
+  .about-section {
+    padding: 2rem 1rem;
+  }
+  .about-section .section-title {
+    text-align: center;
+    font-size: 1.75rem;
+  }
+  .about-section .row {
+    flex-direction: column-reverse;
+  }
+  .about-section .about-text p {
+    font-size: 1rem;
+    margin: 0 0 1rem 0 !important;
+  }
+  .about-section .about-image {
+    margin-bottom: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  .about-section .about-stats,
+  .about-section .about {
+    display: none;
+  }
+  .about-section .about-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .about-section .about-mobile .about-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .about-section .about-mobile .about-item .stat__value {
+    font-size: 4rem;
+    color: #6091f9;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .about-section .about-mobile .about-item .stat__label {
+    font-size: 1.125rem;
+    color: #000;
+    line-height: 1.4;
+  }
+}
 .hero-banner {
   position: relative;
   width: 100%;
@@ -514,7 +615,7 @@
 }
 .hero-banner .hero-content .hero-btn {
   display: inline-block;
-  background: #AF4100;
+  background: #af4100;
   color: #fff;
   border-radius: 50px;
   font-size: 1.25rem;
@@ -527,6 +628,30 @@
   background: rgba(179, 61, 11, 0.8);
 }
 
+@media (max-width: 768px) {
+  .hero-banner {
+    height: 520px;
+  }
+  .hero-banner .hero-content {
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .hero-banner .hero-content .hero-title {
+    font-size: 2rem;
+    margin-top: 0;
+  }
+  .hero-banner .hero-content .hero-list {
+    list-style: none;
+    margin: 1rem 0 2rem;
+    padding: 0;
+    font-size: 0.875rem;
+  }
+  .hero-banner .hero-content .hero-btn {
+    font-size: 1rem;
+    padding: 0.75rem 2.5rem;
+  }
+}
 .clients-section {
   background: #fff;
   position: relative;
@@ -599,13 +724,23 @@
 .clients-section .clients-button-next::after {
   background-image: url("../../img/right.svg");
 }
+
 @media (max-width: 768px) {
+  .clients-section .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .clients-section .clients-grid .client-logo img {
+    max-width: 90px;
+  }
+  .clients-section .section-title {
+    text-align: center;
+    font-size: 1.5rem;
+  }
   .clients-section .clients-button-prev,
   .clients-section .clients-button-next {
     display: none;
   }
 }
-
 .reviews-section {
   background: #fff;
   position: relative;
@@ -638,7 +773,7 @@
   width: calc((100% - 60px) / 3);
 }
 .reviews-section .review-card {
-  background: #E3E1E1;
+  background: #e3e1e1;
   border-radius: 30px;
   padding: 1.5rem;
   width: 100%;
@@ -668,7 +803,7 @@
 .reviews-section .review-card__stars {
   display: flex;
   gap: 0.25rem;
-  color: #D5A812;
+  color: #d5a812;
   font-size: 1.5rem;
   margin-left: auto;
 }

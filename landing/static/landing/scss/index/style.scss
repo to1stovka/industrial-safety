@@ -1,9 +1,8 @@
-@use "./../variables" as *;
+@use './../variables' as *;
 
-@use "_news" as *;
-@use "_popular" as *;
-@use "_about" as *;
-@use "_hero" as *;
-@use "_clients" as *;
-@use "_review" as *;
-
+@use '_news' as *;
+@use '_popular' as *;
+@use '_about' as *;
+@use '_hero' as *;
+@use '_clients' as *;
+@use '_review' as *;

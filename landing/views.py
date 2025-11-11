@@ -110,3 +110,36 @@ def qualifications_list(request):
 
 def attestation(request):
     return render(request, 'landing/attestation.html')
+
+def TD(request):
+    form = NOCRequestForm()
+    context = {
+        "form": form,
+        "page": "TD",
+    }
+    return render(request, 'landing/TD.html', context)
+
+def IO(request):
+    form = NOCRequestForm()
+    context = {
+        "form": form,
+        "page": "IO",
+    }
+    return render(request, 'landing/TD.html', context)
+
+def NK(request):
+    form = NOCRequestForm()
+    context = {
+        "form": form,
+        "page": "NK",
+    }
+    return render(request, 'landing/TD.html', context)
+
+def docs(request):
+    return render(request, 'landing/docs.html')
+
+def preparation(request):
+    return render(request, 'landing/preparation.html')
+
+def safety(request):
+    return render(request, 'landing/safety.html')

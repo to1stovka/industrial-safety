@@ -1,28 +1,35 @@
-@use "./../variables" as *;
-@use "./../partials/pagination" as *;
-@use "./../partials/form"as * ;
+@use './../variables' as *;
+@use './../partials/pagination' as *;
+@use './../partials/form' as *;
 // @use "./../partials/programs" as *;
-@use "./../partials/accordion" as *;
-@use "./../partials/qualifications_list" as *;
+@use './../partials/accordion' as *;
+@use './../partials/qualifications_list' as *;
+@use './../partials/steps' as *;
 
-@use "footer" as *;
-@use "header" as *;
-@use "modal" as *;
+@use 'footer' as *;
+@use 'header' as *;
+@use 'modal' as *;
 
-
-html, body {
-    overflow-x: hidden;
-    max-width: 100%;
-    font-family: 'Inter', sans-serif;
+// === Sticky footer fix ===
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Исправляем контейнер */
-.container {
-    max-width: 1400px;
+body {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Исправляем строки */
-.row {
-    margin-left: 0;
-    margin-right: 0;
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }

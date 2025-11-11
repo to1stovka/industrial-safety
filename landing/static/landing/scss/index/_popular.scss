@@ -1,4 +1,4 @@
-@use "../variables" as *;
+@use '../variables' as *;
 
 .popular-section {
   background-color: #fff;
@@ -15,7 +15,7 @@
     display: inline-block;
     width: 46px;
     height: 46px;
-    background: url("../../img/fire.svg") no-repeat center / contain;
+    background: url('../../img/fire.svg') no-repeat center / contain;
   }
 
   .row {
@@ -51,8 +51,8 @@
         }
 
         &__star {
-          color: #D5A812;
-          font-size: .9rem;
+          color: #d5a812;
+          font-size: 0.9rem;
 
           &--empty {
             color: rgba(0, 0, 0, 0.2);
@@ -76,17 +76,15 @@
         color: #000;
         border-radius: 30px;
         padding: 0.35rem 0.9rem;
-        font-size: .65rem;
+        font-size: 0.65rem;
         font-weight: 400;
         white-space: nowrap;
-        
 
         &.active {
           background: $grey_dark;
         }
       }
     }
-
 
     // Заголовок курса
     &__title {
@@ -116,7 +114,7 @@
         justify-content: flex-start;
 
         .price {
-          font-size: .9375rem;
+          font-size: 0.9375rem;
           font-weight: 400;
           color: #000;
           margin-bottom: 0.2rem;
@@ -133,7 +131,7 @@
         background: $orange;
         color: #fff;
         border-radius: 30px;
-        font-size: .8125rem;
+        font-size: 0.8125rem;
         font-weight: 400;
         padding: 0.45rem 1.5rem;
         text-decoration: none;
@@ -170,6 +168,70 @@
       .btn {
         font-size: 0.8rem;
         padding: 0.4rem 1rem;
+      }
+    }
+  }
+}
+@media (max-width: 992px) {
+  .popular-section .course-card {
+    border-radius: 20px;
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .popular-section {
+    padding: 2rem 1rem;
+
+    .section-title {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .icon-dot {
+      display: none;
+    }
+
+    .course-card {
+      padding: 1.2rem;
+      text-align: center;
+
+      &__title {
+        font-size: 1rem;
+      }
+
+      &__footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        .price-block {
+          align-items: center;
+
+          .price {
+            font-size: 1rem;
+          }
+        }
+
+        .btn {
+          width: 100%;
+          max-width: 9rem;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .popular-section {
+    .course-card {
+      &__title {
+        font-size: 0.9rem;
+      }
+
+      .btn {
+        width: 100%;
       }
     }
   }

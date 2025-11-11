@@ -1,4 +1,4 @@
-@use "../variables" as *;
+@use '../variables' as *;
 
 .clients-section {
   background: #fff;
@@ -37,54 +37,68 @@
   }
 
   // Стрелки
-.clients-button-prev,
-.clients-button-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 45px;
-  height: 45px;
-  background: none;
-  border: none;
-  z-index: 10;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  .clients-button-prev,
+  .clients-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: none;
+    border: none;
+    z-index: 10;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
-  &::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    filter: brightness(0) saturate(100%) invert(97%) sepia(5%) saturate(47%) hue-rotate(314deg) brightness(97%) contrast(86%);
-    transition: all 0.2s ease;
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      filter: brightness(0) saturate(100%) invert(97%) sepia(5%) saturate(47%) hue-rotate(314deg)
+        brightness(97%) contrast(86%);
+      transition: all 0.2s ease;
+    }
+
+    &:hover::after {
+      filter: brightness(0) saturate(100%) invert(44%) sepia(22%) saturate(0%) hue-rotate(195deg)
+        brightness(95%) contrast(90%);
+    }
   }
 
-  &:hover::after {
-    filter: brightness(0) saturate(100%) invert(44%) sepia(22%) saturate(0%) hue-rotate(195deg) brightness(95%) contrast(90%);
+  .clients-button-prev {
+    left: 8px;
+
+    &::after {
+      background-image: url('../../img/left.svg');
+    }
+  }
+
+  .clients-button-next {
+    right: 8px;
+
+    &::after {
+      background-image: url('../../img/right.svg');
+    }
   }
 }
 
-.clients-button-prev {
-  left: 8px;
-
-  &::after {
-    background-image: url("../../img/left.svg");
+@media (max-width: 768px) {
+  .clients-section .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+    .client-logo img {
+      max-width: 90px;
+    }
   }
-}
+  .clients-section {
+    .section-title {
+      text-align: center;
+      font-size: 1.5rem;
+    }
 
-.clients-button-next {
-  right: 8px;
-
-  &::after {
-    background-image: url("../../img/right.svg");
-  }
-}
-
-
-  @media (max-width: 768px) {
     .clients-button-prev,
     .clients-button-next {
       display: none;

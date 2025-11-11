@@ -1,0 +1,20 @@
+@use './../variables' as *;
+
+@use '../minstroy/preparation' as *; // для notice
+
+@use 'accordion' as *;
+@use 'base' as *;
+@use 'blue' as *;
+@use 'info' as *;
+
+.notice {
+  p {
+    font-weight: 400;
+    color: #000;
+    font-size: 1.125rem;
+  }
+  li {
+    font-weight: 400;
+    color: #000;
+  }
+}

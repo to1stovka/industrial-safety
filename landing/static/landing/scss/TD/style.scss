@@ -1,0 +1,27 @@
+@use './../variables' as *;
+
+@use 'list' as *;
+@use 'procedure-list' as *;
+@use 'title' as *;
+@use 'attestation_area' as *;
+
+@use '../minstroy/preparation' as *; // для notice "Комплект документов каждого кандидата анализируется с целью определения их достаточности и полноты для допуска кандидата к экзаменам... "
+@use '../minstroy/apply' as *; // для кнопки заявления
+
+.notice {
+  p {
+    font-weight: 400;
+    color: #000;
+  }
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000;
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}

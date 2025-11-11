@@ -1,0 +1,88 @@
+@use './../variables' as *;
+
+.docs-page {
+  width: 100%;
+  flex: 1;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  background-image: url('../img/BGDocs.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: #fff;
+
+  .docs-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 60px 20px;
+  }
+
+  .docs-content {
+    color: #000;
+    max-width: 900px;
+    text-align: left;
+
+    h3 {
+      font-weight: 600;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .docs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        font-size: 1.125rem;
+        line-height: 1.5;
+        margin-bottom: 6px;
+        font-weight: 600;
+
+        strong {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    background: $card;
+    background-image: none;
+    padding: 0;
+    align-items: flex-start;
+
+    .docs-content {
+      padding: 2rem 1rem;
+      max-width: 100%;
+      text-align: left;
+
+      h3 {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 0.9375rem;
+        line-height: 1.5;
+      }
+
+      .docs-list li {
+        font-size: 0.9375rem;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

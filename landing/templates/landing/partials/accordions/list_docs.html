@@ -1,0 +1,41 @@
+{% load static %}
+<div class="content custom-bullets" style="font-weight:400;">
+  <ul>
+    <li><p><a href="#">Согласие на обработку персональных данных</a></p></li>
+    <li>Диплом (копия)</li>
+    <li>Паспорт (копия)</li>
+    <li>СНИЛС</li>
+    <li>Копии предыдущих удостоверений о повышении квалификации (при наличии)</li>
+    <li>Квитанция об оплате государственной пошлины</li>
+    <li>Заявление на аттестацию формируется в личном кабинете Заявителя.</li>
+  </ul>
+  <p><a href="#">Примерная форма заявления (в помощь Заявителю)</a></p>
+</div>
+<style>
+  .custom-bullets ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .custom-bullets li {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    font-size:1.125rem;
+    padding-top: .5rem;
+  }
+
+  .custom-bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 30px;
+    height: 30px;
+    background: url("{% static 'landing/img/check.svg' %}") no-repeat center center;
+    background-size: contain;
+  }
+
+</style>

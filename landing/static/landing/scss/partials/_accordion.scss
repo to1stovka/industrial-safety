@@ -1,4 +1,4 @@
-@use "../variables" as *;
+@use '../variables' as *;
 
 // Аккордеон "Нормативные документы в сфере независимой оценки квалификации"
 
@@ -40,14 +40,14 @@
   margin-top: 0;
 
   &.open {
-    max-height: 3000px;
+    max-height: 10000px;
     opacity: 1;
     margin-top: 15px;
   }
 }
 
 /* Список документов */
-.normative-list {
+.content {
   list-style: disc;
   background: $card;
   border-radius: 40px;
@@ -60,5 +60,12 @@
 
   li {
     margin-bottom: 1.5rem;
+  }
+  p {
+    font-weight: 400;
+    color: #000;
+  }
+  a {
+    color: #000;
   }
 }

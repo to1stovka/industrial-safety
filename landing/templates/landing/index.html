@@ -111,40 +111,39 @@
       </div>
     </div>
 
-    <div class="about-stats row">
-      <div class="col-2">
-        <div class="stat">
-          <div class="stat__value">15</div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="stat">
-          <div class="stat__value">4000</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="stat">
-          <div class="stat__value">30</div>
-        </div>
-      </div>
-    </div>
-    <div class="about row">
-      <div class="col-3">
-        <div class="label">
-          <div class="stat__label">лет<br>опыта</div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="label">
-          <div class="stat__label">аттестованных<br>специалистов</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="label">
-          <div class="stat__label">специальностей/<br>квалификаций</div>
-        </div>
-      </div>
-    </div>
+<div class="about-stats row d-none d-md-flex">
+  <div class="col-2">
+    <div class="stat"><div class="stat__value">15</div></div>
+  </div>
+  <div class="col-4">
+    <div class="stat"><div class="stat__value">4000</div></div>
+  </div>
+  <div class="col-3">
+    <div class="stat"><div class="stat__value">30</div></div>
+  </div>
+</div>
+
+<div class="about row d-none d-md-flex">
+  <div class="col-3"><div class="label"><div class="stat__label">лет<br>опыта</div></div></div>
+  <div class="col-4"><div class="label"><div class="stat__label">аттестованных<br>специалистов</div></div></div>
+  <div class="col-3"><div class="label"><div class="stat__label">специальностей/<br>квалификаций</div></div></div>
+</div>
+
+<div class="about-mobile d-flex d-md-none">
+  <div class="about-item">
+    <div class="stat__value">15</div>
+    <div class="stat__label">лет опыта</div>
+  </div>
+  <div class="about-item">
+    <div class="stat__value">4000</div>
+    <div class="stat__label">аттестованных специалистов</div>
+  </div>
+  <div class="about-item">
+    <div class="stat__value">30</div>
+    <div class="stat__label">специальностей/ квалификаций</div>
+  </div>
+</div>
+
   </div>
 </section>
 {% endif %}

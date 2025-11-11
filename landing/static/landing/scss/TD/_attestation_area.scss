@@ -1,0 +1,90 @@
+@use './../variables' as *;
+
+.attestation-area {
+  margin: 60px auto;
+  color: #000;
+
+  .attestation-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .attestation-grid {
+    display: grid;
+    grid-template-columns: 57% 40%;
+    gap: 40px;
+    margin-bottom: 40px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .attestation-card {
+    background: $card;
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    h4 {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+
+    ol {
+      counter-reset: item;
+      list-style: none;
+      margin: 0;
+      padding-left: 30px;
+
+      > li {
+        counter-increment: item;
+        margin-bottom: 8px;
+        line-height: 1.5;
+        font-size: 1.125rem;
+        position: relative;
+
+        &::before {
+          content: counter(item) '. ';
+          position: absolute;
+          left: -30px;
+        }
+
+        ol {
+          counter-reset: subitem;
+          margin-top: 6px;
+          padding-left: 40px;
+          list-style: none;
+
+          > li {
+            counter-increment: subitem;
+            margin-bottom: 4px;
+            position: relative;
+
+            &::before {
+              content: counter(item) '.' counter(subitem) '. ';
+              position: absolute;
+              left: -40px;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+
+    &.bottom {
+      margin-top: 12px;
+    }
+  }
+
+  .columns {
+    columns: 2;
+    column-gap: 40px;
+
+    @media (max-width: 768px) {
+      columns: 1;
+    }
+  }
+}

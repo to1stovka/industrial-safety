@@ -1,0 +1,274 @@
+@charset "UTF-8";
+.preparation-section {
+  margin-top: 4rem;
+  margin-bottom: 0rem;
+}
+.preparation-section .section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.preparation-section .methods-list {
+  font-size: 1.125rem;
+  max-width: 750px;
+}
+
+.notice {
+  display: flex;
+  align-items: center;
+  background-color: #b0c9fc;
+  border-radius: 30px;
+  padding: 30px 30px;
+  max-width: 1400px;
+  margin: 1.5rem 0;
+}
+.notice .notice-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid #af4100;
+  color: #af4100;
+  font-weight: 700;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 3rem;
+}
+.notice p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.125rem;
+  max-width: 1000px;
+}
+.notice li {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 0.7rem;
+}
+.notice h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 600px) {
+  .notice {
+    font-size: 1rem;
+    padding: 14px 16px;
+  }
+  .notice .notice-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    margin-right: 10px;
+  }
+}
+
+.accordion-wrapper {
+  max-width: 1300px;
+  margin-left: 0;
+  background: transparent;
+}
+.accordion-wrapper .accordion-item {
+  background: transparent;
+  border: none;
+  margin-bottom: 1.25rem;
+}
+.accordion-wrapper .accordion-item .accordion-button {
+  background: transparent;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+.accordion-wrapper .accordion-item .accordion-button::after {
+  content: "";
+  background-image: url("/static/landing/img/Vector.svg");
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  margin-left: 1rem;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+  filter: brightness(0%);
+}
+.accordion-wrapper .accordion-item .accordion-button:not(.collapsed)::after {
+  transform: rotate(180deg);
+}
+.accordion-wrapper .accordion-item .accordion-button:focus {
+  box-shadow: none;
+}
+.accordion-wrapper .accordion-item .accordion-collapse {
+  border: none;
+  transition: height 0.4s ease;
+}
+.accordion-wrapper .accordion-item .accordion-body {
+  background: transparent;
+  padding: 1.25rem 0 0;
+}
+.accordion-wrapper .accordion-item .accordion-body .table-wrap {
+  overflow: hidden;
+}
+.accordion-wrapper .accordion-item .accordion-body .table-wrap table {
+  width: 100%;
+  margin-bottom: 0;
+  border-collapse: collapse;
+}
+.accordion-wrapper .accordion-item .accordion-body .table-wrap table th {
+  background: #b0c9fc !important;
+  font-weight: 600;
+  border: 2px solid #000;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 1.125rem;
+  vertical-align: middle !important;
+}
+.accordion-wrapper .accordion-item .accordion-body .table-wrap table td {
+  border: 2px solid #000;
+  background: #e3e1e1;
+  padding: 12px 16px;
+  vertical-align: top;
+  text-align: left;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  vertical-align: middle !important;
+}
+.accordion-wrapper .accordion-item .accordion-body .table-wrap table td .desc {
+  font-weight: 400;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ====== АДАПТИВ ====== */
+@media (max-width: 768px) {
+  .accordion-wrapper .accordion-button {
+    font-size: 1rem;
+  }
+  .accordion-wrapper .accordion-body {
+    padding-top: 1rem;
+  }
+  .accordion-wrapper .accordion-body table {
+    font-size: 0.95rem;
+  }
+  .accordion-wrapper .accordion-body table th,
+  .accordion-wrapper .accordion-body table td {
+    padding: 10px;
+  }
+}
+.attestation-area {
+  background: #fff;
+  color: #000;
+}
+.attestation-area .container {
+  max-width: 1400px;
+}
+.attestation-area p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  font-size: 1.125rem;
+}
+.attestation-area .attestation-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.attestation-area a {
+  color: #000;
+  font-weight: 600;
+}
+.attestation-area h4 {
+  font-family: "Montserrat";
+  font-size: 2rem;
+}
+
+.documents-list h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+.documents-list .docs-ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  margin-left: 1rem;
+}
+.documents-list .docs-ul li {
+  display: flex;
+  align-items: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #000;
+  line-height: 1.5;
+}
+.documents-list .docs-ul li .check-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+.documents-list .docs-ul li .doc-link {
+  text-decoration: underline;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .documents-list h4 {
+    font-size: 1.1rem;
+  }
+  .documents-list .docs-ul li {
+    font-size: 1rem;
+  }
+  .documents-list .docs-ul li .check-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+.blue-section {
+  position: relative;
+  background-color: #b0c9fc;
+  margin-bottom: 60px;
+  padding: 60px 0;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  overflow-x: clip;
+}
+.blue-section .container {
+  position: relative;
+  z-index: 2;
+}
+.blue-section .p {
+  font-size: 1.125rem;
+}
+
+.attestation-area .info-block {
+  background: #e8f0ff;
+  border-left: 5px solid #4d72d8;
+  color: #000;
+}
+.attestation-area .info-block p {
+  margin-bottom: 0.5rem;
+}
+.attestation-area .info-block ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.attestation-area .info-block ul li {
+  margin-bottom: 0.25rem;
+}
+
+.notice p {
+  font-weight: 400;
+  color: #000;
+  font-size: 1.125rem;
+}
+.notice li {
+  font-weight: 400;
+  color: #000;
+}/*# sourceMappingURL=style.css.map */

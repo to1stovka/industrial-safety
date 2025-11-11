@@ -1,5 +1,6 @@
 {% extends "landing/base.html" %}
 {% load static %}
+{% load accordion_tags%}
 
 {% block title %}Подготовка экспертов и специалистов к Независимой оценке квалификации (НОК){% endblock %}
 
@@ -16,30 +17,9 @@
             к Независимой оценке квалификации (НОК)
         </h2>
     <h2 class="steps-title">Как отправить заявку</h2>
-
-    <div class="steps-grid">
-        <div class="step-item">
-        <div class="step-number">1<span>шаг</span></div>
-        <p>Выберите<br>программу</p>
-        </div>
-
-        <div class="step-item">
-        <div class="step-number">2<span>шаг</span></div>
-        <p>Скачайте и<br>заполните заявление</p>
-        </div>
-
-        <div class="step-item">
-        <div class="step-number">3<span>шаг</span></div>
-        <p>Оформите заявку<br>и прикрепите заявление</p>
-        </div>
-
-        <div class="step-item">
-        <div class="step-number">4<span>шаг</span></div>
-        <p>Ожидайте с вами<br>свяжутся</p>
-        </div>
-    </div>
     </section>
 
+  {% include "landing/partials/steps.html" %}
 
   {% include "landing/partials/qualifications_table.html" %}
 
@@ -80,8 +60,7 @@
   <!-- Оставить заявку -->
   {% include "landing/partials/form_request.html" %}
 
-  <!-- Аккордеон -->
-  {% include "landing/partials/accordion.html" %}
+{% render_accordion "normative-toggle" "Нормативные документы в сфере обучения работников по ОТ" "landing/partials/accordions/accordion_normative_content.html" %}
 
 
 </div>
@@ -101,7 +80,7 @@ const swiper = new Swiper(".nok-swiper", {
     prevEl: ".swiper-button-prev"
   },
   breakpoints: {
-    320: { slidesPerView: 1.2 },
+    320: { slidesPerView: 1 },
     768: { slidesPerView: 2 },
     992: { slidesPerView: 3 },
     1200: { slidesPerView: 4 }
