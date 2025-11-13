@@ -1,4 +1,4 @@
-@use "./../variables" as *;
+@use './../variables' as *;
 
 .accordion-wrapper {
   max-width: 600px;
@@ -9,6 +9,9 @@
   background: transparent;
   border: none;
   margin-bottom: 1.25rem;
+  a {
+    color: black;
+  }
 
   .accordion-button {
     background: transparent;
@@ -18,8 +21,8 @@
     padding: 0;
 
     &::after {
-      content: "";
-      background-image: url("/static/landing/img/Vector.svg");
+      content: '';
+      background-image: url('/static/landing/img/Vector.svg');
       background-repeat: no-repeat;
       background-size: 20px 20px;
       width: 20px;
@@ -67,6 +70,11 @@
   }
 }
 
+.requirements-list {
+  a {
+    color: black;
+  }
+}
 @media (max-width: 768px) {
   .accordion-item .accordion-button {
     font-size: 1.25rem;

@@ -1,0 +1,159 @@
+@use '../variables' as *;
+
+.contacts {
+  background: #fff;
+  color: #000;
+
+  .contacts-title {
+    font-weight: 600;
+    font-size: 2rem;
+    font-family: 'Montserrat';
+    text-align: left;
+  }
+
+  .contacts-subtitle {
+    color: #4e4e4e;
+    margin: 1.5rem 0;
+    line-height: 1.6;
+    text-align: left;
+    font-size: 1.125rem;
+  }
+
+  /* телефон, почта, время */
+  .contacts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .contact-card {
+      flex: 1 1 250px;
+      background: $card;
+      border-radius: 30px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-width: 250px;
+      transition: transform 0.2s ease;
+
+      .icon {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 1rem;
+      }
+
+      .label {
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        font-size: 1.125rem;
+      }
+
+      .value {
+        line-height: 1.4;
+        font-size: 1.125rem;
+        a {
+          color: inherit;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  /* адреса  реквизиты */
+  .contacts-addresses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.125rem;
+
+    .address-card {
+      background: $card;
+      border-radius: 30px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 1rem;
+      }
+
+      .label {
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
+
+      .value {
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .btn-requisites {
+        display: inline-block;
+        background: $orange;
+        color: #fff;
+        border-radius: 30px;
+        padding: 0.6rem 1.5rem;
+        margin-top: 1rem;
+        text-decoration: none;
+        font-weight: 400;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: $hover_orange;
+        }
+      }
+    }
+  }
+
+  /* карта */
+  .contacts-map {
+    border-top: 1px solid #e5e5e5;
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 450px;
+      display: block;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .contacts-addresses {
+      grid-template-columns: 1fr;
+      align-items: center;
+
+      .address-card {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
+
+    .contacts-grid {
+      flex-direction: column;
+      align-items: center;
+
+      .contact-card {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
+
+    .contacts-map iframe {
+      width: 100%;
+    }
+  }
+}

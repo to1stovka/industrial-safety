@@ -119,24 +119,6 @@
     max-width: 75%;
   }
 
-  &__btn {
-    display: inline-block;
-    background: $orange;
-    color: #fff !important;
-    font-weight: 500;
-    font-size: 1rem;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    white-space: nowrap;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: $hover_orange;
-      color: #fff;
-    }
-  }
-
   @media (max-width: 576px) {
     flex-direction: column;
     align-items: flex-start;
@@ -150,6 +132,23 @@
     &__btn {
       width: 100%;
       text-align: center;
+    }
+  }
+  .btn-download a {
+    display: inline-block;
+    background: $orange;
+    color: #fff !important;
+    font-weight: 400;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: $hover_orange;
+      color: #fff;
     }
   }
 }

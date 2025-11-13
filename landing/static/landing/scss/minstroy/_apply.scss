@@ -1,4 +1,4 @@
-@use "../variables" as *;
+@use '../variables' as *;
 
 .apply-section {
   .apply-title {
@@ -9,22 +9,60 @@
     margin-top: 3rem;
   }
 
-  .btn-nok {
+  .btn-nok a {
     display: inline-block;
     background-color: $orange;
-    color: #fff;
+    color: #fff !important;
     font-size: 1.125rem;
     font-weight: 400;
     padding: 30px 150px;
     border-radius: 45px;
-    text-decoration: none;
+    text-decoration: none !important;
     transition: background-color 0.2s ease, transform 0.1s ease;
+    &:hover {
+      text-decoration: underline !important;
+    }
+    // }
 
     &:hover {
       background-color: $hover_orange;
       color: #fff;
     }
   }
+
+  @media (max-width: 768px) {
+    .apply-title {
+      font-size: 1.125rem;
+      text-align: center;
+    }
+
+    .btn-nok a {
+      width: 100%;
+      max-width: 320px;
+      padding: 12px 0;
+      font-size: 0.95rem;
+    }
+  }
+  // .btn-nok {
+  //   display: inline-block;
+  //   background-color: $orange;
+  //   color: #fff !important;
+  //   font-size: 1.125rem;
+  //   font-weight: 400;
+  //   padding: 30px 150px;
+  //   border-radius: 45px;
+  //   text-decoration: none !important;
+  //   transition: background-color 0.2s ease, transform 0.1s ease;
+  //   &:hover {
+  //     text-decoration: underline !important;
+  //   }
+  //   // }
+
+  //   &:hover {
+  //     background-color: $hover_orange;
+  //     color: #fff;
+  //   }
+  // }
 
   @media (max-width: 768px) {
     .apply-title {

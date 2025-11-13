@@ -1,24 +1,19 @@
 from django.shortcuts import render, redirect
 from news.models import News
-from landing.models import CourseDirection, Review, CallbackRequest, Expert, MinstroyProgram, Qualification
-from landing.forms import NOCRequestForm
+from landing.models import CourseDirection, Review, Expert, MinstroyProgram, Qualification, UnifiedRequest
+from landing.forms import CallbackForm, NOCRequestForm
 from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
 
 def index(request):
     if request.method == "POST":
-        name = request.POST.get("name", "").strip()
-        phone = request.POST.get("phone", "").strip()
-
-        if name and phone:
-            CallbackRequest.objects.create(name=name, phone=phone)
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            form.save()
         return redirect(request.path)
+
     reviews = Review.objects.all()[:6]
-
-    popular_courses = CourseDirection.objects.filter(featured=True)[:3]
-
-    if not popular_courses:
-        popular_courses = CourseDirection.objects.all()[:3]
+    popular_courses = CourseDirection.objects.filter(featured=True)[:3] or CourseDirection.objects.all()[:3]
     latest_news = News.objects.all().order_by('-created_at')[:3]
 
     context = {
@@ -26,6 +21,7 @@ def index(request):
         'popular_courses': popular_courses,
         'reviews': reviews
     }
+
     return render(request, 'landing/index.html', context)
 
 def contact(request):
@@ -35,24 +31,20 @@ def contact(request):
 
 def callback_request(request):
     if request.method == "POST":
-        name = request.POST.get("name", "").strip()
-        phone = request.POST.get("phone", "").strip()
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.request_type = "callback"
+            obj.save()
 
-        if name and phone:
-            CallbackRequest.objects.create(name=name, phone=phone)
-
-            # AJAX-ответ
-            if request.headers.get("x-Requested-With") == "XMLHttpRequest":
+            if request.headers.get("x-requested-with") == "XMLHttpRequest":
                 return JsonResponse({"success": True})
 
-            # fallback для обычной формы
-            return HttpResponse("Заявка отправлена успешно")
+            return HttpResponse("OK")
 
-        # Ошибка валидации
-        if request.headers.get("x-Requested-With") == "XMLHttpRequest":
-            return JsonResponse({"success": False, "error": "Некорректные данные"}, status=400)
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "errors": form.errors}, status=400)
 
-    # Если не POST — ошибка
     return JsonResponse({"error": "Invalid method"}, status=405)
 
 
@@ -64,17 +56,54 @@ def nok_page(request):
     if request.method == "POST":
         form = NOCRequestForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            obj.request_type = "noc"
+            obj.save()
+
             if request.headers.get("x-requested-with") == "XMLHttpRequest":
                 return JsonResponse({"success": True})
+
             return redirect("nok")
-        else:
-            if request.headers.get("x-requested-with") == "XMLHttpRequest":
-                return JsonResponse({"success": False, "errors": form.errors})
+
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "errors": form.errors})
+
     else:
         form = NOCRequestForm()
 
-    return render(request, "landing/nok.html", {"experts": experts, "form": form, "qualifications": qualifications})
+    return render(
+        request,
+        "landing/nok.html",
+        {"experts": experts, "form": form, "qualifications": qualifications}
+    )
+
+
+def prep_request(request):
+    if request.method == "POST":
+        req_type = request.POST.get("request_type")
+
+        if req_type not in ("prep_expert", "prep_specialist"):
+            return JsonResponse({"success": False, "error": "Invalid type"}, status=400)
+
+        name = request.POST.get("name", "").strip()
+        phone = request.POST.get("phone", "").strip()
+        email = request.POST.get("email", "").strip()
+        message = request.POST.get("message", "").strip()
+
+        if not (name and phone and email):
+            return JsonResponse({"success": False, "error": "Missing fields"}, status=400)
+
+        UnifiedRequest.objects.create(
+            name=name,
+            phone=phone,
+            email=email,
+            message=message,
+            request_type=req_type
+        )
+
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"error": "Invalid method"}, status=405)
 
 
 def minstroy_page(request):

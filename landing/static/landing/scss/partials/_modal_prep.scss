@@ -1,0 +1,172 @@
+@use '../variables' as *;
+.prep-modal {
+  .modal-dialog {
+    max-width: 480px;
+  }
+
+  .modal-content {
+    background: $card;
+    border-radius: 30px;
+    padding: 35px;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Кнопка закрытия */
+  .btn-close {
+    filter: invert(0.5);
+    width: 14px;
+    height: 14px;
+    margin-left: auto;
+    margin-bottom: 10px;
+  }
+
+  /* Заголовок */
+  .prep-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Поля формы */
+  .prep-field {
+    background: #fff;
+    border-radius: 25px;
+    padding: 0 22px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    margin-bottom: 18px;
+    transition: border 0.2s ease;
+
+    input,
+    textarea {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 1rem;
+      color: #000;
+
+      &::placeholder {
+        color: #4e4e4e;
+      }
+    }
+
+    &:focus-within {
+      border-color: $orange;
+      box-shadow: 0 0 0 3px rgba($orange, 0.15);
+    }
+  }
+
+  /* Текстовое поле */
+  .prep-message {
+    height: auto;
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+    textarea {
+      resize: none;
+      min-height: 120px;
+      line-height: 1.45;
+    }
+  }
+
+  /* Кнопка отправки */
+  .prep-submit {
+    width: 100%;
+    height: 60px;
+    border-radius: 30px;
+    border: none;
+    background: $orange;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 10px;
+    transition: background 0.25s ease, transform 0.15s ease;
+
+    &:hover {
+      background: $hover_orange;
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  /* Успешная отправка */
+  .prep-success {
+    text-align: center;
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h5 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .success-icon {
+      width: 60px;
+      height: 60px;
+      animation: pop 0.3s ease-out;
+    }
+  }
+
+  /* Анимация успеха */
+  @keyframes pop {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .prep-modal {
+    .modal-content {
+      padding: 25px;
+      border-radius: 22px;
+    }
+
+    .prep-field {
+      height: 58px;
+      padding: 0 18px;
+      border-radius: 20px;
+    }
+
+    .prep-message {
+      textarea {
+        font-size: 0.95rem;
+        min-height: 110px;
+      }
+    }
+
+    .prep-submit {
+      height: 56px;
+      font-size: 1rem;
+      border-radius: 22px;
+    }
+
+    .prep-success {
+      padding: 50px 0;
+
+      h5 {
+        font-size: 1.1rem;
+      }
+
+      .success-icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}

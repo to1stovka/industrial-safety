@@ -167,22 +167,6 @@
   line-height: 1.4;
   max-width: 75%;
 }
-.attestation-row__btn {
-  display: inline-block;
-  background: #af4100;
-  color: #fff !important;
-  font-weight: 500;
-  font-size: 1rem;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 30px;
-  white-space: nowrap;
-  transition: background 0.2s ease;
-}
-.attestation-row__btn:hover {
-  background: rgba(179, 61, 11, 0.8);
-  color: #fff;
-}
 @media (max-width: 576px) {
   .attestation-row {
     flex-direction: column;
@@ -197,4 +181,20 @@
     width: 100%;
     text-align: center;
   }
+}
+.attestation-row .btn-download a {
+  display: inline-block;
+  background: #af4100;
+  color: #fff !important;
+  font-weight: 400;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+.attestation-row .btn-download a:hover {
+  background: rgba(179, 61, 11, 0.8);
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */

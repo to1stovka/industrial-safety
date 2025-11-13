@@ -1,8 +1,7 @@
 @use './../variables' as *;
 
 @use 'layout' as *;
-// @use "steps" as *;
-// @use "table" as *;
 @use 'experts' as *;
 @use 'apply' as *;
-// @use "accordion" as *;
+
+@use '../partials/modal_prep' as *; // модалка запросов на подготовку

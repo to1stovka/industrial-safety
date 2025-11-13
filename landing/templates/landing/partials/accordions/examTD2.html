@@ -1,13 +1,11 @@
 {% load static %}
+{% load chunk_tags %}
+
 <div class="content">
-
-<ul>
-  <li><p><a href="#">СДА-12-2009</a></p></li>
-  <li><p><a href="#">СДА-14-2009</a></p></li>
-  <li><p><a href="#">СДА-17-2009</a></p></li>
-  <li><p><a href="#">СДА-23-2009</a></p></li>
-
-</ul>
-
-
+  <ul>
+    <li><p>{% chunk 'examTD2_sda_12_2009' %}</p></li>
+    <li><p>{% chunk 'examTD2_sda_14_2009' %}</p></li>
+    <li><p>{% chunk 'examTD2_sda_17_2009' %}</p></li>
+    <li><p>{% chunk 'examTD2_sda_23_2009' %}</p></li>
+  </ul>
 </div>

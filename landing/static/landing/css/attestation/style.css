@@ -366,6 +366,9 @@
   border: none;
   margin-bottom: 1.25rem;
 }
+.accordion-item a {
+  color: black;
+}
 .accordion-item .accordion-button {
   background: transparent;
   font-size: 1.125rem;
@@ -415,6 +418,10 @@
 .gray-list li:last-child,
 .normative-list li:last-child {
   margin-bottom: 0;
+}
+
+.requirements-list a {
+  color: black;
 }
 
 @media (max-width: 768px) {

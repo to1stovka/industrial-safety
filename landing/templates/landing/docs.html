@@ -1,6 +1,7 @@
 {% extends "landing/base.html" %}
 {% load static %}
 {% load accordion_tags %} 
+{% load chunk_tags %} 
 
 {% block title %}Аттестация специалистов по техническому диагностированию (ТД){% endblock %}
 
@@ -20,14 +21,14 @@
       </p>
 
       <ul class="docs-list">
-        <li><strong>Лицензия на образовательную деятельность №041004 от 25.09.2020 г.</strong></li>
-        <li>Аттестат ЭЦ (НОК)</li>
-        <li>Свидетельство ЭЦ (НОАП)</li>
-        <li>Свидетельство НОАЛ</li>
-        <li>Свидетельство ТУО</li>
-        <li>Свидетельство НОА эксперты ИО</li>
-        <li>Свидетельство НОА специалисты ТД</li>
-        <li>Выписка из реестра (ОТ)</li>
+        <li>{% chunk 'docs1' %}</li>
+        <li>{% chunk 'docs2' %}</li>
+        <li>{% chunk 'docs3' %}</li>
+        <li>{% chunk 'docs4' %}</li>
+        <li>{% chunk 'docs5' %}</li>
+        <li>{% chunk 'docs6' %}</li>
+        <li>{% chunk 'docs7' %}</li>
+        <li>{% chunk 'docs8' %}</li>
       </ul>
     </div>
   </div>

@@ -56,8 +56,10 @@
             Обучение
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Курсы</a></li>
-            <li><a class="dropdown-item" href="#">Программы</a></li>
+            <li><a class="dropdown-item" href="{% url 'minstroy' %}">Подготовка экспертов к аттестации в Минстрое РФ</a></li>
+            <li><a class="dropdown-item" href="{% url 'nok' %}">Подготовка экспертов и специалистов к Независимой оценке квалификации</a></li>
+            <li><a class="dropdown-item" href="{% url 'preparation' %}">Подготовка специалистов в области промышленной безопасности</a></li>
+            <li><a class="dropdown-item" href="{% url 'safety' %}">Обучение по охране труда</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -69,12 +71,18 @@
             Аттестация и оценка квалификации
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Аттестация</a></li>
-            <li><a class="dropdown-item" href="#">Оценка квалификации</a></li>
+                <li><a class="dropdown-item" href="{% url 'attestation' %}">Аттестация специалистов неразрушающего контроля</a></li>
+                <li><a class="dropdown-item" href="{% url 'TD' %}">Аттестация специалистов по техническому диагностированию</a></li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'IO' %}">Аттестация экспертов инспекционных организаций</a>
+                  <li><a class="dropdown-item" href="{% url 'NK' %}">Аттестация лабораторий неразрушающего контроля</a></li>
+                  <li><a class="dropdown-item" href="{% url 'exam' %}">Сдача профессионального экзамена в рамках независимой<br>оценки квалификаций по Профессиональному стандарту<br>«Специалист в сфере промышленной безопасности»</a></li>
+                </li>
+              </ul>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Разрешительные документы</a>
+          <a class="nav-link" href="{% url 'docs' %}">Разрешительные документы</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'news:news_list' %}">Новости</a>
@@ -121,7 +129,7 @@
                     class="contact-icon me-2"
                     alt="Email"
                   />
-                  <small>ucbp@bezopprom.ru; ucbp@yandex.ru</small>
+                  <small><a href="mailto:ucbp@bezopprom.ru">ucbp@bezopprom.ru</a>; <a href="mailto:ucbp@yandex.ru">ucbp@yandex.ru</a></small>
                 </div>
               </div>
               <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#callbackModal">
@@ -164,8 +172,10 @@
                 />
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Курсы</a></li>
-                <li><a class="dropdown-item" href="#">Программы</a></li>
+                <li><a class="dropdown-item" href="{% url 'minstroy' %}">Подготовка экспертов к аттестации в Минстрое РФ</a></li>
+                <li><a class="dropdown-item" href="{% url 'nok' %}">Подготовка экспертов и специалистов к Независимой оценке квалификации</a></li>
+                <li><a class="dropdown-item" href="{% url 'preparation' %}">Подготовка специалистов в области промышленной безопасности</a></li>
+                <li><a class="dropdown-item" href="{% url 'safety' %}">Обучение по охране труда</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -182,14 +192,17 @@
                 />
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Аттестация</a></li>
+                <li><a class="dropdown-item" href="{% url 'attestation' %}">Аттестация специалистов неразрушающего контроля</a></li>
+                <li><a class="dropdown-item" href="{% url 'TD' %}">Аттестация специалистов по техническому диагностированию</a></li>
                 <li>
-                  <a class="dropdown-item" href="#">Оценка квалификации</a>
+                  <a class="dropdown-item" href="{% url 'IO' %}">Аттестация экспертов инспекционных организаций</a>
+                  <a class="dropdown-item" href="{% url 'NK' %}">Аттестация лабораторий неразрушающего контроля</a>
+                  <a class="dropdown-item" href="{% url 'exam' %}">Сдача профессионального экзамена в рамках независимой<br>оценки квалификаций по Профессиональному стандарту<br>«Специалист в сфере промышленной безопасности»</a>
                 </li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Разрешительные документы</a>
+              <a class="nav-link" href="{% url 'docs' %}">Разрешительные документы</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'news:news_list' %}">Новости</a>
@@ -248,7 +261,7 @@
                     alt="Email"
                   />
                   <span class="contact-text"
-                    >ucbp@bezopprom.ru; ucbp@yandex.ru</span
+                    ><a href="mailto:ucbp@bezopprom.ru">ucbp@bezopprom.ru</a>; <a href="mailto:ucbp@yandex.ru">ucbp@yandex.ru</a></span
                   >
                 </div>
 

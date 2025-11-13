@@ -35,6 +35,9 @@
 .documents-section .documents-list li .doc-link:hover {
   text-decoration: none;
 }
+.documents-section .documents-list li a {
+  color: black;
+}
 @media (max-width: 576px) {
   .documents-section .documents-list li {
     font-size: 0.95rem;
@@ -214,20 +217,35 @@
   text-align: left;
   margin-top: 3rem;
 }
-.apply-section .btn-nok {
+.apply-section .btn-nok a {
   display: inline-block;
   background-color: #af4100;
-  color: #fff;
+  color: #fff !important;
   font-size: 1.125rem;
   font-weight: 400;
   padding: 30px 150px;
   border-radius: 45px;
-  text-decoration: none;
+  text-decoration: none !important;
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
-.apply-section .btn-nok:hover {
+.apply-section .btn-nok a:hover {
+  text-decoration: underline !important;
+}
+.apply-section .btn-nok a:hover {
   background-color: rgba(179, 61, 11, 0.8);
   color: #fff;
+}
+@media (max-width: 768px) {
+  .apply-section .apply-title {
+    font-size: 1.125rem;
+    text-align: center;
+  }
+  .apply-section .btn-nok a {
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 0;
+    font-size: 0.95rem;
+  }
 }
 @media (max-width: 768px) {
   .apply-section .apply-title {

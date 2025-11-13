@@ -292,7 +292,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   color: #000;
 }
 .popular-section .course-card__header .rating span {
@@ -301,7 +301,7 @@
 }
 .popular-section .course-card__header .rating__star {
   color: #d5a812;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 .popular-section .course-card__header .rating__star--empty {
   color: rgba(0, 0, 0, 0.2);
@@ -310,32 +310,35 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   margin-bottom: 2rem;
   width: 100%;
 }
 .popular-section .course-card__modes .mode-badge {
+  flex: 1 1 calc(50% - 3rem);
+  text-align: center;
   background: white;
   color: #000;
   border-radius: 30px;
-  padding: 0.35rem 0.9rem;
-  font-size: 0.65rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 1rem;
   font-weight: 400;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 .popular-section .course-card__modes .mode-badge.active {
   background: #a4a2a2;
+  color: #fff;
 }
 .popular-section .course-card__title {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #18233a;
   line-height: 1.4;
   margin-bottom: 2.5rem;
   margin-top: 1.5rem;
   min-height: 2.8em;
-  max-width: 15rem;
+  max-width: 30rem;
 }
 .popular-section .course-card__footer {
   margin-top: 2rem;
@@ -351,13 +354,13 @@
   justify-content: flex-start;
 }
 .popular-section .course-card__footer .price-block .price {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #000;
   margin-bottom: 0.2rem;
 }
 .popular-section .course-card__footer .price-block .dates {
-  font-size: 0.6875rem;
+  font-size: 0.8rem;
   color: #000;
 }
 .popular-section .course-card__footer .btn {
@@ -379,30 +382,7 @@
 .popular-section .course-card__footer .btn:hover {
   background: rgba(179, 61, 11, 0.8);
 }
-@media (max-width: 768px) {
-  .popular-section .section-title {
-    font-size: 1.7rem;
-    text-align: center;
-  }
-  .popular-section .course-card {
-    padding: 1.2rem;
-    border-radius: 20px;
-  }
-  .popular-section .course-card__title {
-    font-size: 1rem;
-  }
-  .popular-section .course-card .btn {
-    font-size: 0.8rem;
-    padding: 0.4rem 1rem;
-  }
-}
 
-@media (max-width: 992px) {
-  .popular-section .course-card {
-    border-radius: 20px;
-    padding: 1.2rem;
-  }
-}
 @media (max-width: 768px) {
   .popular-section {
     padding: 2rem 1rem;
@@ -419,7 +399,8 @@
     text-align: center;
   }
   .popular-section .course-card__title {
-    font-size: 1rem;
+    margin-bottom: 0rem;
+    margin-top: 0rem;
   }
   .popular-section .course-card__footer {
     flex-direction: column;
@@ -436,14 +417,6 @@
     width: 100%;
     max-width: 9rem;
     font-size: 0.8rem;
-  }
-}
-@media (max-width: 480px) {
-  .popular-section .course-card__title {
-    font-size: 0.9rem;
-  }
-  .popular-section .course-card .btn {
-    width: 100%;
   }
 }
 .about-section {
@@ -734,7 +707,7 @@
   }
   .clients-section .section-title {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
   }
   .clients-section .clients-button-prev,
   .clients-section .clients-button-next {
@@ -841,4 +814,15 @@
 }
 .reviews-section .swiper-button-next::after {
   background-image: url("../../img/right.svg");
+}
+
+@media (max-width: 768px) {
+  .reviews-section .swiper-button-prev,
+  .reviews-section .swiper-button-next {
+    display: none !important;
+  }
+  .reviews-section .section-title {
+    text-align: center;
+    font-size: 1.5rem;
+  }
 }/*# sourceMappingURL=style.css.map */

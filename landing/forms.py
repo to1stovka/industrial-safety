@@ -1,10 +1,14 @@
 from django import forms
-from landing.models import NOCRequest
+from .models import UnifiedRequest
 
+class CallbackForm(forms.ModelForm):
+    class Meta:
+        model = UnifiedRequest
+        fields = ["name", "phone"]
 
 class NOCRequestForm(forms.ModelForm):
     class Meta:
-        model = NOCRequest
+        model = UnifiedRequest
         fields = ["name", "email", "message", "file"]
         widgets = {
             "name": forms.TextInput(attrs={"placeholder": "Имя"}),

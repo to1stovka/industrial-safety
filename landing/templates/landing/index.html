@@ -10,7 +10,7 @@
 
 {% block content %}
 
-{% if request.get_host == '127.0.0.1:8000' or request.get_host == 'localhost' %}
+
 <section class="hero-banner">
   <div class="hero-overlay">
     <div class="container">
@@ -28,9 +28,7 @@
     </div>
   </div>
 </section>
-{% endif %}
 
-{% if request.get_host == '127.0.0.1:8000' or request.get_host == 'localhost' %}
 {% load static ui_extras %}
 
 <section class="popular-section py-5">
@@ -84,9 +82,7 @@
 
   </div>
 </section>
-{% endif %}
 
-{% if request.get_host == '127.0.0.1:8000' or request.get_host == 'localhost' %}
 <section class="about-section py-5">
   <div class="container">
     <h2 class="section-title mb-4">О компании</h2>
@@ -146,9 +142,7 @@
 
   </div>
 </section>
-{% endif %}
 
-{% if request.get_host == '127.0.0.1:8000' or request.get_host == 'localhost' %}
 <section class="reviews-section py-5">
   <div class="container position-relative">
     <h2 class="section-title mb-4">Отзывы</h2>
@@ -179,10 +173,7 @@
     {% endif %}
   </div>
 </section>
-{% endif %}
 
-
-{% if request.get_host == '127.0.0.1:8000' or request.get_host == 'localhost' %}
 <section class="clients-section py-5">
   <div class="container position-relative">
     <h2 class="section-title mb-4">Наши клиенты</h2>
@@ -225,7 +216,6 @@
     <div class="clients-button-next"></div>
   </div>
 </section>
-{% endif %}
 
 <!-- Новости -->
 <section class="news-section py-5">

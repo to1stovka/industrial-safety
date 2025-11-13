@@ -52,8 +52,12 @@
   <section class="container py-4">
     <h5 class="nok-apply-title">Заявление на подготовку к профессиональному экзамену</h5>
     <div class="apply-buttons">
-      <a href="#" class="btn btn-nok">Заявление на подготовку эксперта к НОК</a>
-      <a href="#" class="btn btn-nok">Заявление на подготовку специалиста к НОК</a>
+      <a href="#" class="btn btn-nok prep-btn" data-type="prep_expert">
+        Заявление на подготовку эксперта к НОК
+      </a>
+      <a href="#" class="btn btn-nok prep-btn" data-type="prep_specialist">
+        Заявление на подготовку специалиста к НОК
+      </a>
     </div>
   </section>
 
@@ -62,7 +66,7 @@
 
 {% render_accordion "normative-toggle" "Нормативные документы в сфере обучения работников по ОТ" "landing/partials/accordions/accordion_normative_content.html" %}
 
-
+{% include "landing/partials/modal_prep.html" %}
 </div>
 {% endblock %}
 
@@ -70,7 +74,7 @@
 {{ block.super }}
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-{% comment %} Слайдер экспертов {% endcomment %}
+  /* Слайдер экспертов */
 const swiper = new Swiper(".nok-swiper", {
   slidesPerView: 4,
   spaceBetween: 20,
@@ -84,6 +88,41 @@ const swiper = new Swiper(".nok-swiper", {
     768: { slidesPerView: 2 },
     992: { slidesPerView: 3 },
     1200: { slidesPerView: 4 }
+  }
+});
+/* Модалка запроса на подготовку */
+document.querySelectorAll(".prep-btn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const type = btn.dataset.type;
+
+    document.getElementById("prep_type").value = type;
+    document.getElementById("prepModalTitle").innerText =
+      type === "prep_expert"
+        ? "Заявка на подготовку эксперта к НОК"
+        : "Заявка на подготовку специалиста к НОК";
+
+    const modal = new bootstrap.Modal(document.getElementById("prepModal"));
+    modal.show();
+  });
+});
+
+document.getElementById("prepForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  let form = this;
+
+  let response = await fetch("{% url 'prep_request' %}", {
+    method: "POST",
+    body: new FormData(form),
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
+
+  let data = await response.json();
+  if (data.success) {
+    form.classList.add("d-none");
+    document.getElementById("prepSuccess").classList.remove("d-none");
   }
 });
 </script>

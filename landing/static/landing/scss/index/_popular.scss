@@ -42,7 +42,7 @@
         display: flex;
         align-items: center;
         gap: 4px;
-        font-size: 0.8125rem;
+        font-size: 1rem;
         color: #000;
 
         span {
@@ -52,7 +52,7 @@
 
         &__star {
           color: #d5a812;
-          font-size: 0.9rem;
+          font-size: 1.1rem;
 
           &--empty {
             color: rgba(0, 0, 0, 0.2);
@@ -62,40 +62,44 @@
     }
 
     // Лейблы форматов обучения
+
     &__modes {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
       margin-bottom: 2rem;
       width: 100%;
 
       .mode-badge {
+        flex: 1 1 calc(50% - 3rem);
+        text-align: center;
         background: white;
         color: #000;
         border-radius: 30px;
-        padding: 0.35rem 0.9rem;
-        font-size: 0.65rem;
+        padding: 0.45rem 0.9rem;
+        font-size: 1rem;
         font-weight: 400;
         white-space: nowrap;
+        box-sizing: border-box;
 
         &.active {
           background: $grey_dark;
+          color: #fff;
         }
       }
     }
 
     // Заголовок курса
     &__title {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: #18233a;
       line-height: 1.4;
       margin-bottom: 2.5rem;
       margin-top: 1.5rem;
       min-height: 2.8em;
-      max-width: 15rem;
+      max-width: 30rem;
     }
 
     // цена, даты и кнопка
@@ -114,14 +118,14 @@
         justify-content: flex-start;
 
         .price {
-          font-size: 0.9375rem;
+          font-size: 1rem;
           font-weight: 400;
           color: #000;
           margin-bottom: 0.2rem;
         }
 
         .dates {
-          font-size: 0.6875rem;
+          font-size: 0.8rem;
           color: #000;
         }
       }
@@ -149,34 +153,6 @@
       }
     }
   }
-
-  // Адаптивность
-  @media (max-width: 768px) {
-    .section-title {
-      font-size: 1.7rem;
-      text-align: center;
-    }
-
-    .course-card {
-      padding: 1.2rem;
-      border-radius: 20px;
-
-      &__title {
-        font-size: 1rem;
-      }
-
-      .btn {
-        font-size: 0.8rem;
-        padding: 0.4rem 1rem;
-      }
-    }
-  }
-}
-@media (max-width: 992px) {
-  .popular-section .course-card {
-    border-radius: 20px;
-    padding: 1.2rem;
-  }
 }
 
 @media (max-width: 768px) {
@@ -197,7 +173,8 @@
       text-align: center;
 
       &__title {
-        font-size: 1rem;
+        margin-bottom: 0rem;
+        margin-top: 0rem;
       }
 
       &__footer {
@@ -218,20 +195,6 @@
           max-width: 9rem;
           font-size: 0.8rem;
         }
-      }
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .popular-section {
-    .course-card {
-      &__title {
-        font-size: 0.9rem;
-      }
-
-      .btn {
-        width: 100%;
       }
     }
   }

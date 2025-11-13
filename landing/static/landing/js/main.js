@@ -31,8 +31,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (mobileMenu) {
     mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
+      link.addEventListener('click', event => {
+        if (link.classList.contains('dropdown-toggle') || link.closest('.dropdown-menu')) {
+          event.stopPropagation();
+          return;
+        }
+        closeMenu();
+      });
     });
+
+    // mobileMenu.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    //   toggle.addEventListener('click', e => {
+    //     e.preventDefault();
+    //     const submenu = toggle.nextElementSibling;
+    //     if (submenu && submenu.classList.contains('dropdown-menu')) {
+    //       submenu.classList.toggle('show');
+    //     }
+    //   });
+    // });
 
     // свайп вправо для закрытия меню
     mobileMenu.addEventListener('touchstart', e => {

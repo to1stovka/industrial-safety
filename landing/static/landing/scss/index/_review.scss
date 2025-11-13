@@ -120,3 +120,15 @@
     }
   }
 }
+@media (max-width: 768px) {
+  .reviews-section {
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none !important;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+  }
+}

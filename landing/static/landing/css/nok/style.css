@@ -98,13 +98,15 @@
   filter: brightness(0) saturate(100%) invert(44%) sepia(22%) saturate(0%) hue-rotate(195deg) brightness(95%) contrast(90%);
 }
 .experts-section .swiper-button-prev {
-  left: 2rem;
+  left: 1rem;
+  top: 12.5rem;
 }
 .experts-section .swiper-button-prev::after {
   background-image: url("../../img/left.svg");
 }
 .experts-section .swiper-button-next {
-  right: 2rem;
+  right: 1rem;
+  top: 12.5rem;
 }
 .experts-section .swiper-button-next::after {
   background-image: url("../../img/right.svg");
@@ -183,5 +185,151 @@
   .btn-nok {
     height: 80px;
     font-size: 0.9rem;
+  }
+}
+.prep-modal {
+  /* Кнопка закрытия */
+  /* Заголовок */
+  /* Поля формы */
+  /* Текстовое поле */
+  /* Кнопка отправки */
+  /* Успешная отправка */
+  /* Анимация успеха */
+}
+.prep-modal .modal-dialog {
+  max-width: 480px;
+}
+.prep-modal .modal-content {
+  background: #e3e1e1;
+  border-radius: 30px;
+  padding: 35px;
+  border: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+.prep-modal .btn-close {
+  filter: invert(0.5);
+  width: 14px;
+  height: 14px;
+  margin-left: auto;
+  margin-bottom: 10px;
+}
+.prep-modal .prep-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.prep-modal .prep-field {
+  background: #fff;
+  border-radius: 25px;
+  padding: 0 22px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  margin-bottom: 18px;
+  transition: border 0.2s ease;
+}
+.prep-modal .prep-field input,
+.prep-modal .prep-field textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+  color: #000;
+}
+.prep-modal .prep-field input::placeholder,
+.prep-modal .prep-field textarea::placeholder {
+  color: #4e4e4e;
+}
+.prep-modal .prep-field:focus-within {
+  border-color: #af4100;
+  box-shadow: 0 0 0 3px rgba(175, 65, 0, 0.15);
+}
+.prep-modal .prep-message {
+  height: auto;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+.prep-modal .prep-message textarea {
+  resize: none;
+  min-height: 120px;
+  line-height: 1.45;
+}
+.prep-modal .prep-submit {
+  width: 100%;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  background: #af4100;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 10px;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+.prep-modal .prep-submit:hover {
+  background: rgba(179, 61, 11, 0.8);
+}
+.prep-modal .prep-submit:active {
+  transform: translateY(1px);
+}
+.prep-modal .prep-success {
+  text-align: center;
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.prep-modal .prep-success h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.prep-modal .prep-success .success-icon {
+  width: 60px;
+  height: 60px;
+  animation: pop 0.3s ease-out;
+}
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .prep-modal .modal-content {
+    padding: 25px;
+    border-radius: 22px;
+  }
+  .prep-modal .prep-field {
+    height: 58px;
+    padding: 0 18px;
+    border-radius: 20px;
+  }
+  .prep-modal .prep-message textarea {
+    font-size: 0.95rem;
+    min-height: 110px;
+  }
+  .prep-modal .prep-submit {
+    height: 56px;
+    font-size: 1rem;
+    border-radius: 22px;
+  }
+  .prep-modal .prep-success {
+    padding: 50px 0;
+  }
+  .prep-modal .prep-success h5 {
+    font-size: 1.1rem;
+  }
+  .prep-modal .prep-success .success-icon {
+    width: 50px;
+    height: 50px;
   }
 }/*# sourceMappingURL=style.css.map */

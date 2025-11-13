@@ -6,155 +6,103 @@
 
 {% block extra_css %}
 {{ block.super }}
-<style>
-  .contact-section {
-    padding: 60px 0;
-  }
-
-  .contact-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-
-  .about-center {
-    background-color: #f8f9fa;
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 3rem;
-  }
-
-  .about-center p {
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 1rem;
-  }
-
-  .contact-info-card {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-  }
-
-  .contact-info-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-
-  .contact-detail {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-  }
-
-  .contact-detail:last-child {
-    margin-bottom: 0;
-  }
-
-  .contact-detail-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 1rem;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .contact-detail-content {
-    flex: 1;
-  }
-
-  .contact-detail-label {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.25rem;
-  }
-
-  .contact-detail-value {
-    color: #555;
-    line-height: 1.6;
-  }
-
-  .working-hours {
-    background-color: #e8f4f8;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-  }
-
-  .working-hours-title {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-
-  .working-hours-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-    color: #555;
-  }
-
-  .map-container {
-    background-color: #f8f9fa;
-    padding: 2rem;
-    border-radius: 8px;
-    text-align: center;
-  }
-
-  .map-placeholder {
-    height: 400px;
-    background-color: #e9ecef;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #6c757d;
-  }
-
-  /* Chunk editing styles for superusers */
-  .chunk-editable {
-    position: relative;
-    outline: 2px dashed #007bff !important;
-    outline-offset: 4px;
-    margin: 4px;
-    transition: outline-color 0.2s;
-  }
-
-  .chunk-editable:hover {
-    outline-color: #0056b3 !important;
-  }
-
-  .chunk-edit-btn {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background: #007bff;
-    color: white !important;
-    padding: 4px 8px;
-    font-size: 11px;
-    text-decoration: none !important;
-    border-radius: 3px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    z-index: 1000;
-    font-family: sans-serif;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: background-color 0.2s;
-  }
-
-  .chunk-edit-btn:hover {
-    background: #0056b3;
-    color: white !important;
-  }
-</style>
+<link rel="stylesheet" href="{% static 'landing/css/contacts/style.css' %}">
 {% endblock %}
 
 {% block content %}
+<section class="contacts py-5">
+  <div class="container">
+    <h2 class="contacts-title mb-3">Контакты</h2>
+
+    <p class="contacts-subtitle" style = "color:black;"><strong>
+      АНО ДПО "УЦ «Безопасность в промышленности»"<br>
+    </strong></p>
+    <p class="contacts-subtitle">
+      Экзаменационная площадка (ЭП-2749) Центра оценки квалификации<br>
+      (АО «НТЦ «Промышленная безопасность»)
+    </p>
+
+    <div class="contacts-grid">
+      <div class="contact-card">
+        <div>
+        <img src="{% static 'landing/img/phoneblack.svg' %}" alt="Телефон" class="icon">
+          <p class="label">Телефон</p>
+          <p class="value">+7 (495) 230-12-14</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div>
+        <img src="{% static 'landing/img/mail.svg' %}" alt="E-mail" class="icon">
+        
+          <p class="label">E-mail</p>
+          <p class="value">
+            <a href="mailto:ucbp@bezopprom.ru">ucbp@bezopprom.ru</a><br>
+            <a href="mailto:ucbp@yandex.ru">ucbp@yandex.ru</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div>
+        <img src="{% static 'landing/img/clock.svg' %}" alt="Режим работы" class="icon">
+        
+          <p class="label">Режим работы</p>
+          <p class="value">с 9:00 до 18:00<br>суббота, воскресенье — выходной</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacts-addresses">
+      <div class="address-card">
+        <div class="mt-3">
+        <img src="{% static 'landing/img/map.svg' %}" alt="Адрес" class="icon">
+        
+          <p class="label">Юридический адрес</p>
+          <p class="value">г. Москва, 3-й Автозаводский проезд, д. 4, к. 1</p>
+        
+        <img src="{% static 'landing/img/map.svg' %}" alt="Адрес" class="icon">
+        
+          <p class="label">Фактический адрес</p>
+          <p class="value">
+            БЦ «Симонов Плаза», г. Москва, Ленинская Слобода,<br>д. 26, стр. 5, офис 12.3, 1 этаж
+          </p>
+        </div>
+      </div>
+
+      <div class="address-card">
+        <img src="{% static 'landing/img/clip.svg' %}" alt="Режим работы" class="icon">
+        <p class="value">
+          ИНН 972503392<br>
+          КПП 772501001<br>
+          ОГРН 1207700254211
+        </p>
+        <a href="{% static 'landing/docs/#' %}" class="btn-requisites" download>
+          Скачать реквизиты
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="contacts-map">
+    <iframe
+      src="https://yandex.ru/map-widget/v1/?ll=37.652777%2C55.711316&z=16&pt=37.652777,55.711316,pm2rdl"
+      width="100%"
+      height="450"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+
+
+  </div>
+</section>
+{% endblock %}
+
+
+
+
+
+{% comment %} {% block content %}
 <section class="contact-section">
   <div class="container">
     <h1 class="contact-title">Контакты</h1>
@@ -211,4 +159,4 @@
     </div>
   </div>
 </section>
-{% endblock %}
+{% endblock %} {% endcomment %}

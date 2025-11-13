@@ -2,12 +2,12 @@ from django.contrib import admin
 from landing.models import (CourseDirection,
                             Review,
                             Chunk, 
-                            CallbackRequest, 
                             Expert, 
-                            NOCRequest, 
                             MinstroyProgram,
-                            Qualification
+                            Qualification,
+                            UnifiedRequest,
                             )
+from django.utils.html import format_html
 
 @admin.register(CourseDirection)
 class CourseDirectionAdmin(admin.ModelAdmin):
@@ -30,7 +30,7 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(Chunk)
 class ChunkAdmin(admin.ModelAdmin):
     list_display = ("key",)
-    search_fields = ("key", "content")
+    search_fields = ("key", "content", "file")
 
     def get_changeform_initial_data(self, request):
         """Pre-fill the key field when adding a new chunk via URL parameter"""
@@ -38,18 +38,10 @@ class ChunkAdmin(admin.ModelAdmin):
         if 'key' in request.GET:
             initial['key'] = request.GET['key']
         return initial
-    
-@admin.register(CallbackRequest)
-class CallbackAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone', 'created_at',)
 
 @admin.register(Expert)
 class CallbackExpertAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'photo',)
-
-@admin.register(NOCRequest)
-class NOCRequestAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'message', 'file', 'created_at')
 
 @admin.register(MinstroyProgram)
 class MinstroyProgramAdmin(admin.ModelAdmin):
@@ -62,3 +54,37 @@ class MinstroyProgramAdmin(admin.ModelAdmin):
 class QualificationAdmin(admin.ModelAdmin):
     list_display = ("code", "title", "created_at")
     search_fields = ("code", "title")
+
+@admin.register(UnifiedRequest)
+class UnifiedRequestAdmin(admin.ModelAdmin):
+    list_display = ("name", "colored_type", "phone", "email", "created_at")
+    list_filter = ("request_type", "created_at")
+    search_fields = ("name", "phone", "email")
+
+    def colored_type(self, obj):
+        colors = {
+            "callback": "#d97706",
+            "noc": "#2563eb",
+            "prep_expert": "#6f58f0",
+            "prep_specialist": "#16a34a",
+        }
+
+        labels = {
+            "callback": "Запрос на звонок",
+            "noc": "Заявка на НОК",
+            "prep_expert": "Подготовка эксперта",
+            "prep_specialist": "Подготовка специалиста",
+        }
+
+        color = colors.get(obj.request_type, "black")
+        text = labels.get(obj.request_type, obj.request_type)
+
+        return format_html(
+            '<span style="color: {}; font-weight:600;">{}</span>',
+            color,
+            text
+        )
+
+    colored_type.short_description = "Тип заявки"
+
+

@@ -16,6 +16,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -32,4 +34,14 @@ body {
 
 main {
   flex: 1;
+}
+.mobile-menu ul,
+.mobile-menu li {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+.mobile-menu li::marker {
+  content: '' !important;
+  color: transparent !important;
 }

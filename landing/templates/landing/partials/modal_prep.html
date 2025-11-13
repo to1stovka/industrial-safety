@@ -1,0 +1,53 @@
+{% load static %}
+
+<div class="modal fade prep-modal" id="prepModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Кнопка закрытия -->
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+      <!-- Заголовок -->
+      <h5 class="prep-title" id="prepModalTitle">Заявка</h5>
+
+      <!-- Форма -->
+      <form id="prepForm" method="post">
+        {% csrf_token %}
+
+        <input type="hidden" name="request_type" id="prep_type">
+
+        <!-- Имя -->
+        <div class="prep-field">
+          <input type="text" name="name" placeholder="Имя" required>
+        </div>
+
+        <!-- Телефон -->
+        <div class="prep-field">
+          <input type="tel" name="phone" placeholder="Телефон" required>
+        </div>
+
+        <!-- Email -->
+        <div class="prep-field">
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+
+        <!-- Комментарий -->
+        <div class="prep-field prep-message">
+          <textarea name="message" placeholder="Комментарий (необязательно)"></textarea>
+        </div>
+
+        <!-- Кнопка отправки -->
+        <button type="submit" class="prep-submit">
+          Отправить
+        </button>
+      </form>
+
+      <!-- Успешное отправление -->
+      <div class="prep-success d-none" id="prepSuccess">
+        <h5>Заявка отправлена</h5>
+        <img src="{% static 'landing/img/check.svg' %}" class="success-icon" alt="✓">
+      </div>
+
+    </div>
+  </div>
+</div>
