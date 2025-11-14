@@ -2,6 +2,7 @@
 
 @use 'advantages' as *;
 @use 'programs' as *;
-// @use "steps" as *;
 @use 'preparation' as *;
 @use 'apply' as *;
+
+@use '../partials/modal_prep' as *; // модалка запроса на подготовку

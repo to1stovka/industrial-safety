@@ -45,6 +45,21 @@
   }
 }
 
+.procedure-list {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+.procedure-list li {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  color: #000;
+  font-weight: 400;
+}
+.procedure-list li:last-child {
+  margin-bottom: 0;
+}
+
 .advantages-wrapper .page-title {
   font-size: 2rem;
   font-weight: 600;
@@ -246,6 +261,22 @@
     padding: 12px 0;
     font-size: 0.95rem;
   }
+}
+.apply-section .btn-minstroy {
+  display: inline-block;
+  background-color: #af4100;
+  color: #fff !important;
+  font-size: 1.125rem;
+  font-weight: 400;
+  padding: 30px 150px;
+  border-radius: 45px;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.apply-section .btn-minstroy:hover {
+  text-decoration: underline !important;
+  background-color: rgba(179, 61, 11, 0.8);
+  color: #fff;
 }
 @media (max-width: 768px) {
   .apply-section .apply-title {

@@ -43,26 +43,23 @@
       font-size: 0.95rem;
     }
   }
-  // .btn-nok {
-  //   display: inline-block;
-  //   background-color: $orange;
-  //   color: #fff !important;
-  //   font-size: 1.125rem;
-  //   font-weight: 400;
-  //   padding: 30px 150px;
-  //   border-radius: 45px;
-  //   text-decoration: none !important;
-  //   transition: background-color 0.2s ease, transform 0.1s ease;
-  //   &:hover {
-  //     text-decoration: underline !important;
-  //   }
-  //   // }
+  .btn-minstroy {
+    display: inline-block;
+    background-color: $orange;
+    color: #fff !important;
+    font-size: 1.125rem;
+    font-weight: 400;
+    padding: 30px 150px;
+    border-radius: 45px;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 
-  //   &:hover {
-  //     background-color: $hover_orange;
-  //     color: #fff;
-  //   }
-  // }
+    &:hover {
+      text-decoration: underline !important;
+      background-color: $hover_orange;
+      color: #fff;
+    }
+  }
 
   @media (max-width: 768px) {
     .apply-title {

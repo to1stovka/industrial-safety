@@ -91,16 +91,55 @@
   <section class="apply-section container">
     <h5 class="apply-title">Заявление на подготовку к профессиональному экзамену</h5>
     <div class="text-center mt-3">
-      <a href="#" class="btn btn-nok">Заявление на подготовку эксперта</a>
+      {% comment %} <a href="#" class="btn btn-minstroy">Заявление на подготовку эксперта</a> {% endcomment %}
+      <a href="#" class="btn btn-nok prep-btn btn-minstroy" data-type="prep_expert">
+        Заявление на подготовку эксперта
+      </a>
     </div>
   </section>
 
 {% include "landing/partials/form_request.html" %}
 
+{% include "landing/partials/modal_prep.html" %}
 
 </div>
 {% endblock %}
 
 {% block extra_js %}
 {{ block.super }}
+<script>
+document.querySelectorAll(".prep-btn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const type = btn.dataset.type;
+    document.getElementById("prep_type").value = type;
+
+    document.getElementById("prepModalTitle").innerText =
+      "Заявка на подготовку эксперта";
+
+    const modal = new bootstrap.Modal(document.getElementById("prepModal"));
+    modal.show();
+  });
+});
+
+document.getElementById("prepForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  let form = this;
+
+  let response = await fetch("{% url 'prep_request' %}", {
+    method: "POST",
+    body: new FormData(form),
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
+
+  let data = await response.json();
+
+  if (data.success) {
+    form.classList.add("d-none");
+    document.getElementById("prepSuccess").classList.remove("d-none");
+  }
+});
+</script>
 {% endblock %}
