@@ -54,11 +54,10 @@
         color: #4e4e4e;
       }
     }
+  }
 
-    &:focus-within {
-      border-color: $orange;
-      box-shadow: 0 0 0 3px rgba($orange, 0.15);
-    }
+  .prep-field.error {
+    border-color: $orange !important;
   }
 
   /* Текстовое поле */
@@ -145,8 +144,8 @@
 
     .prep-message {
       textarea {
-        font-size: 0.95rem;
-        min-height: 110px;
+        min-height: 53px;
+        align-items: center;
       }
     }
 

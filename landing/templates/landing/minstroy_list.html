@@ -20,14 +20,20 @@
   <table class="programs-table mt-4">
     <tbody>
       {% for program in page_obj %}
-        <tr>
-          <td class="program-text">
-            <strong>{{ program.title }}</strong><br>
-            {{ program.description|safe }}
-          </td>
-        </tr>
+      <tr>
+        {% with index=page_obj.start_index|add:forloop.counter0 %}
+          <td class="program-index"><strong>{{ index }}</strong></td>
+        {% endwith %}
+
+        <td class="program-text">
+          <strong>{{ program.title }}</strong><br>
+          {{ program.description|safe }}
+        </td>
+      </tr>
       {% empty %}
-        <tr><td colspan="2">Пока нет доступных программ.</td></tr>
+      <tr>
+        <td colspan="2">Пока нет доступных программ.</td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>

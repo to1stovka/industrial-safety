@@ -94,13 +94,17 @@
 .contacts .contacts-addresses .address-card .btn-requisites {
   display: inline-block;
   background: #af4100;
-  color: #fff;
+  color: #fff !important;
   border-radius: 30px;
   padding: 0.6rem 1.5rem;
   margin-top: 1rem;
   text-decoration: none;
   font-weight: 400;
   transition: all 0.2s ease;
+}
+.contacts .contacts-addresses .address-card .btn-requisites * {
+  color: #fff !important;
+  text-decoration: none;
 }
 .contacts .contacts-addresses .address-card .btn-requisites:hover {
   background: rgba(179, 61, 11, 0.8);

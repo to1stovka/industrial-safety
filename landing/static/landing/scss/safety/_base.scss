@@ -66,18 +66,3 @@
     }
   }
 }
-
-@media (max-width: 768px) {
-  .documents-list {
-    h4 {
-      font-size: 1.1rem;
-    }
-    .docs-ul li {
-      font-size: 1rem;
-      .check-icon {
-        width: 24px;
-        height: 24px;
-      }
-    }
-  }
-}

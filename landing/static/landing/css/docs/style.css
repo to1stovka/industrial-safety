@@ -8,9 +8,10 @@
   overflow: hidden;
   background-image: url("../img/BGDocs.png");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom center;
   background-size: contain;
-  background-color: #fff;
+  background-repeat: no-repeat;
+  background-color: #f4f6f4;
 }
 .docs-page .docs-container {
   display: flex;
@@ -48,10 +49,13 @@
 .docs-page .docs-content .docs-list li strong {
   font-weight: 600;
 }
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .docs-page {
-    background: #e3e1e1;
-    background-image: none;
+    background-image: none !important;
+    background-position: initial;
+    background-size: initial;
+    background-repeat: initial;
+    background-color: #e3e1e1;
     padding: 0;
     align-items: flex-start;
   }

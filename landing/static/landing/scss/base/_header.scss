@@ -85,6 +85,10 @@
       font-size: 1.125rem;
       font-weight: 400;
       padding: 0.5rem 2.3rem;
+      @media (max-width: 1400px) {
+        font-size: 1rem !important;
+        padding: 0.5rem 1.5rem;
+      }
 
       &:hover {
         color: white;
@@ -119,7 +123,7 @@
   }
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 1000px) {
   .top-bar {
     height: auto;
     padding: 0.5rem 0;
@@ -265,7 +269,7 @@
 }
 
 // Скрываем navbar-toggler на мобилках
-@media (max-width: 767.98px) {
+@media (max-width: 1000px) {
   .navbar .navbar-toggler {
     display: none;
   }

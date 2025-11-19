@@ -45,10 +45,10 @@ class CallbackExpertAdmin(admin.ModelAdmin):
 
 @admin.register(MinstroyProgram)
 class MinstroyProgramAdmin(admin.ModelAdmin):
-    list_display = ("title", "order", "is_active")
-    list_editable = ("order", "is_active")
+    list_display = ("title", "created_at")
     list_display_links = ("title",)
     search_fields = ("title", "description")
+    ordering = ("id",)
 
 @admin.register(Qualification)
 class QualificationAdmin(admin.ModelAdmin):
@@ -64,9 +64,9 @@ class UnifiedRequestAdmin(admin.ModelAdmin):
     def colored_type(self, obj):
         colors = {
             "callback": "#d97706",
-            "noc": "#2563eb",
+            "noc": "#16a34a",
             "prep_expert": "#6f58f0",
-            "prep_specialist": "#16a34a",
+            "prep_specialist": "#2563eb",
         }
 
         labels = {

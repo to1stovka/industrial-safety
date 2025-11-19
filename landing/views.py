@@ -107,7 +107,7 @@ def prep_request(request):
 
 
 def minstroy_page(request):
-    programs = MinstroyProgram.objects.filter(is_active=True).order_by("order", "id")[:4]
+    programs = MinstroyProgram.objects.all().order_by("id")[:4]
     form = NOCRequestForm()
     context = {
         "programs": programs,
@@ -116,7 +116,7 @@ def minstroy_page(request):
     return render(request, "landing/minstroy.html", context)
 
 def minstroy_list(request):
-    programs = MinstroyProgram.objects.all().order_by("order")
+    programs = MinstroyProgram.objects.all().order_by("id")
     paginator = Paginator(programs, 14)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)

@@ -56,7 +56,6 @@
           с момента подтверждения оплаты от Заказчика.
         </p>
     </div>
-
   </section>
 
   {% include "landing/partials/steps.html" %}
@@ -71,14 +70,18 @@
     <table class="programs-table mt-4">
       <tbody>
         {% for program in programs %}
-          <tr>
-            <td class="program-text">
-              <strong>{{ program.title }}</strong><br>
-              {{ program.description|safe }}
-            </td>
-          </tr>
+        <tr>
+          <td class="program-index"><strong>{{ forloop.counter }}</strong></td>
+
+          <td class="program-text">
+            <strong>{{ program.title }}</strong><br>
+            {{ program.description|safe }}
+          </td>
+        </tr>
         {% empty %}
-          <tr><td colspan="2">Пока нет доступных программ.</td></tr>
+        <tr>
+          <td colspan="2">Пока нет доступных программ.</td>
+        </tr>
         {% endfor %}
       </tbody>
     </table>
@@ -91,7 +94,6 @@
   <section class="apply-section container">
     <h5 class="apply-title">Заявление на подготовку к профессиональному экзамену</h5>
     <div class="text-center mt-3">
-      {% comment %} <a href="#" class="btn btn-minstroy">Заявление на подготовку эксперта</a> {% endcomment %}
       <a href="#" class="btn btn-nok prep-btn btn-minstroy" data-type="prep_expert">
         Заявление на подготовку эксперта
       </a>
@@ -127,6 +129,27 @@ document.getElementById("prepForm").addEventListener("submit", async function(e)
   e.preventDefault();
 
   let form = this;
+  let hasError = false;
+
+  // очищаем прошлые ошибки
+  form.querySelectorAll(".prep-field").forEach(f => f.classList.remove("error"));
+
+  // проверяем обязательные поля
+  form.querySelectorAll("[required]").forEach(input => {
+    if (!input.value.trim()) {
+      input.closest(".prep-field").classList.add("error");
+      hasError = true;
+    }
+  });
+
+  // проверка корректности email
+  const email = form.querySelector("input[type='email']");
+  if (email.value.trim() && !/^\S+@\S+\.\S+$/.test(email.value)) {
+    email.closest(".prep-field").classList.add("error");
+    hasError = true;
+  }
+
+  if (hasError) return;
 
   let response = await fetch("{% url 'prep_request' %}", {
     method: "POST",
@@ -142,4 +165,5 @@ document.getElementById("prepForm").addEventListener("submit", async function(e)
   }
 });
 </script>
+
 {% endblock %}

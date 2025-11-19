@@ -264,7 +264,7 @@
   transform: translateX(-50%);
   width: 100vw;
   height: 100%;
-  background: #B0C9FC;
+  background: #b0c9fc;
   z-index: -1;
 }
 .requirements-section .accordion-header {
@@ -353,6 +353,9 @@
   }
   .requirements-section .accordion-button {
     font-size: 0.95rem;
+  }
+  .requirements-section .gray-panel {
+    padding: 2rem 2rem !important;
   }
 }
 

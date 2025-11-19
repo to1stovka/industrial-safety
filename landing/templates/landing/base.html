@@ -38,11 +38,11 @@
   </head>
   <body>
     <div class="page-wrapper">
-    <div class="floating-burger d-md-none" id="floatingBurger">
+    <div class="floating-burger d-lg-none" id="floatingBurger">
       <div class="burger-icon"></div>
     </div>
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-    <div class="mobile-menu d-md-none" id="mobileMenu">
+    <div class="mobile-menu d-lg-none" id="mobileMenu">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="{% url 'index' %}">О нас</a>
@@ -156,7 +156,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'index' %}">О нас</a>
+              <a class="nav-link" href="{% url 'index' %}" style="text-wrap: nowrap;">О нас</a>
             </li>
             <li class="nav-item dropdown">
               <a

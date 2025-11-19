@@ -149,12 +149,10 @@
   .accordion-wrapper .accordion-body {
     padding-top: 1rem;
   }
-  .accordion-wrapper .accordion-body table {
-    font-size: 0.95rem;
-  }
   .accordion-wrapper .accordion-body table th,
   .accordion-wrapper .accordion-body table td {
-    padding: 10px;
+    padding: 5px;
+    font-size: 0.95rem !important;
   }
 }
 .attestation-area {
@@ -215,18 +213,6 @@
   color: #000;
 }
 
-@media (max-width: 768px) {
-  .documents-list h4 {
-    font-size: 1.1rem;
-  }
-  .documents-list .docs-ul li {
-    font-size: 1rem;
-  }
-  .documents-list .docs-ul li .check-icon {
-    width: 24px;
-    height: 24px;
-  }
-}
 .blue-section {
   position: relative;
   background-color: #b0c9fc;

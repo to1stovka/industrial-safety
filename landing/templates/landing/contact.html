@@ -77,9 +77,10 @@
           КПП 772501001<br>
           ОГРН 1207700254211
         </p>
-        <a href="{% static 'landing/docs/#' %}" class="btn-requisites" download>
-          Скачать реквизиты
-        </a>
+        <div class="btn-requisites">
+          {% chunk 'requisite' %}
+        </div>
+
       </div>
     </div>
   </div>

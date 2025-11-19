@@ -243,9 +243,8 @@
 .prep-modal .prep-field textarea::placeholder {
   color: #4e4e4e;
 }
-.prep-modal .prep-field:focus-within {
-  border-color: #af4100;
-  box-shadow: 0 0 0 3px rgba(175, 65, 0, 0.15);
+.prep-modal .prep-field.error {
+  border-color: #af4100 !important;
 }
 .prep-modal .prep-message {
   height: auto;
@@ -314,8 +313,8 @@
     border-radius: 20px;
   }
   .prep-modal .prep-message textarea {
-    font-size: 0.95rem;
-    min-height: 110px;
+    min-height: 53px;
+    align-items: center;
   }
   .prep-modal .prep-submit {
     height: 56px;

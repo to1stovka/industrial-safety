@@ -98,8 +98,13 @@
       line-height: 1.4;
       margin-bottom: 2.5rem;
       margin-top: 1.5rem;
-      min-height: 2.8em;
       max-width: 30rem;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     // цена, даты и кнопка

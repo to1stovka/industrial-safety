@@ -301,7 +301,7 @@
 
 @media (max-width: 768px) {
   .form-title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     text-align: center;
     margin-bottom: 1.5rem;
   }
@@ -318,7 +318,7 @@
     gap: 15px;
   }
   .form-item {
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 0 20px;
   }
   .form-item.small {
@@ -329,7 +329,6 @@
     padding: 20px;
   }
   .form-item.large textarea {
-    font-size: 0.95rem;
     padding-right: 35px;
   }
   .form-item .form-icon {
@@ -339,11 +338,10 @@
     height: 24px;
   }
   .file-item label {
-    border-radius: 20px;
+    border-radius: 30px;
     height: 60px;
   }
   .file-item label .file-name {
-    font-size: 0.95rem;
     padding-left: 20px;
   }
   .file-item label .form-icon {
@@ -354,7 +352,7 @@
   }
   .btn-nok-submit {
     height: 60px;
-    border-radius: 20px;
+    border-radius: 30px;
     font-size: 1rem;
     font-weight: 500;
   }
@@ -376,30 +374,25 @@
     height: 45px;
   }
 }
-/* Переключатель форма <-> успех через max-height + opacity */
 .form-wrapper {
   position: relative;
-  /* этот отступ нужен, чтобы ничего не прилипало снизу */
-  margin-bottom: 80px;
+  margin-bottom: 0px;
 }
 
-/* Базовые состояния */
 .nok-form,
 .form-success {
-  position: static; /* критично: больше НЕТ absolute */
+  position: static;
   width: 100%;
   overflow: hidden;
   transition: max-height 0.45s ease, opacity 0.35s ease, padding 0.35s ease, margin 0.35s ease;
 }
 
-/* Форма видима по умолчанию, успех скрыт */
 .nok-form {
-  max-height: 1200px; /* достаточно большая “крышка” под контент */
+  max-height: 1200px;
   opacity: 1;
 }
 
 .form-success {
-  /* в скрытом состоянии схлопываем всё */
   max-height: 0;
   opacity: 0;
   padding-top: 0 !important;
@@ -408,7 +401,6 @@
   margin-bottom: 0 !important;
 }
 
-/* Когда добавляем .is-success на .form-wrapper — меняем роли местами */
 .form-wrapper.is-success .nok-form {
   max-height: 0;
   opacity: 0;
@@ -418,25 +410,17 @@
   margin-bottom: 0 !important;
 }
 .form-wrapper.is-success .form-success {
-  /* возвращаем твои исходные отступы успеха */
-  max-height: 1200px; /* тоже “крышка”; если нужно, увеличь */
+  max-height: 1200px;
   opacity: 1;
   padding: 80px 0 !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
-  display: flex; /* чтобы не сломать твою вёрстку успеха */
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 
-/* Мобильная доводка, если хочется пошустрее анимацию */
-@media (max-width: 768px) {
-  .nok-form,
-  .form-success {
-    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease, margin 0.25s ease;
-  }
-}
 .accordion-wrapper {
   max-width: 1400px;
 }
@@ -784,6 +768,12 @@
   font-weight: 400;
   padding: 0.5rem 2.3rem;
 }
+@media (max-width: 1400px) {
+  .navbar .navbar-nav .nav-link {
+    font-size: 1rem !important;
+    padding: 0.5rem 1.5rem;
+  }
+}
 .navbar .navbar-nav .nav-link:hover {
   color: white;
 }
@@ -809,7 +799,7 @@
   background-color: rgba(5, 33, 93, 0.6);
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 1000px) {
   .top-bar {
     height: auto;
     padding: 0.5rem 0;
@@ -934,7 +924,7 @@
   border-radius: 0.25rem;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 1000px) {
   .navbar .navbar-toggler {
     display: none;
   }

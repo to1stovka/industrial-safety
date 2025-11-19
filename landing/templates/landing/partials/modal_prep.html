@@ -4,14 +4,13 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
-      <!-- Кнопка закрытия -->
       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 
       <!-- Заголовок -->
       <h5 class="prep-title" id="prepModalTitle">Заявка</h5>
 
       <!-- Форма -->
-      <form id="prepForm" method="post">
+      <form id="prepForm" method="post" novalidate>
         {% csrf_token %}
 
         <input type="hidden" name="request_type" id="prep_type">

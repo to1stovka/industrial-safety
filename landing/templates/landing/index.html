@@ -23,7 +23,9 @@
           <li>Соответствие требованиям Ростехнадзора</li>
           <li>Быстрая проверка знаний и выдача документов</li>
         </ul>
-        <a href="#" class="hero-btn">Оформить заявку</a>
+        <a href="#" class="btn btn-nok prep-btn hero-btn" data-type="prep_expert">
+        Оформить заявку
+      </a>
       </div>
     </div>
   </div>
@@ -31,6 +33,7 @@
 
 {% load static ui_extras %}
 
+{% if popular_courses %}
 <section class="popular-section py-5">
   <div class="container">
     <div class="d-flex align-items-center gap-2 mb-4">
@@ -38,50 +41,55 @@
       <span class="icon-dot"></span>
     </div>
 
-    {% if popular_courses %}
-      <div class="row g-4">
-        {% for course in popular_courses %}
-          <div class="col-md-4">
-            <div class="course-card h-100">
-              <div class="course-card__header">
-                <div class="rating">
-                  <span>{{ course.rating }}</span>
-                  {% for _ in course.rating|times %}
-                    <span class="rating__star">★</span>
-                  {% endfor %}
-                  {% for _ in course.rating|empty_stars %}
-                    <span class="rating__star rating__star--empty">★</span>
-                  {% endfor %}
-                </div>
-              </div>
-
-              <div class="course-card__modes">
-                {% for mode_key, mode_label in course.Mode.choices %}
-                  <span class="mode-badge {% if course.mode == mode_key %}active{% endif %}">
-                    {{ mode_label }}
-                  </span>
+    <div class="row g-4">
+      {% for course in popular_courses %}
+        <div class="col-md-4">
+          <div class="course-card h-100">
+            <div class="course-card__header">
+              <div class="rating">
+                <span>{{ course.rating }}</span>
+                {% for _ in course.rating|times %}
+                  <span class="rating__star">★</span>
+                {% endfor %}
+                {% for _ in course.rating|empty_stars %}
+                  <span class="rating__star rating__star--empty">★</span>
                 {% endfor %}
               </div>
-
-              <h3 class="course-card__title">{{ course.title }}</h3>
-
-              <div class="course-card__footer">
-                <div class="price-block">
-                  <div class="price">от {{ course.price|money }} руб.</div>
-                  <div class="dates">с {{ course.start_date|date:"d.m.Y" }} по {{ course.end_date|date:"d.m.Y" }}</div>
-                </div>
-                <a href="#" class="btn">Записаться</a>
-              </div>
             </div>
+
+            <div class="course-card__modes">
+              {% for mode_key, mode_label in course.Mode.choices %}
+                <span class="mode-badge {% if course.mode == mode_key %}active{% endif %}">
+                  {{ mode_label }}
+                </span>
+              {% endfor %}
+            </div>
+
+            <h3 class="course-card__title">{{ course.title }}</h3>
+
+            <div class="course-card__footer">
+              <div class="price-block">
+                <div class="price">от {{ course.price|money }} руб.</div>
+                <div class="dates">
+                  с {{ course.start_date|date:"d.m.Y" }}
+                  по {{ course.end_date|date:"d.m.Y" }}
+                </div>
+              </div>
+
+              <a href="#" class="btn btn-nok prep-btn hero-btn" data-type="prep_expert">
+                Записаться
+              </a>
+            </div>
+
           </div>
-        {% endfor %}
-      </div>
-    {% else %}
-      <p>Пока нет доступных направлений.</p>
-    {% endif %}
+        </div>
+      {% endfor %}
+    </div>
 
   </div>
 </section>
+{% endif %}
+
 
 <section class="about-section py-5">
   <div class="container">
@@ -107,7 +115,7 @@
       </div>
     </div>
 
-<div class="about-stats row d-none d-md-flex">
+<div class="about-stats row d-none d-lg-flex">
   <div class="col-2">
     <div class="stat"><div class="stat__value">15</div></div>
   </div>
@@ -119,13 +127,13 @@
   </div>
 </div>
 
-<div class="about row d-none d-md-flex">
+<div class="about row d-none d-lg-flex">
   <div class="col-3"><div class="label"><div class="stat__label">лет<br>опыта</div></div></div>
   <div class="col-4"><div class="label"><div class="stat__label">аттестованных<br>специалистов</div></div></div>
   <div class="col-3"><div class="label"><div class="stat__label">специальностей/<br>квалификаций</div></div></div>
 </div>
 
-<div class="about-mobile d-flex d-md-none">
+<div class="about-mobile d-flex d-lg-none">
   <div class="about-item">
     <div class="stat__value">15</div>
     <div class="stat__label">лет опыта</div>
@@ -299,4 +307,63 @@
     </div>
   </div>
 </section>
+
+{% include "landing/partials/modal_prep.html" %}
+
+{% endblock %}
+{% block extra_js %}
+{{ block.super }}
+<script>
+document.querySelectorAll(".prep-btn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const type = btn.dataset.type;
+    document.getElementById("prep_type").value = type;
+
+    document.getElementById("prepModalTitle").innerText = "Оставить заявку";
+
+    const modal = new bootstrap.Modal(document.getElementById("prepModal"));
+    modal.show();
+  });
+});
+
+document.getElementById("prepForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  let form = this;
+  let hasError = false;
+
+  form.querySelectorAll(".prep-field").forEach(f => f.classList.remove("error"));
+
+  form.querySelectorAll("[required]").forEach(input => {
+    if (!input.value.trim()) {
+      input.closest(".prep-field").classList.add("error");
+      hasError = true;
+    }
+  });
+
+  const email = form.querySelector("input[type='email']");
+  if (email.value.trim() && !/^\S+@\S+\.\S+$/.test(email.value)) {
+    email.closest(".prep-field").classList.add("error");
+    hasError = true;
+  }
+
+  if (hasError) return;
+
+  let response = await fetch("{% url 'prep_request' %}", {
+    method: "POST",
+    body: new FormData(form),
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
+
+  let data = await response.json();
+
+  if (data.success) {
+    form.classList.add("d-none");
+    document.getElementById("prepSuccess").classList.remove("d-none");
+  }
+});
+</script>
+
 {% endblock %}

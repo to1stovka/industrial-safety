@@ -11,9 +11,11 @@
 
   background-image: url('../img/BGDocs.png');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom center;
   background-size: contain;
-  background-color: #fff;
+  background-repeat: no-repeat;
+
+  background-color: #f4f6f4;
 
   .docs-container {
     display: flex;
@@ -57,9 +59,12 @@
       }
     }
   }
-  @media (max-width: 768px) {
-    background: $card;
-    background-image: none;
+  @media (max-width: 1000px) {
+    background-image: none !important;
+    background-position: initial;
+    background-size: initial;
+    background-repeat: initial;
+    background-color: $card;
     padding: 0;
     align-items: flex-start;
 

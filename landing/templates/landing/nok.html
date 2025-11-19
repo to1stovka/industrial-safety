@@ -113,6 +113,28 @@ document.getElementById("prepForm").addEventListener("submit", async function(e)
 
   let form = this;
 
+  let hasError = false;
+
+  // очищаем предыдущие ошибки
+  form.querySelectorAll(".prep-field").forEach(f => f.classList.remove("error"));
+
+  // проверяем обязательные инпуты
+  form.querySelectorAll("[required]").forEach(input => {
+    if (!input.value.trim()) {
+      input.closest(".prep-field").classList.add("error");
+      hasError = true;
+    }
+  });
+
+  // проверяем email
+  const email = form.querySelector("input[type='email']");
+  if (email.value.trim() && !/^\S+@\S+\.\S+$/.test(email.value)) {
+    email.closest(".prep-field").classList.add("error");
+    hasError = true;
+  }
+
+  if (hasError) return;
+
   let response = await fetch("{% url 'prep_request' %}", {
     method: "POST",
     body: new FormData(form),

@@ -101,11 +101,10 @@
       padding-top: 1rem;
 
       table {
-        font-size: 0.95rem;
-
         th,
         td {
-          padding: 10px;
+          padding: 5px;
+          font-size: 0.95rem !important;
         }
       }
     }
