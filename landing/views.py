@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from news.models import News
-from landing.models import CourseDirection, Review, Expert, MinstroyProgram, Qualification, UnifiedRequest
+from landing.models import CourseDirection, Review, Expert, MinstroyProgram, Qualification, UnifiedRequest, ThreedGalleryImage
 from landing.forms import CallbackForm, NOCRequestForm
 from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
@@ -123,7 +123,7 @@ def minstroy_list(request):
     return render(request, "landing/minstroy_list.html", {"page_obj": page_obj})
 
 def exam(request):
-    programs = MinstroyProgram.objects.filter(is_active=True).order_by("order", "id")[:4]
+    programs = MinstroyProgram.objects.order_by("id")[:4]
     qualifications = Qualification.objects.order_by("created_at")[:3]
     return render(request, "landing/exam.html", {"programs": programs, "qualifications": qualifications})
 
@@ -172,3 +172,12 @@ def preparation(request):
 
 def safety(request):
     return render(request, 'landing/safety.html')
+
+def threed(request):
+    gallery = ThreedGalleryImage.objects.all()
+    form = NOCRequestForm()
+    context = {
+        'gallery': gallery,
+        "form": form,
+    }
+    return render(request, 'landing/threed.html', context)

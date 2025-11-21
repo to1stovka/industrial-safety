@@ -1,4 +1,4 @@
-@use "../variables" as *;
+@use '../variables' as *;
 
 .nok-table-title {
   font-weight: 600;
@@ -10,6 +10,7 @@
   width: 100%;
   border-collapse: collapse;
   border: none;
+  color: black !important;
 
   th {
     background: inherit;
@@ -17,42 +18,47 @@
     font-size: 1.125rem;
     padding: 10px 12px;
     text-align: left;
+    color: black !important;
   }
 
   td {
-    padding: 10px 12px;
     border: none;
     font-weight: 400;
     font-size: 1.125rem;
     padding: 30px 12px;
+    color: black !important;
   }
 
   tbody tr:nth-child(odd) td {
-    background: #6091F980;
+    background: #6091f980;
   }
 
   tbody tr:nth-child(even) td {
-    background: #E3E1E1;
+    background: #e3e1e1;
   }
 
-th:first-child,
-td:first-child {
+  th:first-child,
+  td:first-child {
     width: 16%;
     min-width: 160px;
     white-space: nowrap;
-}
-}
-  .btn-orange {
-    background-color: $orange;
-    color: #fff;
-    border-radius: 30px;
-    padding: 10px 30px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: 0.2s ease;
-
-    &:hover {
-      background-color: $hover_orange;
-      color: #fff;
-    }
   }
+}
+.btn-orange {
+  background-color: $orange;
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 30px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.2s ease;
+
+  &:hover {
+    background-color: $hover_orange;
+    color: #fff;
+  }
+}
+
+.nok-table * {
+  color: #000 !important;
+}

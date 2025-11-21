@@ -149,3 +149,9 @@ class UnifiedRequest(models.Model):
     def __str__(self):
         return f"{self.name} ({self.get_request_type_display()})"
 
+class ThreedGalleryImage(models.Model):
+    image = models.ImageField(upload_to='gallery/')
+ 
+    class Meta:
+        verbose_name = "Фотогалерея 3D"
+        verbose_name_plural = "Фотогалерея 3D"

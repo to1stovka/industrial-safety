@@ -1,5 +1,6 @@
 {% extends 'landing/base.html' %}
 {% load static %}
+{% load chunk_tags %}
 
 {% block title %}Учебный центр Безопасность в промышленности{% endblock %}
 
@@ -303,6 +304,30 @@
             <a href="{% url 'news:news_list' %}" class="more-news-btn">Больше новостей</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="threed-promo-section py-5">
+  <div class="container">
+    <div class="threed-promo">
+      <div class="threed-promo__text">
+        <h2 class="section-title mb-3">
+          Интерактивные 3D-материалы
+        </h2>
+        <div class="threed-promo__subtitle">
+          {% chunk '3d-promo-text' %}
+        </div>
+
+
+        <a href="{% url 'threed' %}" class="btn btn-nok threed-promo__btn">
+          Подробнее
+        </a>
+      </div>
+
+      <div class="threed-promo__image">
+        <img src="{% static 'landing/img/BG3D/BG4.png' %}" alt="3D-моделирование" class="img-fluid">
       </div>
     </div>
   </div>

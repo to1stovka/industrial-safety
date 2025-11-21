@@ -1,4 +1,4 @@
-@use "./../variables" as *;
+@use './../variables' as *;
 
 .news-detail-section {
   background: white;
@@ -10,25 +10,25 @@
 
 .news-header {
   margin-bottom: 2rem;
-  
+
   .news-title {
     font-size: 2rem;
     font-weight: 600;
     color: #000;
     margin-bottom: 1rem;
   }
-  
+
   .news-meta {
     .news-date {
       color: #666;
-      font-size: 0.875rem;
+      font-size: 0.9rem;
     }
   }
 }
 
 .news-image {
   margin-bottom: 2rem;
-  
+
   img {
     width: 100%;
     height: auto;
@@ -37,10 +37,10 @@
 }
 
 .news-content {
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   color: #333;
-  
+
   p {
     margin-bottom: 1rem;
   }
@@ -48,21 +48,21 @@
 
 .news-footer {
   margin-top: 3rem;
-  
-  .btn {
-      background: $orange;
-      white-space: nowrap;
-      border: none;
-      color: $white;
-      font-weight: 400;
-      border-radius: 20px;
-      padding: 0.4rem 1rem;
-      font-size: 1.125rem;
 
-      &:hover {
-        background: $hover_orange;
-      }
+  .btn {
+    background: $orange;
+    white-space: nowrap;
+    border: none;
+    color: $white;
+    font-weight: 400;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    font-size: 1.125rem;
+
+    &:hover {
+      background: $hover_orange;
     }
+  }
 }
 
 @media (max-width: 768px) {

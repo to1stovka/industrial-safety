@@ -40,16 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // mobileMenu.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-    //   toggle.addEventListener('click', e => {
-    //     e.preventDefault();
-    //     const submenu = toggle.nextElementSibling;
-    //     if (submenu && submenu.classList.contains('dropdown-menu')) {
-    //       submenu.classList.toggle('show');
-    //     }
-    //   });
-    // });
-
     // свайп вправо для закрытия меню
     mobileMenu.addEventListener('touchstart', e => {
       touchStartX = e.changedTouches[0].screenX;

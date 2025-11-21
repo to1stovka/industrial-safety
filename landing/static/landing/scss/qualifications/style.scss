@@ -10,18 +10,33 @@
     padding: 12px 16px;
     font-weight: 600;
     text-align: left;
+    color: black;
   }
 
   td {
     padding: 12px 16px;
     vertical-align: top;
+    color: black;
   }
 
   tr.gray td {
-    background: #E3E1E1;
+    background: #e3e1e1;
   }
 
   tr:nth-child(even):not(.gray) td {
-    background: #B0C9FC;
+    background: #b0c9fc;
   }
+}
+.nok-table {
+  color: #000 !important;
+  * {
+    color: #000 !important;
+    opacity: 1 !important;
+  }
+}
+
+table.nok-table,
+table.nok-table * {
+  color: #000 !important;
+  opacity: 1 !important;
 }

@@ -1,0 +1,117 @@
+@use '../variables' as *;
+
+.threed-hero {
+  position: relative;
+  width: 100%;
+  height: 900px;
+  background: url('../../img/BG3D/BG1.png') center center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  .threed-hero__container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 2;
+  }
+
+  &__inner {
+    grid-column: 2;
+    text-align: right;
+  }
+
+  &__title {
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-top: -25rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  &__eyebrow {
+    margin-bottom: 1.25rem;
+    color: white;
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 768px) {
+  .threed-hero {
+    height: 520px;
+
+    .threed-hero__container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    &__inner {
+      grid-column: 1;
+      max-width: 90%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__subtitle {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.btn-main {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.2rem;
+  border-radius: 30px;
+  background-color: $orange;
+  color: #fff !important;
+  font-size: 1rem;
+  font-weight: 400;
+  border: none;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease;
+  margin-bottom: 2rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hover_orange;
+    color: #fff !important;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+  &--sm {
+    padding: 0.7rem 1.6rem;
+    font-size: 0.95rem;
+  }
+}
+
+.section-header {
+  margin-bottom: 2rem;
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+    color: #000;
+  }
+  .section-subtitle {
+    margin: 0;
+    color: white;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+}

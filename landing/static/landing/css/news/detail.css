@@ -17,7 +17,7 @@
 }
 .news-header .news-meta .news-date {
   color: #666;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }
 
 .news-image {
@@ -30,7 +30,7 @@
 }
 
 .news-content {
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   color: #333;
 }

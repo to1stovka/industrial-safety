@@ -1,0 +1,376 @@
+{% extends "landing/base.html" %}
+{% load static %}
+{% load accordion_tags %}
+{% load chunk_tags %}
+
+{% block title %}Интерактивные 3D материалы{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'landing/css/page3d/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="threed-hero">
+  <div class="threed-hero__container">
+    <div class="threed-hero__inner">
+
+        <h1 class="threed-hero__title">
+          Создание интерактивных образовательных материалов
+        </h1>
+        <p class="threed-hero__subtitle">
+          Оценка знаний специалистов в области промышленной безопасности с использованием виртуальных объектов
+        </p>
+        {% comment %} <button type="button" class="btn-main" data-bs-target="#threed-main-carousel" data-bs-slide="next">
+          Узнать больше
+        </button> {% endcomment %}
+
+    </div>
+  </div>
+</section>
+
+<section class="threed-title-section py-5 pb-0">
+  <div class="container position-relative">
+    <div class="section-header">
+      <h2 class="section-title">О проекте</h2>
+      <div class="lead-text">
+        {% chunk '3d-text' %}
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="threed-carousel-section py-5">
+  <div class="container position-relative">
+    <div class="swiper threed-swiper">
+      <div class="swiper-wrapper">
+        <!-- СЛАЙД 1 -->
+        <div class="swiper-slide">
+          <div class="threed-carousel__slide">
+            <div class="threed-carousel__image">
+              <img src="{% static 'landing/img/swiper/swiper1.png' %}" alt="">
+            </div>
+            <div class="threed-carousel__content">
+              <div class="threed-carousel__title">{% chunk 'title1' %}</div>
+              <div class="threed-carousel__text">
+                {% chunk 'slide1' %}
+              </div>
+              <button type="button" class="btn-main btn-main--sm"
+                      data-bs-toggle="modal" data-bs-target="#threed-modal-1">
+                Узнать больше
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- СЛАЙД 2 -->
+        <div class="swiper-slide">
+          <div class="threed-carousel__slide">
+            <div class="threed-carousel__image">
+              <img src="{% static 'landing/img/swiper/2.png' %}" alt="">
+            </div>
+            <div class="threed-carousel__content">
+              <div class="threed-carousel__title">{% chunk 'title2' %}</div>
+              <div class="threed-carousel__text">
+                {% chunk 'slide2' %}
+              </div>
+              <button type="button" class="btn-main btn-main--sm"
+                      data-bs-toggle="modal" data-bs-target="#threed-modal-2">
+                Узнать больше
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- СЛАЙД 3 -->
+        <div class="swiper-slide">
+          <div class="threed-carousel__slide">
+            <div class="threed-carousel__image">
+              <img src="{% static 'landing/img/swiper/3.png' %}" alt="">
+            </div>
+            <div class="threed-carousel__content">
+              <div class="threed-carousel__title">{% chunk 'title3' %}</div>
+              <div class="threed-carousel__text">
+                {% chunk 'slide3' %}
+              </div>
+              <button type="button" class="btn-main btn-main--sm"
+                      data-bs-toggle="modal" data-bs-target="#threed-modal-3">
+                Узнать больше
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Стрелки -->
+    </div>
+        <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+  </div>
+
+</section>
+
+<div class="modal fade threed-modal" id="threed-modal-1" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Клиентское приложение для оценки квалификации</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        {% comment %} <p class="mb-3">
+          Скачать приложение:
+          <a target="_blank"
+             href="https://drive.google.com/file/d/1SK78u0Qvi-VJWBKxw-mJ1zBtr85fazub/view?usp=sharing">
+            скачать
+          </a>
+        </p> {% endcomment %}
+        <ul class="threed-modal__list">
+          <li>Клиент выполнен в виде приложения для Windows.</li>
+          <li>Для начала работы достаточно скачать, распаковать и запустить файл &mdash; установка не требуется.</li>
+          <li>Быстрый старт и минимальные требования к системе.</li>
+          <li>Поддержка работы на любых компьютерах с Windows.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade threed-modal" id="threed-modal-2" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Интерактивные сценарии, симуляции и анализ результатов</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <ul class="threed-modal__list">
+          <li>Создание реалистичных трехмерных сценариев для тестирования.</li>
+          <li>Интерактивные модули для отработки действий в чрезвычайных ситуациях.</li>
+          <li>Автоматизированный анализ и обратная связь для улучшения навыков.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade threed-modal" id="threed-modal-3" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Преимущества для предприятий и специалистов</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <ul class="threed-modal__list">
+          <li>Снижение затрат на обучение и повышение его эффективности.</li>
+          <li>Минимизация аварий и инцидентов за счёт отработки действий в безопасной среде.</li>
+          <li>Соответствие отраслевым и нормативным требованиям по промышленной безопасности.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<section class="threed-about">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Почему выбирают нашу систему?</h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="threed-about__card">
+          <img src="{% static 'landing/img/check.svg' %}" alt="">
+          <p>
+            Система предоставляет возможность оценки знаний в виртуальных моделях оборудования и объектов.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="threed-about__card">
+          <img src="{% static 'landing/img/check.svg' %}" alt="">
+          <p>
+            Интерактивный подход делает обучение более наглядным и повышает вовлечённость специалистов.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="threed-about__card">
+          <img src="{% static 'landing/img/check.svg' %}" alt="">
+          <p>
+            Пользователи могут создавать и проходить интерактивные тесты и практические задания.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container py-5">
+  <div class="section-header">
+      <h2 class="section-title">Шаги использования системы</h2>
+    </div>
+    <div class="steps-grid">
+        <div class="step-item">
+        <div class="step-number">1<span>шаг</span></div>
+        <p>Регистрация<br>и вход в систему</p>
+        </div>
+
+        <div class="step-item">
+        <div class="step-number">2<span>шаг</span></div>
+        <p>Выбор виртуального<br>объекта для тестирования</p>
+        </div>
+
+        <div class="step-item">
+        <div class="step-number">3<span>шаг</span></div>
+        <p>Осмотр точек интереса<br>и ответы на вопросы</p>
+        </div>
+
+        <div class="step-item">
+        <div class="step-number">4<span>шаг</span></div>
+        <p>Получение моментальных результатов</p>
+        </div>
+    </div>
+    </section>
+
+<section class="threed-advantages">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Преимущества</h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="threed-adv-card">
+          <div class="threed-adv-card__header">
+            <p>Для специалистов</p>
+            <div class="threed-adv-card__line"></div>
+          </div>
+          <ul>
+            <li>Удобство и доступность тестирования из любой точки.</li>
+            <li>Практика в реалистичных условиях без риска для здоровья.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="threed-adv-card">
+          <div class="threed-adv-card__header">
+            <p>Для компаний</p>
+            <div class="threed-adv-card__line"></div>
+          </div>
+          <ul>
+            <li>Объективная оценка квалификации специалистов.</li>
+            <li>Снижение рисков и предотвращение аварий на производстве.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% if gallery %}
+<section class="threed-gallery">
+  <div class="container py-5">
+
+    <div class="section-header">
+      <h2 class="section-title">Фотогалерея</h2>
+    </div>
+
+    <div class="swiper threed-gallery-swiper">
+      <div class="swiper-wrapper">
+
+        {% for photo in gallery %}
+        <div class="swiper-slide">
+          <div class="threed-gallery__image-wrapper">
+            <img src="{{ photo.image.url }}" class="threed-gallery__image">
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+      <div class="swiper-button-prev threed-gallery-prev"></div>
+      <div class="swiper-button-next threed-gallery-next"></div>
+  </div>
+</section>
+{% endif %}
+
+{% include "landing/partials/form_request.html" %}
+
+{% comment %} <section class="threed-cta">
+  <div class="container">
+    <div class="threed-cta__inner">
+      <div class="threed-cta__content">
+        <h2 class="threed-cta__title">
+          Начните пробное тестирование прямо сейчас
+        </h2>
+        <p class="threed-cta__subtitle">
+          Введите email, чтобы получить ссылку на скачивание клиентского приложения.
+        </p>
+
+        <form class="threed-cta__form">
+          <div class="mb-3">
+            <label for="threedEmail" class="form-label">Ваш Email</label>
+            <input type="email" class="form-control" id="threedEmail" placeholder="example@domain.ru">
+          </div>
+          <button class="btn-main" type="submit" style="margin-bottom:1rem">Продолжить</button>
+        </form>
+      </div>
+
+      <div class="threed-cta__image">
+        <img src="{% static 'landing/img/tower.png' %}" alt="">
+      </div>
+    </div>
+  </div>
+</section> {% endcomment %}
+
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+  if (document.querySelector('.threed-swiper')) {
+  new Swiper('.threed-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    centeredSlides: false,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    autoplay: {
+      delay: 8000,
+      disableOnInteraction: false,
+    },
+    speed: 600,
+  });
+}
+
+if (document.querySelector('.threed-gallery-swiper')) {
+  const threedGallerySwiper = new Swiper('.threed-gallery-swiper', {
+    slidesPerView: 1,
+    loop: true,
+    speed: 500,
+    navigation: {
+      nextEl: '.threed-gallery-next',
+      prevEl: '.threed-gallery-prev',
+    },
+  });
+}
+</script>
+{% endblock %}

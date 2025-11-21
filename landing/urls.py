@@ -16,6 +16,7 @@ from landing.views import (
     preparation,
     safety,
     prep_request,
+    threed
     )
 
 urlpatterns = [
@@ -34,5 +35,6 @@ urlpatterns = [
     path("docs/", docs, name="docs"),
     path("preparation/", preparation, name="preparation"),
     path("safety/", safety, name="safety"),
+    path("threed/", threed, name="threed"),
     path("prep-request/", prep_request, name="prep_request"),
 ]

@@ -6,8 +6,10 @@ from landing.models import (CourseDirection,
                             MinstroyProgram,
                             Qualification,
                             UnifiedRequest,
+                            ThreedGalleryImage,
                             )
 from django.utils.html import format_html
+from django.utils.html import mark_safe
 
 @admin.register(CourseDirection)
 class CourseDirectionAdmin(admin.ModelAdmin):
@@ -71,7 +73,7 @@ class UnifiedRequestAdmin(admin.ModelAdmin):
 
         labels = {
             "callback": "Запрос на звонок",
-            "noc": "Заявка на НОК",
+            "noc": "Универсальная заявка",
             "prep_expert": "Подготовка эксперта",
             "prep_specialist": "Подготовка специалиста",
         }
@@ -88,3 +90,14 @@ class UnifiedRequestAdmin(admin.ModelAdmin):
     colored_type.short_description = "Тип заявки"
 
 
+@admin.register(ThreedGalleryImage)
+class ThreedGalleryImageAdmin(admin.ModelAdmin):
+    list_display = ("id", "preview")
+    readonly_fields = ("preview",)
+
+    def preview(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="120" style="border-radius:8px;">')
+        return "Нет изображения"
+
+    preview.short_description = "Превью"

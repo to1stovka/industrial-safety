@@ -1,0 +1,78 @@
+@use '../variables' as *;
+
+.threed-cta {
+  padding: 40px 0 60px;
+  background: #fff;
+
+  &__inner {
+    background: $primary;
+    border-radius: 30px;
+    padding: 2.5rem 2.3rem;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+    color: $white;
+
+    @media (max-width: 991.98px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__content {
+    max-width: 520px;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  &__subtitle {
+    font-size: 1.0625rem;
+    margin-bottom: 1.4rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__form {
+    .form-label {
+      color: $white;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-control {
+      border-radius: 999px;
+      border: none;
+      padding: 0.7rem 1rem;
+      font-size: 1rem;
+    }
+
+    .btn-main {
+      margin-top: 0.9rem;
+      background-color: $orange;
+      color: #fff !important;
+
+      &:hover {
+        background-color: $hover_orange;
+      }
+    }
+  }
+
+  &__image {
+    align-self: flex-end;
+    text-align: right;
+
+    img {
+      max-width: 250px;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 991.98px) {
+      display: none;
+    }
+  }
+}

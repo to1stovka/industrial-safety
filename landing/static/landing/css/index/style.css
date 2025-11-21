@@ -8,23 +8,32 @@
   color: #000000;
   margin-bottom: 2rem;
 }
+.news-section .row {
+  display: flex;
+  align-items: stretch;
+}
+.news-section .col-lg-6 {
+  display: flex;
+  flex-direction: column;
+}
 
 .left-news-column .main-news-card {
   background: #e3e1e1;
   border-radius: 2.5rem;
   overflow: hidden;
-  height: 16.875rem;
+  display: flex;
+  position: relative;
 }
 .left-news-column .main-news-card .row {
   height: 100%;
 }
 .left-news-column .main-news-card .col-md-6 {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .left-news-column .main-news-card .main-news-image {
-  position: relative;
-  height: 100%;
-  width: 100%;
+  overflow: hidden;
+  flex: 1;
 }
 .left-news-column .main-news-card .main-news-image img {
   width: 100%;
@@ -39,9 +48,9 @@
   height: 100%;
 }
 .left-news-column .main-news-card .main-news-content .main-news-title {
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 400;
-  color: #000000;
+  color: #000;
   margin-bottom: 1.5rem;
   line-height: 1.4;
 }
@@ -51,7 +60,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 24.5rem;
+  min-height: 24.5rem;
 }
 .left-news-column .vertical-news-card .vertical-news-image {
   position: relative;
@@ -71,7 +80,7 @@
   flex-direction: column;
 }
 .left-news-column .vertical-news-card .vertical-news-content .vertical-news-title {
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 400;
   margin-bottom: 1rem;
   line-height: 1.4;
@@ -82,7 +91,7 @@
   left: 1rem;
   padding: 6px 12px;
   border-radius: 1.25rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 400;
   background: #18233a;
   color: white;
@@ -92,11 +101,10 @@
   color: white;
   text-decoration: none;
   font-weight: 400;
-  font-size: 1rem;
   background: #af4100;
   border: none;
   border-radius: 20px;
-  font-size: 0.8125rem;
+  font-size: 0.9rem;
   padding: 0.4rem 1rem;
   max-width: 7.5rem;
   margin-top: auto;
@@ -110,32 +118,35 @@
   background: #e3e1e1;
   border-radius: 2.5rem;
   overflow: hidden;
-  height: 42.8125rem;
-  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 .news-list-card .news-list-content {
   padding: 3rem 4rem;
+  flex-grow: 1;
 }
 .news-list-card .news-list-item .news-list-title {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: #18233a;
   margin-bottom: 0.75rem;
 }
 .news-list-card .news-list-item .news-list-text {
-  font-size: 0.8125rem;
-  color: #000000;
+  font-size: 1rem;
+  color: #000;
   line-height: 1.5;
   margin-bottom: 0.5rem;
 }
 .news-list-card .news-list-item .news-list-date {
   text-align: right;
-  color: #000000;
-  font-size: 0.75rem;
+  color: #000;
+  font-size: 0.8rem;
 }
 .news-list-card .news-list-footer {
   padding: 1.5rem 2rem;
   text-align: right;
+  margin-top: auto;
 }
 .news-list-card .news-list-footer .more-news-btn {
   line-height: 2.76rem;
@@ -143,24 +154,19 @@
   display: inline-block;
   color: white;
   text-decoration: none;
-  font-weight: 400;
-  font-size: 1rem;
   background: #af4100;
   border: none;
   border-radius: 30px;
-  font-size: 0.8125rem;
+  font-size: 0.9rem;
   padding: 0.4rem 1rem;
   width: 12.9rem;
   height: 3.56rem;
-  position: absolute;
-  bottom: 1.5rem;
-  right: 2rem;
 }
 .news-list-card .news-list-footer .more-news-btn:hover {
   background: rgba(179, 61, 11, 0.8);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .news-section {
     padding: 1rem 1rem;
   }
@@ -189,7 +195,7 @@
   .left-news-column .vertical-news-card .main-news-image img,
   .left-news-column .vertical-news-card .vertical-news-image img {
     width: 100%;
-    height: 12rem;
+    height: 100%;
   }
   .left-news-column .main-news-card .main-news-content,
   .left-news-column .main-news-card .vertical-news-content,
@@ -212,7 +218,7 @@
   .left-news-column .main-news-card .vertical-news-content .read-more-btn,
   .left-news-column .vertical-news-card .main-news-content .read-more-btn,
   .left-news-column .vertical-news-card .vertical-news-content .read-more-btn {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     padding: 0.3rem 0.8rem;
     max-width: 7rem;
   }
@@ -230,27 +236,15 @@
   .news-list-card .news-list-content {
     padding: 1.5rem;
   }
-  .news-list-card .news-list-item .news-list-title {
-    font-size: 0.9rem;
-  }
-  .news-list-card .news-list-item .news-list-text {
-    font-size: 0.75rem;
-  }
-  .news-list-card .news-list-item .news-list-date {
-    font-size: 0.7rem;
-  }
   .news-list-card .news-list-footer {
     padding: 1rem;
   }
   .news-list-card .news-list-footer .more-news-btn {
     width: 100%;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     height: 2.5rem;
     line-height: 2.5rem;
     padding: 0;
-    bottom: 1rem;
-    right: 0;
-    position: relative;
   }
   .row > .col-lg-6 {
     margin-bottom: 1.5rem;
@@ -557,7 +551,7 @@
   position: relative;
   width: 100%;
   height: 696px;
-  background: url("../../img/heroBG.png") top center/cover no-repeat;
+  background: url("../../img/ingener4.png") top center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -775,7 +769,7 @@
   width: 65%;
 }
 .reviews-section .review-card__text {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #000;
   line-height: 1.5;
   margin-bottom: 0rem;
@@ -834,6 +828,53 @@
     font-size: 1.5rem;
   }
 }
+.threed-promo-section {
+  background: #fff;
+}
+
+.threed-promo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (max-width: 991.98px) {
+  .threed-promo {
+    grid-template-columns: 1fr;
+  }
+}
+.threed-promo__text {
+  max-width: 540px;
+}
+.threed-promo__subtitle {
+  font-size: 1.125rem;
+  color: #000;
+  margin-bottom: 1rem;
+}
+.threed-promo__btn {
+  line-height: 2.76rem;
+  text-align: center;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  background: #af4100;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  width: 12.9rem;
+  height: 3.56rem;
+}
+.threed-promo__btn:hover {
+  background: rgba(179, 61, 11, 0.8);
+  color: white;
+}
+.threed-promo__image img {
+  width: 100%;
+  border-radius: 40px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
 .prep-modal {
   /* Кнопка закрытия */
   /* Заголовок */

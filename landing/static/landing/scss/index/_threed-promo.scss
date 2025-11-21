@@ -1,0 +1,52 @@
+@use '../variables' as *;
+
+.threed-promo-section {
+  background: #fff;
+}
+
+.threed-promo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+
+  @media (max-width: 991.98px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__text {
+    max-width: 540px;
+  }
+
+  &__subtitle {
+    font-size: 1.125rem;
+    color: #000;
+    margin-bottom: 1rem;
+  }
+
+  &__btn {
+    line-height: calc(3.56rem - 0.8rem);
+    text-align: center;
+    display: inline-block;
+    color: $white;
+    text-decoration: none;
+    background: $orange;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+    width: 12.9rem;
+    height: 3.56rem;
+
+    &:hover {
+      background: $hover_orange;
+      color: $white;
+    }
+  }
+
+  &__image img {
+    width: 100%;
+    border-radius: 40px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  }
+}

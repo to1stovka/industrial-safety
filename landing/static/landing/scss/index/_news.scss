@@ -9,29 +9,44 @@
     color: #000000;
     margin-bottom: 2rem;
   }
+
+  .row {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .col-lg-6 {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 // Левая колонка
+
 .left-news-column {
   // Горизонтальная карточка
   .main-news-card {
     background: $card;
     border-radius: 2.5rem;
     overflow: hidden;
-    height: 16.875rem;
+    display: flex;
+    position: relative;
 
     .row {
       height: 100%;
     }
 
     .col-md-6 {
-      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .main-news-image {
-      position: relative;
-      height: 100%;
-      width: 100%;
+      // position: relative;
+      // height: 100%;
+      // width: 100%;
+      overflow: hidden;
+      flex: 1;
 
       img {
         width: 100%;
@@ -48,9 +63,9 @@
       height: 100%;
 
       .main-news-title {
-        font-size: 0.75rem;
+        font-size: 1rem;
         font-weight: 400;
-        color: #000000;
+        color: #000;
         margin-bottom: 1.5rem;
         line-height: 1.4;
       }
@@ -64,7 +79,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 24.5rem;
+    min-height: 24.5rem;
 
     .vertical-news-image {
       position: relative;
@@ -86,7 +101,7 @@
       flex-direction: column;
 
       .vertical-news-title {
-        font-size: 0.75rem;
+        font-size: 1rem;
         font-weight: 400;
         margin-bottom: 1rem;
         line-height: 1.4;
@@ -94,14 +109,14 @@
     }
   }
 
-  // Общие стили для лейблов и кнопок
+  // Общие элементы
   .news-badge {
     position: absolute;
     top: 1rem;
     left: 1rem;
     padding: 6px 12px;
     border-radius: 1.25rem;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 400;
     background: $badge;
     color: white;
@@ -112,11 +127,10 @@
     color: $white;
     text-decoration: none;
     font-weight: 400;
-    font-size: 1rem;
     background: $orange;
     border: none;
     border-radius: 20px;
-    font-size: 0.8125rem;
+    font-size: 0.9rem;
     padding: 0.4rem 1rem;
     max-width: 7.5rem;
     margin-top: auto;
@@ -128,43 +142,48 @@
   }
 }
 
-// Правая колонка - список новостей
+// Правая колонка — список новостей
+
 .news-list-card {
   background: $card;
   border-radius: 2.5rem;
   overflow: hidden;
-  height: 42.8125rem;
-  position: relative;
+
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 
   .news-list-content {
     padding: 3rem 4rem;
+    flex-grow: 1;
   }
 
   .news-list-item {
     .news-list-title {
-      font-size: 1rem;
+      font-size: 1.125rem;
       font-weight: 600;
       color: #18233a;
       margin-bottom: 0.75rem;
     }
 
     .news-list-text {
-      font-size: 0.8125rem;
-      color: #000000;
+      font-size: 1rem;
+      color: #000;
       line-height: 1.5;
       margin-bottom: 0.5rem;
     }
 
     .news-list-date {
       text-align: right;
-      color: #000000;
-      font-size: 0.75rem;
+      color: #000;
+      font-size: 0.8rem;
     }
   }
 
   .news-list-footer {
     padding: 1.5rem 2rem;
     text-align: right;
+    margin-top: auto;
 
     .more-news-btn {
       line-height: calc(3.56rem - 0.8rem);
@@ -172,18 +191,13 @@
       display: inline-block;
       color: $white;
       text-decoration: none;
-      font-weight: 400;
-      font-size: 1rem;
       background: $orange;
       border: none;
       border-radius: 30px;
-      font-size: 0.8125rem;
+      font-size: 0.9rem;
       padding: 0.4rem 1rem;
       width: 12.9rem;
       height: 3.56rem;
-      position: absolute;
-      bottom: 1.5rem;
-      right: 2rem;
 
       &:hover {
         background: $hover_orange;
@@ -192,7 +206,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .news-section {
     padding: 1rem 1rem;
 
@@ -223,7 +237,7 @@
       .main-news-image img,
       .vertical-news-image img {
         width: 100%;
-        height: 12rem;
+        height: 100%;
       }
 
       .main-news-content,
@@ -237,7 +251,7 @@
         }
 
         .read-more-btn {
-          font-size: 0.75rem;
+          font-size: 0.8rem;
           padding: 0.3rem 0.8rem;
           max-width: 7rem;
         }
@@ -261,31 +275,14 @@
       padding: 1.5rem;
     }
 
-    .news-list-item {
-      .news-list-title {
-        font-size: 0.9rem;
-      }
-
-      .news-list-text {
-        font-size: 0.75rem;
-      }
-
-      .news-list-date {
-        font-size: 0.7rem;
-      }
-    }
-
     .news-list-footer {
       padding: 1rem;
       .more-news-btn {
         width: 100%;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         height: 2.5rem;
         line-height: 2.5rem;
         padding: 0;
-        bottom: 1rem;
-        right: 0;
-        position: relative;
       }
     }
   }

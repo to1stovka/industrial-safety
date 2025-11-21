@@ -1,4 +1,4 @@
-@use "./../variables" as *;
+@use './../variables' as *;
 
 .news-wrapper {
   max-width: 1400px; // задаём максимальную ширину контента
@@ -50,7 +50,7 @@
 
         .news-date {
           font-weight: 400;
-          font-size: 0.75rem;
+          font-size: 0.9rem;
           color: #000000;
         }
 
@@ -61,7 +61,7 @@
 
       .news-description {
         font-weight: 400;
-        font-size: 1rem;
+        font-size: 1.125rem;
         line-height: 1.5;
         color: #000000;
         margin-bottom: 1.5rem;
@@ -69,8 +69,6 @@
     }
   }
 }
-
-
 
 @media (max-width: 768px) {
   .news-list-section {
@@ -90,11 +88,11 @@
         }
 
         .news-description {
-          font-size: 0.85rem;
+          font-size: 1rem;
         }
 
         .news-meta {
-          font-size: 0.7rem;
+          font-size: 0.8rem;
         }
       }
     }
@@ -107,7 +105,7 @@
       .page-link {
         width: 1.8rem;
         height: 1.8rem;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         padding: 0.15rem;
       }
     }
