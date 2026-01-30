@@ -123,7 +123,17 @@ def minstroy_list(request):
     return render(request, "landing/minstroy_list.html", {"page_obj": page_obj})
 
 def exam(request):
-    programs = MinstroyProgram.objects.order_by("id")[:4]
+    qs = MinstroyProgram.objects.all()
+    fields = {f.name for f in MinstroyProgram._meta.get_fields()}
+
+    if "is_active" in fields:
+        qs = qs.filter(is_active=True)
+    if "order" in fields:
+        qs = qs.order_by("order", "id")
+    else:
+        qs = qs.order_by("id")
+
+    programs = qs[:4]
     qualifications = Qualification.objects.order_by("created_at")[:3]
     return render(request, "landing/exam.html", {"programs": programs, "qualifications": qualifications})
 

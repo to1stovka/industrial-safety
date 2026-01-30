@@ -1128,6 +1128,7 @@ body {
   padding: 0;
   max-width: 100%;
   overflow-x: hidden;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 body {
@@ -1155,4 +1156,11 @@ main {
 .mobile-menu li::marker {
   content: "" !important;
   color: transparent !important;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }/*# sourceMappingURL=style.css.map */
