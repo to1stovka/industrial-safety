@@ -80,20 +80,19 @@
                 </li>
               </ul>
           
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle custom-dropdown-toggle"
-                href="#"
-                data-bs-toggle="dropdown"
-              >
-                Услуги
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="{% url 'threed' %}">Создание интерактивных образовательных материалов</a>
-                </li>
-              </ul>
-            </li>
+{% if landing_features.SHOW_SERVICES_MENU %}
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle custom-dropdown-toggle" href="#" data-bs-toggle="dropdown">
+    Услуги
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a class="dropdown-item" href="{% url 'threed' %}">Создание интерактивных образовательных материалов</a>
+    </li>
+  </ul>
+</li>
+{% endif %}
+
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'docs' %}">Разрешительные документы</a>
@@ -217,25 +216,19 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle custom-dropdown-toggle"
-                href="#"
-                data-bs-toggle="dropdown"
-              >
-                Услуги
-                <img
-                  src="{% static 'landing/img/Vector.svg' %}"
-                  class="dropdown-custom-icon"
-                  alt=""
-                />
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="{% url 'threed' %}">Создание интерактивных образовательных материалов</a>
-                </li>
-              </ul>
-            </li>
+{% if landing_features.SHOW_SERVICES_MENU %}
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle custom-dropdown-toggle" href="#" data-bs-toggle="dropdown">
+    Услуги
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a class="dropdown-item" href="{% url 'threed' %}">Создание интерактивных образовательных материалов</a>
+    </li>
+  </ul>
+</li>
+{% endif %}
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'docs' %}">Разрешительные документы</a>
             </li>

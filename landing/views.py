@@ -4,6 +4,8 @@ from landing.models import CourseDirection, Review, Expert, MinstroyProgram, Qua
 from landing.forms import CallbackForm, NOCRequestForm
 from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
+from django.conf import settings
+from django.http import Http404
 
 def index(request):
     if request.method == "POST":
@@ -184,6 +186,8 @@ def safety(request):
     return render(request, 'landing/safety.html')
 
 def threed(request):
+    if not settings.LANDING_FEATURES.get("ENABLE_THREED_PAGE", True):
+        raise Http404
     gallery = ThreedGalleryImage.objects.all()
     form = NOCRequestForm()
     context = {

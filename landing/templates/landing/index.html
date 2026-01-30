@@ -309,6 +309,7 @@
   </div>
 </section>
 
+{% if landing_features.SHOW_THREED_PROMO %}
 <section class="threed-promo-section py-5">
   <div class="container">
     <div class="threed-promo">
@@ -332,6 +333,7 @@
     </div>
   </div>
 </section>
+{% endif %}
 
 {% include "landing/partials/modal_prep.html" %}
 

@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "landing.context_processors.landing_features",
             ],
         },
     },
@@ -148,6 +149,12 @@ CKEDITOR_CONFIGS = {
             'image2',
         ]),
     },
+}
+
+LANDING_FEATURES = {
+    "SHOW_SERVICES_MENU": False,
+    "SHOW_THREED_PROMO": False,
+    "ENABLE_THREED_PAGE": False,
 }
 
 # Local settings override
