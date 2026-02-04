@@ -157,7 +157,23 @@ LANDING_FEATURES = {
     "ENABLE_THREED_PAGE": False,
 }
 
-# Local settings override
+# EMAIL
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+EMAIL_HOST_PASSWORD = ""
+
+
+NOC_UPLOAD_TO = ["ucbp@yandex.ru"]
+NOC_UPLOAD_CC = ["ucbp@bezopprom.ru"]
+
+EMAIL_HOST_USER = "ucbp.site@yandex.ru"
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 try:
     from .local_settings import *
 except ImportError:

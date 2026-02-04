@@ -9,6 +9,7 @@ from django.http import Http404
 from django.views.decorators.http import require_POST
 from django.urls import reverse
 from datetime import datetime
+from django.core.mail import EmailMessage
 
 def index(request):
     if request.method == "POST":
@@ -402,27 +403,27 @@ def noc_exam_print(request):
     resp["Content-Disposition"] = f"attachment; filename*=UTF-8''{filename}"
     return resp
 
-# приём подписанной заявки НОК
-@require_POST
-def noc_exam_upload(request):
-    file = request.FILES.get("file")
-    comment = (request.POST.get("comment") or "").strip()
+# # приём подписанной заявки НОК
+# @require_POST
+# def noc_exam_upload(request):
+#     file = request.FILES.get("file")
+#     comment = (request.POST.get("comment") or "").strip()
 
-    errors = {}
-    if not file:
-        errors["file"] = "Прикрепите файл подписанной заявки"
+#     errors = {}
+#     if not file:
+#         errors["file"] = "Прикрепите файл подписанной заявки"
 
-    if errors:
-        return JsonResponse({"success": False, "errors": errors}, status=400)
+#     if errors:
+#         return JsonResponse({"success": False, "errors": errors}, status=400)
 
-    UnifiedRequest.objects.create(
-      request_type="noc_signed",
-      name="Подписанная заявка (НОК)",
-      message=comment,
-      file=file,
-    )
+#     UnifiedRequest.objects.create(
+#       request_type="noc_signed",
+#       name="Подписанная заявка (НОК)",
+#       message=comment,
+#       file=file,
+#     )
 
-    return JsonResponse({"success": True})
+#     return JsonResponse({"success": True})
 
 
 def attestation(request):
@@ -471,3 +472,72 @@ def threed(request):
         "form": form,
     }
     return render(request, 'landing/threed.html', context)
+
+
+MAX_UPLOAD_MB = 20
+
+@require_POST
+def noc_exam_upload(request):
+    uploaded = request.FILES.get("file")
+    comment = (request.POST.get("comment") or "").strip()
+
+    errors = {}
+    if not uploaded:
+        errors["file"] = "Прикрепите файл подписанной заявки"
+
+    if uploaded and uploaded.size > MAX_UPLOAD_MB * 1024 * 1024:
+        errors["file"] = f"Файл слишком большой. Максимум {MAX_UPLOAD_MB} МБ."
+
+    if errors:
+        return JsonResponse({"success": False, "errors": errors}, status=400)
+
+    # защита от ситуации, когда забыли настроить SMTP
+    if not getattr(settings, "EMAIL_HOST_USER", "") or not getattr(settings, "EMAIL_HOST_PASSWORD", ""):
+        return JsonResponse(
+            {"success": False, "errors": {"file": "Почта не настроена (EMAIL_HOST_USER/PASSWORD)."}},
+            status=500
+        )
+
+    subject = "Подписанная заявка на подготовку к НОК"
+    body = "\n".join([
+        "Здравствуйте!",
+        "",
+        "Поступила подписанная заявка на НОК с сайта ucbp.ru.",
+        "",
+        f"Комментарий пользователя: {comment or '—'}",
+        f"Файл заявки: {uploaded.name}",
+        f"Размер: {uploaded.size} байт",
+        "",
+        "Примечание: некоторые почтовые сервисы не отображают таблицы в предпросмотре Word-документов корректно. Пожалуйста, скачайте файл — в скачанном документе таблица направлений отображается правильно.",
+        "Это уведомление отправлено на два адреса: ucbp@bezopprom.ru и ucbp@yandex.ru — для удобства обработки заявок и резервного получения.",
+    ])
+
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "") or getattr(settings, "EMAIL_HOST_USER", "")
+    to = getattr(settings, "NOC_UPLOAD_TO", []) or []
+    cc = getattr(settings, "NOC_UPLOAD_CC", []) or []
+
+    msg = EmailMessage(
+        subject=subject,
+        body=body,
+        from_email=from_email,
+        to=to,
+        cc=cc,
+    )
+
+    msg.attach(
+        uploaded.name,
+        uploaded.read(),
+        uploaded.content_type or "application/octet-stream"
+    )
+
+    try:
+        msg.send(fail_silently=False)
+    except Exception:
+      return JsonResponse(
+          {"success": False, "errors": {"file": f"Не удалось отправить письмо"}},
+          status=500
+      )
+
+
+    return JsonResponse({"success": True})
+
