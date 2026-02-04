@@ -125,6 +125,7 @@ class UnifiedRequest(models.Model):
     REQUEST_TYPES = [
         ("callback", "Запрос на звонок"),
         ("noc", "Заявка"),
+        ("noc_signed", "Подписанная заявка (НОК)"),
     ]
 
     request_type = models.CharField(
@@ -155,3 +156,48 @@ class ThreedGalleryImage(models.Model):
     class Meta:
         verbose_name = "Фотогалерея 3D"
         verbose_name_plural = "Фотогалерея 3D"
+
+
+class NocPreparationDirection(models.Model):
+    class Kind(models.TextChoices):
+        EXPERT = "expert", "Эксперт"
+        AUDITOR = "auditor", "Аудитор"
+
+    class Track(models.TextChoices):
+        TU = "TU", "ТУ"
+        ZS = "ZS", "ЗС"
+
+    # То, что показываем в чекбоксах и в админке
+    title = models.CharField("Название направления", max_length=500)
+
+    # Эксперт / Аудитор (обязательно)
+    kind = models.CharField("Тип", max_length=10, choices=Kind.choices)
+
+    # Для экспертов (опционально)
+    track = models.CharField("ТУ/ЗС", max_length=2, choices=Track.choices, blank=True, null=True)
+    category = models.PositiveSmallIntegerField("Категория", blank=True, null=True)
+
+    # Код: у экспертов будет "71", у аудиторов "40.20900.185" — храним строкой
+    code = models.CharField("Код", max_length=32, blank=True)
+
+    is_active = models.BooleanField("Активно", default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Направление подготовки НОК"
+        verbose_name_plural = "Направления подготовки НОК"
+        ordering = ("kind", "id")
+        indexes = [
+            models.Index(fields=("kind", "track", "category")),
+            models.Index(fields=("code",)),
+        ]
+
+    def __str__(self):
+        parts = [self.title]
+        if self.track:
+            parts.append(self.get_track_display())
+        if self.category:
+            parts.append(f"кат. {self.category}")
+        if self.code:
+            parts.append(f"код {self.code}")
+        return " • ".join(parts)

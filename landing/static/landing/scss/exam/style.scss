@@ -1,13 +1,15 @@
+@use '../partials/noc_exam_modal';
+
 .exam {
-max-width: 1400px;
-margin: auto;
+  max-width: 1400px;
+  margin: auto;
   &__title {
     font-size: 2rem;
     line-height: 1.2;
     font-weight: 600;
     margin-bottom: 2rem;
     font-family: 'Montserrat';
-    margin-top: 2rem
+    margin-top: 2rem;
   }
 
   &__subtitle {
@@ -16,11 +18,11 @@ margin: auto;
     font-weight: 600;
   }
 
-&__section-title{
+  &__section-title {
     margin-bottom: 2rem;
     font-size: 1.5rem;
     font-weight: 600;
-}
+  }
   &__docs {
     margin-bottom: 60px;
 
@@ -49,4 +51,63 @@ margin: auto;
       }
     }
   }
+}
+
+/* CTA wrapper */
+.exam-cta {
+  border-radius: 20px;
+}
+
+.exam-cta .card-body {
+  padding: 28px !important;
+}
+
+.exam-cta__title {
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  margin-bottom: 8px;
+}
+
+.exam-cta__bullets {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.exam-cta__bullet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(15, 23, 42, 0.85);
+  font-size: 14px;
+}
+
+/* checkbox */
+.exam-cta__check {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 18px;
+
+  background: url('../../img/check.svg') no-repeat center;
+  background-size: contain;
+}
+
+.exam-cta__check::after {
+  content: none;
+}
+button.btn-orange,
+.btn-orange {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+button.btn-orange:focus,
+button.btn-orange:focus-visible,
+.btn-orange:focus,
+.btn-orange:focus-visible {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }

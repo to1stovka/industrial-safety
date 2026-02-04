@@ -4,10 +4,10 @@
 <nav aria-label="Page navigation" class="mt-5">
   <ul class="pagination justify-content-center">
 
-    <!-- ← назад -->
+    <!-- назад -->
     {% if page_obj.has_previous %}
       <li class="page-item">
-        <a class="page-link arrow" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <a class="page-link arrow" href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q|urlencode }}{% endif %}" aria-label="Previous">
           <img src="{% static 'landing/img/VectorPagL.svg' %}" alt="Назад">
         </a>
       </li>
@@ -21,7 +21,9 @@
 
     <!-- первая страница -->
     {% if page_obj.number > 2 %}
-      <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+      <li class="page-item">
+        <a class="page-link" href="?page=1{% if q %}&q={{ q|urlencode }}{% endif %}">1</a>
+      </li>
       <li class="page-item disabled"><span class="page-link">...</span></li>
     {% endif %}
 
@@ -31,7 +33,9 @@
         {% if i == page_obj.number %}
           <li class="page-item active"><span class="page-link">{{ i }}</span></li>
         {% else %}
-          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ i }}{% if q %}&q={{ q|urlencode }}{% endif %}">{{ i }}</a>
+          </li>
         {% endif %}
       {% endif %}
     {% endfor %}
@@ -39,13 +43,17 @@
     <!-- последняя страница -->
     {% if page_obj.number < page_obj.paginator.num_pages|add:"-1" %}
       <li class="page-item disabled"><span class="page-link">...</span></li>
-      <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if q %}&q={{ q|urlencode }}{% endif %}">
+          {{ page_obj.paginator.num_pages }}
+        </a>
+      </li>
     {% endif %}
 
     <!-- → вперёд -->
     {% if page_obj.has_next %}
       <li class="page-item">
-        <a class="page-link arrow" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <a class="page-link arrow" href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q|urlencode }}{% endif %}" aria-label="Next">
           <img src="{% static 'landing/img/VectorPag.svg' %}" alt="Вперёд">
         </a>
       </li>

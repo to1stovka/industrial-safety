@@ -10,18 +10,55 @@
 {% endblock %}
 
 {% block content %}
- <section class="container py-3">
 <section class="exam">
   <div class="container">
     <h1 class="exam__title">
       Сдача профессионального экзамена в рамках независимой оценки квалификаций по Профессиональному стандарту «Специалист в сфере промышленной безопасности»
     </h1>
     <p class="exam__subtitle">
-      Приказ Министерства труда и социальной защиты Российской Федерации от 16.12.2020 № 911н
+      Приказ Министерства труда и социальной защиты Российской Федерации от 14 апреля 2025 года №226н
     </p>
 </div>
+</section>
 
-  {% include "landing/partials/qualifications_table.html" %}
+ <section class="container">
+  <!-- заявка на подготовку к НОК -->
+  <div class="exam-cta card border-0 shadow-sm rounded-4 my-4">
+    <div class="card-body p-4">
+      <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+        <div class="exam-cta__text">
+          <h3 class="exam-cta__title mb-2">Подготовка к НОК</h3>
+          <div class="text-muted">
+            Поможем подобрать квалификацию, сориентируем по срокам и списку документов.
+          </div>
+          <div class="exam-cta__bullets mt-3">
+            <div class="exam-cta__bullet"><span class="exam-cta__check"></span> Подбор квалификации</div>
+            <div class="exam-cta__bullet"><span class="exam-cta__check"></span> Проверка документов</div>
+            <div class="exam-cta__bullet"><span class="exam-cta__check"></span> Консультация по экзамену</div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row gap-2">
+          <button
+            class="btn-orange"
+            data-bs-toggle="modal"
+            data-bs-target="#nocChoiceModal"
+            type="button"
+          >
+            Оставить заявку
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% include "landing/partials/noc_choice_modal.html" %}
+{% include "landing/partials/noc_exam_modal.html" %}
+{% include "landing/partials/noc_upload_modal.html" %}
+
+{% include "landing/partials/qualifications_table.html" %}
+</section>
 
  <section class="container py-3">
     <div class="exam__docs">
@@ -42,6 +79,494 @@
 
 {% endblock %}
 
+
 {% block extra_js %}
 {{ block.super }}
+
+<script>
+/**
+ * NOC: Create/Print modal (#nocExamModal)
+ * - conditional blocks (company реквизиты, ЭДО сервис)
+ * - validation errors highlight (AJAX)
+ * - on success: downloads .docx (blob) and shows success step
+ */
+(function () {
+  const modalEl = document.getElementById('nocExamModal');
+  const form = document.getElementById('nocExamForm');
+  const formStep = document.getElementById('nocFormStep');
+  const successStep = document.getElementById('nocSuccessStep');
+
+  if (!modalEl || !form || !formStep || !successStep) return;
+
+  const companyOnlyBlocks = modalEl.querySelectorAll('[data-company-only]');
+  const edoServiceWrap = modalEl.querySelector('[data-edo-service]');
+
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return '';
+  }
+
+  function getRadioValue(name) {
+    const el = modalEl.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : null;
+  }
+
+  function clearErrors() {
+    form.querySelectorAll('.noc-field.error').forEach((el) => el.classList.remove('error'));
+    form.querySelectorAll('[data-error-for]').forEach((el) => (el.textContent = ''));
+  }
+
+  function setErrors(errors) {
+    Object.entries(errors || {}).forEach(([field, msg]) => {
+      const errEl = form.querySelector(`[data-error-for="${field}"]`);
+      const fieldWrap = form.querySelector(`.noc-field[data-field="${field}"]`);
+      if (fieldWrap) fieldWrap.classList.add('error');
+      if (errEl) errEl.textContent = String(msg || '');
+    });
+  }
+
+  function scrollToFirstError() {
+    const first = form.querySelector('.noc-field.error');
+    if (!first) return;
+
+    const body = modalEl.querySelector('.noc-modal__body') || modalEl.querySelector('.modal-body');
+    if (!body) {
+      first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    const top = first.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop;
+    body.scrollTo({ top: Math.max(0, top - 16), behavior: 'smooth' });
+  }
+
+  function setHidden(node, hidden) {
+    if (!node) return;
+    node.classList.toggle('d-none', hidden);
+
+    // чтобы hidden-блоки не ломали required-валидацию
+    node.querySelectorAll('input, textarea, select').forEach((i) => {
+      if (hidden) {
+        i.dataset._required = i.required ? '1' : '0';
+        i.required = false;
+      } else if (i.dataset._required === '1') {
+        i.required = true;
+      }
+    });
+  }
+
+  function syncConditionalUI() {
+    const applicantType = getRadioValue('applicant_type');
+    const edoEnabled = getRadioValue('edo_enabled');
+
+    const isCompany = applicantType === 'company';
+    companyOnlyBlocks.forEach((b) => setHidden(b, !isCompany));
+
+    const edoOn = edoEnabled === '1';
+    setHidden(edoServiceWrap, !edoOn);
+  }
+
+  function showSuccess() {
+    formStep.classList.add('d-none');
+    successStep.classList.remove('d-none');
+  }
+
+  function showForm() {
+    successStep.classList.add('d-none');
+    formStep.classList.remove('d-none');
+  }
+
+  function getFilenameFromHeaders(resp) {
+    const cd = resp.headers.get('content-disposition') || resp.headers.get('Content-Disposition') || '';
+    // filename*=UTF-8''... OR filename="..."
+    const m = cd.match(/filename\*=UTF-8''([^;]+)|filename="([^"]+)"/i);
+    const raw = (m && (m[1] || m[2])) ? (m[1] || m[2]) : '';
+    if (!raw) return 'zayavka-nok.docx';
+    try {
+      return decodeURIComponent(raw.replace(/["']/g, '').trim());
+    } catch {
+      return raw.replace(/["']/g, '').trim();
+    }
+  }
+
+  async function downloadBlob(resp) {
+    const blob = await resp.blob();
+    const filename = getFilenameFromHeaders(resp);
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(link.href);
+  }
+
+  // lifecycle
+  modalEl.addEventListener('shown.bs.modal', () => {
+    clearErrors();
+    showForm();
+    syncConditionalUI();
+  });
+
+  modalEl.addEventListener('hidden.bs.modal', () => {
+    clearErrors();
+    showForm();
+    form.reset();
+    syncConditionalUI();
+  });
+
+  // clear per-field error + conditional ui
+  modalEl.addEventListener('change', (e) => {
+    const t = e.target;
+    if (!t) return;
+
+    const wrap = t.closest && t.closest('.noc-field');
+    if (wrap && wrap.classList.contains('error')) {
+      wrap.classList.remove('error');
+      const fieldKey = wrap.getAttribute('data-field');
+      if (fieldKey) {
+        const errEl = form.querySelector(`[data-error-for="${fieldKey}"]`);
+        if (errEl) errEl.textContent = '';
+      }
+    }
+
+    if (t.name === 'applicant_type' || t.name === 'edo_enabled') {
+      syncConditionalUI();
+    }
+  });
+
+  // submit: AJAX + errors highlight, success => docx download + success step
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors();
+    syncConditionalUI();
+
+    const url = form.getAttribute('action');
+    if (!url) return;
+
+    const fd = new FormData(form);
+
+    try {
+      const resp = await fetch(url, {
+        method: 'POST',
+        body: fd,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRFToken': getCookie('csrftoken') || '',
+        },
+      });
+
+      if (!resp.ok) {
+        const ct = (resp.headers.get('content-type') || '').toLowerCase();
+        if (ct.includes('application/json')) {
+          const data = await resp.json().catch(() => ({}));
+          setErrors(data.errors || data || {});
+          scrollToFirstError();
+        } else {
+          console.error('Unexpected error response:', await resp.text());
+        }
+        return;
+      }
+
+      // успех => файл
+      await downloadBlob(resp);
+
+      showSuccess();
+      form.reset();
+      syncConditionalUI();
+    } catch (err) {
+      console.error(err);
+    }
+  });
+})();
+</script>
+
+
+<script>
+/**
+ * NOC Directions (search + selected block) inside #nocExamModal
+ * - shows selected directions separately
+ * - search filters only unselected
+ */
+(function () {
+  const modalEl = document.getElementById('nocExamModal');
+  if (!modalEl) return;
+
+  function normalize(s) {
+    return (s || '').toString().trim().toLowerCase().replace(/\s+/g, ' ');
+  }
+
+  function init() {
+    const input = modalEl.querySelector('#nocDirectionsSearch');
+    const counter = modalEl.querySelector('.noc-directions__counter');
+    const hintEl = modalEl.querySelector('[data-directions-hint]');
+    const emptyEl = modalEl.querySelector('#nocDirectionsEmpty');
+
+    const listEl = modalEl.querySelector('.noc-directions');
+    const items = Array.from(modalEl.querySelectorAll('[data-direction-item]'));
+
+    const selectedWrap = modalEl.querySelector('[data-selected-wrap]');
+    const selectedList = modalEl.querySelector('[data-selected-list]');
+    const selectedCount = modalEl.querySelector('[data-selected-count]');
+    const selectedClear = modalEl.querySelector('[data-selected-clear]');
+
+    if (!input || !listEl || items.length === 0) return false;
+
+    function getCheckbox(el) {
+      return el.querySelector('input[type="checkbox"][name="directions"]');
+    }
+
+    function isChecked(el) {
+      const cb = getCheckbox(el);
+      return !!cb && cb.checked;
+    }
+
+    function updateSelectedBlock() {
+      let count = 0;
+
+      items.forEach((el) => {
+        if (isChecked(el)) {
+          count++;
+          if (selectedList && el.parentElement !== selectedList) {
+            selectedList.appendChild(el);
+          }
+        } else {
+          if (el.parentElement !== listEl) {
+            listEl.appendChild(el);
+          }
+        }
+      });
+
+      if (selectedCount) selectedCount.textContent = String(count);
+      if (selectedWrap) selectedWrap.classList.toggle('d-none', count === 0);
+    }
+
+    function setAllHiddenExceptSelected() {
+      items.forEach((el) => {
+        if (!isChecked(el)) el.classList.add('d-none');
+      });
+
+      if (counter) counter.textContent = '';
+      if (hintEl) hintEl.classList.remove('d-none');
+      if (emptyEl) emptyEl.classList.add('d-none');
+    }
+
+    function applyFilter() {
+      const q = normalize(input.value);
+      updateSelectedBlock();
+
+      if (!q) {
+        setAllHiddenExceptSelected();
+        return;
+      }
+
+      let visible = 0;
+
+      items.forEach((el) => {
+        if (isChecked(el)) return;
+
+        const hay = normalize(el.getAttribute('data-search') || el.textContent || '');
+        const ok = hay.includes(q);
+        el.classList.toggle('d-none', !ok);
+        if (ok) visible++;
+      });
+
+      if (hintEl) hintEl.classList.add('d-none');
+      if (counter) counter.textContent = `Найдено: ${visible}`;
+      if (emptyEl) emptyEl.classList.toggle('d-none', visible !== 0);
+    }
+
+    modalEl.addEventListener('change', (e) => {
+      const t = e.target;
+      if (!t) return;
+      if (t.matches('input[type="checkbox"][name="directions"]')) {
+        applyFilter();
+      }
+    });
+
+    if (selectedClear) {
+      selectedClear.addEventListener('click', () => {
+        items.forEach((el) => {
+          const cb = getCheckbox(el);
+          if (cb) cb.checked = false;
+        });
+        applyFilter();
+      });
+    }
+
+    let timer = null;
+    input.addEventListener('input', () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(applyFilter, 70);
+    });
+
+    modalEl.addEventListener('shown.bs.modal', () => {
+      input.value = '';
+      applyFilter();
+    });
+
+    applyFilter();
+    return true;
+  }
+
+  if (init()) return;
+
+  const obs = new MutationObserver(() => {
+    if (init()) obs.disconnect();
+  });
+  obs.observe(modalEl, { childList: true, subtree: true });
+})();
+</script>
+
+
+<script>
+/**
+ * Choice modal router:
+ * #nocChoiceModal has buttons with data-noc-open="create|upload"
+ * - closes choice modal
+ * - opens selected modal after hidden
+ */
+(function () {
+  const choiceEl = document.getElementById('nocChoiceModal');
+  const createEl = document.getElementById('nocExamModal');
+  const uploadEl = document.getElementById('nocUploadModal');
+  if (!choiceEl || !createEl || !uploadEl) return;
+
+  const choice = bootstrap.Modal.getOrCreateInstance(choiceEl);
+  const create = bootstrap.Modal.getOrCreateInstance(createEl);
+  const upload = bootstrap.Modal.getOrCreateInstance(uploadEl);
+
+  choiceEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-noc-open]');
+    if (!btn) return;
+
+    const target = btn.getAttribute('data-noc-open');
+    choice.hide();
+
+    const onHidden = () => {
+      choiceEl.removeEventListener('hidden.bs.modal', onHidden);
+      if (target === 'create') create.show();
+      if (target === 'upload') upload.show();
+    };
+
+    choiceEl.addEventListener('hidden.bs.modal', onHidden);
+  });
+})();
+</script>
+
+
+<script>
+/**
+ * Upload signed request modal (#nocUploadModal)
+ * - AJAX submit to save in UnifiedRequest (noc_signed)
+ * - errors highlight
+ * - success step
+ */
+(function () {
+  const modalEl = document.getElementById('nocUploadModal');
+  const form = document.getElementById('nocUploadForm');
+  const formStep = document.getElementById('nocUploadStep');
+  const successStep = document.getElementById('nocUploadSuccess');
+
+  if (!modalEl || !form || !formStep || !successStep) return;
+
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return '';
+  }
+
+  function clearErrors() {
+    form.querySelectorAll('.noc-field.error').forEach((el) => el.classList.remove('error'));
+    form.querySelectorAll('[data-error-for]').forEach((el) => (el.textContent = ''));
+  }
+
+  function setErrors(errors) {
+    Object.entries(errors || {}).forEach(([field, msg]) => {
+      const errEl = form.querySelector(`[data-error-for="${field}"]`);
+      const fieldWrap = form.querySelector(`.noc-field[data-field="${field}"]`);
+      if (fieldWrap) fieldWrap.classList.add('error');
+      if (errEl) errEl.textContent = String(msg || '');
+    });
+  }
+
+  function showSuccess() {
+    formStep.classList.add('d-none');
+    successStep.classList.remove('d-none');
+  }
+
+  function showForm() {
+    successStep.classList.add('d-none');
+    formStep.classList.remove('d-none');
+  }
+
+  modalEl.addEventListener('shown.bs.modal', () => {
+    clearErrors();
+    showForm();
+  });
+
+  modalEl.addEventListener('hidden.bs.modal', () => {
+    clearErrors();
+    showForm();
+    form.reset();
+  });
+
+  modalEl.addEventListener('change', (e) => {
+    const t = e.target;
+    if (!t) return;
+
+    const wrap = t.closest && t.closest('.noc-field');
+    if (wrap && wrap.classList.contains('error')) {
+      wrap.classList.remove('error');
+      const fieldKey = wrap.getAttribute('data-field');
+      if (fieldKey) {
+        const errEl = form.querySelector(`[data-error-for="${fieldKey}"]`);
+        if (errEl) errEl.textContent = '';
+      }
+    }
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    const url = form.getAttribute('action');
+    if (!url) return;
+
+    const fd = new FormData(form);
+
+    try {
+      const resp = await fetch(url, {
+        method: 'POST',
+        body: fd,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRFToken': getCookie('csrftoken') || '',
+        },
+      });
+
+      const data = await resp.json().catch(() => ({}));
+
+      if (!resp.ok) {
+        setErrors(data.errors || data || {});
+        return;
+      }
+
+      if (data && data.errors) {
+        setErrors(data.errors);
+        return;
+      }
+
+      showSuccess();
+      form.reset();
+    } catch (err) {
+      console.error(err);
+    }
+  });
+})();
+</script>
+
 {% endblock %}
+

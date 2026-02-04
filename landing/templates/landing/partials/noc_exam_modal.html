@@ -1,0 +1,319 @@
+{% load static %}
+
+<div class="modal fade noc-modal" id="nocExamModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="noc-modal__header">
+        <div class="noc-modal__titlewrap">
+          <h5 class="noc-title">Заявка на подготовку к НОК</h5>
+          <p class="noc-subtitle">Заполните данные — мы свяжемся и поможем с подготовкой.</p>
+        </div>
+
+        <button type="button" class="btn-close noc-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+
+      <div id="nocFormStep">
+        <form id="nocExamForm" method="post" enctype="multipart/form-data" action="{% url 'noc_exam_print' %}" novalidate>
+          {% csrf_token %}
+
+          <div class="modal-body noc-modal__body">
+
+            <!-- 1. Тип заявителя -->
+            <section class="noc-section" aria-labelledby="noc-sec-applicant">
+              <div class="noc-section__head">
+                <h6 class="noc-section__title" id="noc-sec-applicant">Кто подает заявку</h6>
+                <div class="noc-section__hint">Выбор влияет на набор полей (реквизиты для предприятия).</div>
+              </div>
+
+              <div class="noc-field mb-3" data-field="applicant_type">
+                <div class="noc-choice-row" role="radiogroup" aria-label="Тип заявителя">
+                  <label class="noc-choice-pill">
+                    <input type="radio" name="applicant_type" value="company">
+                    <span>Предприятие-плательщик</span>
+                  </label>
+
+                  <label class="noc-choice-pill">
+                    <input type="radio" name="applicant_type" value="person">
+                    <span>Частное лицо</span>
+                  </label>
+                </div>
+                <div class="noc-error" data-error-for="applicant_type"></div>
+              </div>
+
+              <div class="noc-grid">
+                <div class="noc-field">
+                  <label for="noc_applicant_name">Заявитель (наименование / ФИО)</label>
+                  <input id="noc_applicant_name" type="text" name="applicant_name" placeholder="Например: ООО «…» или Иванов Иван Иванович">
+                </div>
+
+                <div class="noc-field">
+                  <label for="noc_contacts">Телефон / e-mail</label>
+                  <input id="noc_contacts" type="text" name="contacts" placeholder="+7…  email…">
+                </div>
+
+                <div class="noc-field">
+                  <label for="noc_legal_address">Юридический адрес</label>
+                  <input id="noc_legal_address" type="text" name="legal_address" placeholder="Адрес">
+                </div>
+
+                <div class="noc-field">
+                  <label for="noc_postal_address">Почтовый адрес</label>
+                  <input id="noc_postal_address" type="text" name="postal_address" placeholder="Адрес">
+                </div>
+              </div>
+            </section>
+
+            <!-- 2. ЭДО -->
+            <section class="noc-section" aria-labelledby="noc-sec-edo">
+              <div class="noc-section__head">
+                <h6 class="noc-section__title" id="noc-sec-edo">Электронный документооборот</h6>
+              </div>
+
+              <div class="noc-grid noc-grid--2">
+                <div class="noc-field">
+                  <label>ЭДО</label>
+                  <div class="noc-choice-row" role="radiogroup" aria-label="ЭДО">
+                    <label class="noc-choice-pill">
+                      <input type="radio" name="edo_enabled" value="1">
+                      <span>Да</span>
+                    </label>
+                    <label class="noc-choice-pill">
+                      <input type="radio" name="edo_enabled" value="0" checked>
+                      <span>Нет</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="noc-field" data-edo-service>
+                  <label for="noc_edo_service">Сервис ЭДО</label>
+                  <input id="noc_edo_service" type="text" name="edo_service">
+                </div>
+              </div>
+            </section>
+
+            <!-- 3. Банковские реквизиты (только для компании) -->
+            <section class="noc-section" data-company-only aria-labelledby="noc-sec-bank">
+              <div class="noc-section__head">
+                <h6 class="noc-section__title" id="noc-sec-bank">Банковские реквизиты</h6>
+                <div class="noc-section__hint">Заполняется, если заявитель — предприятие.</div>
+              </div>
+
+              <div class="noc-grid noc-grid--3">
+                <div class="noc-field">
+                  <label for="noc_rs">р/с</label>
+                  <input id="noc_rs" type="text" name="rs">
+                </div>
+                <div class="noc-field">
+                  <label for="noc_bank">Банк</label>
+                  <input id="noc_bank" type="text" name="bank">
+                </div>
+                <div class="noc-field">
+                  <label for="noc_ks">к/с</label>
+                  <input id="noc_ks" type="text" name="ks">
+                </div>
+
+                <div class="noc-field">
+                  <label for="noc_inn">ИНН</label>
+                  <input id="noc_inn" type="text" name="inn">
+                </div>
+                <div class="noc-field">
+                  <label for="noc_kpp">КПП</label>
+                  <input id="noc_kpp" type="text" name="kpp">
+                </div>
+                <div class="noc-field">
+                  <label for="noc_bik">БИК</label>
+                  <input id="noc_bik" type="text" name="bik">
+                </div>
+
+                <div class="noc-field">
+                  <label for="noc_okpo">ОКПО</label>
+                  <input id="noc_okpo" type="text" name="okpo">
+                </div>
+                <div class="noc-field">
+                  <label for="noc_okved">ОКВЭД</label>
+                  <input id="noc_okved" type="text" name="okved">
+                </div>
+              </div>
+            </section>
+
+            <!-- 4. Соискатель -->
+            <section class="noc-section" aria-labelledby="noc-sec-candidate">
+              <div class="noc-section__head">
+                <h6 class="noc-section__title" id="noc-sec-candidate">Данные соискателя</h6>
+                <div class="noc-section__hint">Обязательные поля отмечены.</div>
+              </div>
+
+              <div class="noc-grid">
+                <div class="noc-field" data-field="candidate_fio">
+                  <label for="noc_candidate_fio">Фамилия Имя Отчество <span class="noc-req">*</span></label>
+                  <input id="noc_candidate_fio" type="text" name="candidate_fio" required>
+                  <div class="noc-error" data-error-for="candidate_fio"></div>
+                </div>
+
+                <div class="noc-field" data-field="birth_date">
+                  <label for="noc_birth_date">Дата рождения</label>
+                  <input id="noc_birth_date" type="date" name="birth_date">
+                  <div class="noc-error" data-error-for="birth_date"></div>
+                </div>
+
+                <div class="noc-field">
+                  <label for="noc_position">Должность</label>
+                  <input id="noc_position" type="text" name="position">
+                </div>
+
+                <div class="noc-field">
+                  <label for="noc_residence">Место жительства</label>
+                  <input id="noc_residence" type="text" name="residence">
+                </div>
+
+                <div class="noc-field" data-field="candidate_phone">
+                  <label for="noc_candidate_phone">Телефон <span class="noc-req">*</span></label>
+                  <input id="noc_candidate_phone" type="tel" name="candidate_phone" required>
+                  <div class="noc-error" data-error-for="candidate_phone"></div>
+                </div>
+
+                <div class="noc-field" data-field="candidate_email">
+                  <label for="noc_candidate_email">E-mail <span class="noc-req">*</span></label>
+                  <input id="noc_candidate_email" type="email" name="candidate_email" required>
+                  <div class="noc-error" data-error-for="candidate_email"></div>
+                </div>
+              </div>
+
+              <div class="noc-field noc-field--area">
+                <label for="noc_passport">Паспортные данные (№, серия, где/когда/кем выдан)</label>
+                <textarea id="noc_passport" name="passport_data" placeholder="Введите паспортные данные"></textarea>
+              </div>
+            </section>
+
+            <!-- 5. Направления -->
+            <section class="noc-section" aria-labelledby="noc-sec-directions">
+              <div class="noc-section__head">
+                <h6 class="noc-section__title" id="noc-sec-directions">Направления подготовки</h6>
+                <div class="noc-section__hint">Можно выбрать несколько.</div>
+              </div>
+              <!-- Поиск -->
+              <div class="noc-directions__search">
+                <div class="noc-field noc-field--search">
+                  <label for="nocDirectionsSearch">Поиск по направлениям</label>
+                  <input
+                    id="nocDirectionsSearch"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Начните вводить: код (71 / 40.20900.185) или название…"
+                  >
+                </div>
+
+                <div class="noc-directions__counter" aria-live="polite"></div>
+              </div>
+<div class="noc-directions__hint" data-directions-hint>
+  Начните вводить код или название — список появится автоматически.
+</div>
+
+<div class="noc-directions__empty d-none" id="nocDirectionsEmpty">
+  Ничего не найдено. Попробуйте другой запрос.
+</div>
+<div class="noc-selected d-none" data-selected-wrap>
+  <div class="noc-selected__head">
+    <div class="noc-selected__title">Выбрано: <span data-selected-count>0</span></div>
+
+    <button type="button" class="noc-selected__clear" data-selected-clear>
+      Очистить
+    </button>
+  </div>
+
+  <div class="noc-selected__list" data-selected-list></div>
+</div>
+
+              <div class="noc-directions">
+              {% for d in directions %}
+                <label
+                  class="noc-check"
+                  data-direction-item
+                  data-search="{{ d.title|lower }} {{ d.code|default:''|lower }} {{ d.track|default:''|lower }} {{ d.category|default:'' }}"
+                >
+                  <input type="checkbox" name="directions" value="{{ d.id }}">
+
+                  <span class="noc-check__content">
+                    <span class="noc-check__title">{{ d.title }}</span>
+
+                    <span class="noc-check__meta">
+                      {% if d.kind %}
+                        <span class="noc-chip noc-chip--muted">
+                          {% if d.kind == "expert" %}Эксперт{% else %}Аудитор{% endif %}
+                        </span>
+                      {% endif %}
+
+                      {% if d.track %}
+                        <span class="noc-chip">{{ d.get_track_display }}</span>
+                      {% endif %}
+
+                      {% if d.category %}
+                        <span class="noc-chip">кат. {{ d.category }}</span>
+                      {% endif %}
+
+                      {% if d.code %}
+                        <span class="noc-chip noc-chip--code">код {{ d.code }}</span>
+                      {% endif %}
+                    </span>
+                  </span>
+                </label>
+              {% empty %}
+                <div class="text-muted">Пока нет направлений. Добавьте в админке.</div>
+              {% endfor %}
+            </div>
+
+            </section>
+
+            <!-- 6. Контактное лицо -->
+            <section class="noc-section" aria-labelledby="noc-sec-contact">
+              <div class="noc-section__head">
+                <h6 class="noc-section__title" id="noc-sec-contact">Контактное лицо и комментарий</h6>
+              </div>
+
+              <div class="noc-grid">
+                <div class="noc-field">
+                  <label for="noc_contact_fio">Контактное лицо (ФИО)</label>
+                  <input id="noc_contact_fio" type="text" name="contact_fio">
+                </div>
+                <div class="noc-field">
+                  <label for="noc_contact_phone">Контактное лицо (тел.)</label>
+                  <input id="noc_contact_phone" type="text" name="contact_phone">
+                </div>
+                <div class="noc-field">
+                  <label for="noc_contact_email">Контактное лицо (e-mail)</label>
+                  <input id="noc_contact_email" type="email" name="contact_email">
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+
+          <div class="noc-modal__footer">
+            <button type="submit" class="noc-submit">Сгенерировать заявку</button>
+          </div>
+
+{% comment %} <div class="noc-modal__footer">
+  <div class="noc-footer__note">
+    Нажимая «Отправить», вы подтверждаете согласие на обработку персональных данных
+    и принимаете {% chunk "personal_data_policy" "Политику обработки персональных данных" %}.
+  </div>
+  <button type="submit" class="noc-submit">Сгенерировать заявку</button>
+</div> {% endcomment %}
+
+
+
+        </form>
+      </div>
+
+      <!-- Success step -->
+      <div class="noc-success d-none" id="nocSuccessStep">
+        <h5>Заявка отправлена</h5>
+        <img src="{% static 'landing/img/check.svg' %}" class="success-icon" alt="✓">
+      </div>
+
+    </div>
+  </div>
+</div>

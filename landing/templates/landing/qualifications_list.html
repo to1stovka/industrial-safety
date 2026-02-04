@@ -10,9 +10,49 @@
 
 {% block content %}
 <section class="container py-5">
-  <h4 class="nok-table-title mb-4">
-    Подготовка специалистов по следующим профессиональным квалификациям:
-  </h4>
+<div class="qual-toolbar d-flex flex-wrap gap-3 align-items-end justify-content-between mb-4">
+  <div>
+    <h4 class="nok-table-title mb-1">
+      Подготовка специалистов по следующим профессиональным квалификациям:
+    </h4>
+
+    {% if q %}
+      <div class="text-muted small">
+        Найдено: <strong>{{ total }}</strong> по запросу «<strong>{{ q }}</strong>»
+      </div>
+    {% else %}
+      <div class="text-muted small">
+        Всего квалификаций: <strong>{{ total }}</strong>
+      </div>
+    {% endif %}
+  </div>
+
+  <form method="get" class="qual-search">
+    <div class="qual-search__inner shadow-sm">
+      <i class="bi bi-search qual-search__icon"></i>
+
+      <input
+        type="text"
+        name="q"
+        value="{{ q }}"
+        class="qual-search__input"
+        placeholder="Поиск по коду или названию…"
+        aria-label="Поиск по квалификациям"
+      />
+
+      {% if q %}
+        <a class="qual-search__clear" href="?" title="Сбросить">
+          <i class="bi bi-x-lg"></i>
+        </a>
+      {% endif %}
+
+      <button type="submit" class="qual-search__btn">
+        Найти
+      </button>
+    </div>
+  </form>
+</div>
+
 
   <table class="nok-table">
     <thead>
@@ -22,17 +62,25 @@
       </tr>
     </thead>
     <tbody>
-      {% for q in page_obj %}
+      {% for qitem in page_obj %}
         <tr class="{% cycle '' 'gray' %}">
-          <td>{{ q.code }}</td>
-          <td>{{ q.title }}</td>
+          <td class="qual-code">{{ qitem.code }}</td>
+          <td>{{ qitem.title }}</td>
         </tr>
       {% empty %}
-        <tr><td colspan="2" class="text-center text-muted">Нет данных</td></tr>
+        <tr>
+          <td colspan="2" class="text-center text-muted py-4">
+            {% if q %}
+              Ничего не найдено по запросу «<strong>{{ q }}</strong>».
+            {% else %}
+              Нет данных
+            {% endif %}
+          </td>
+        </tr>
       {% endfor %}
     </tbody>
   </table>
 
- {% include "landing/partials/pagination.html" %}
+  {% include "landing/partials/pagination.html" %}
 </section>
 {% endblock %}

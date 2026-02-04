@@ -7,6 +7,7 @@ from landing.models import (CourseDirection,
                             Qualification,
                             UnifiedRequest,
                             ThreedGalleryImage,
+                            NocPreparationDirection,
                             )
 from django.utils.html import format_html
 from django.utils.html import mark_safe
@@ -69,6 +70,7 @@ class UnifiedRequestAdmin(admin.ModelAdmin):
             "noc": "#16a34a",
             "prep_expert": "#6f58f0",
             "prep_specialist": "#2563eb",
+            "noc_signed": "#f02222"
         }
 
         labels = {
@@ -76,6 +78,7 @@ class UnifiedRequestAdmin(admin.ModelAdmin):
             "noc": "Универсальная заявка",
             "prep_expert": "Подготовка эксперта",
             "prep_specialist": "Подготовка специалиста",
+            "noc_signed": "Подписанная заявка НОК"
         }
 
         color = colors.get(obj.request_type, "black")
@@ -101,3 +104,11 @@ class ThreedGalleryImageAdmin(admin.ModelAdmin):
         return "Нет изображения"
 
     preview.short_description = "Превью"
+    
+@admin.register(NocPreparationDirection)
+class NocPreparationDirectionAdmin(admin.ModelAdmin):
+    list_display = ("title", "kind", "track", "category", "code", "is_active", "created_at")
+    list_filter = ("kind", "is_active", "track", "category")
+    search_fields = ("title", "code")
+    ordering = ("kind", "id")
+

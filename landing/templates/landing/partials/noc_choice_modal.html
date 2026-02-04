@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="modal fade noc-modal" id="nocChoiceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 760px;">
+    <div class="modal-content">
+
+      <div class="noc-modal__header">
+        <div class="noc-modal__titlewrap">
+          <h5 class="noc-title">Заявка на подготовку к НОК</h5>
+          <p class="noc-subtitle">
+            Выберите вариант: отправить уже подписанную заявку или создать новую.
+          </p>
+        </div>
+        <button type="button" class="btn-close noc-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+
+      <div class="modal-body noc-modal__body">
+        <div class="card border-0 rounded-4 p-3 mb-3">
+          <div class="fw-semibold mb-1">У вас уже есть подписанная заявка?</div>
+          <div class="text-muted mb-3">
+            Прикрепите файл подписанной заявки и добавьте комментарий (если нужно).
+          </div>
+          <button type="button" class="btn btn-outline-secondary rounded-4" data-noc-open="upload">
+            Отправить подписанную
+          </button>
+        </div>
+
+        <div class="card border-0 rounded-4 p-3">
+          <div class="fw-semibold mb-1">Нужно создать заявку сейчас?</div>
+          <div class="text-muted mb-3">
+            Заполните форму — мы сформируем документ для печати и подписи.
+          </div>
+          <button type="button" class="btn-orange" data-noc-open="create">
+            Создать заявку
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

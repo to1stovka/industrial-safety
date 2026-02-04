@@ -16,7 +16,9 @@ from landing.views import (
     preparation,
     safety,
     prep_request,
-    threed
+    threed,
+    noc_exam_print,
+    noc_exam_upload,
     )
 
 urlpatterns = [
@@ -37,4 +39,7 @@ urlpatterns = [
     path("safety/", safety, name="safety"),
     path("threed/", threed, name="threed"),
     path("prep-request/", prep_request, name="prep_request"),
+
+    path("noc-exam-print/", noc_exam_print, name="noc_exam_print"),
+    path("noc-exam-upload/", noc_exam_upload, name="noc_exam_upload"),
 ]

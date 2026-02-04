@@ -1,0 +1,51 @@
+{% load static %}
+{% load chunk_tags %}
+
+<div class="modal fade noc-modal" id="nocUploadModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 760px;">
+    <div class="modal-content">
+
+      <div class="noc-modal__header">
+        <div class="noc-modal__titlewrap">
+          <h5 class="noc-title">Отправить подписанную заявку</h5>
+          <p class="noc-subtitle">Прикрепите файл и оставьте комментарий (по желанию).</p>
+        </div>
+        <button type="button" class="btn-close noc-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+
+      <div id="nocUploadStep">
+        <form id="nocUploadForm" method="post" enctype="multipart/form-data" action="{% url 'noc_exam_upload' %}" novalidate>
+          {% csrf_token %}
+
+          <div class="modal-body noc-modal__body">
+            <div class="noc-field mb-3" data-field="file">
+              <label class="form-label">Файл подписанной заявки <span class="noc-req">*</span></label>
+              <input type="file" name="file" required>
+              <div class="noc-error" data-error-for="file"></div>
+            </div>
+
+            <div class="noc-field noc-field--area">
+              <label class="form-label">Комментарий</label>
+              <textarea name="comment" placeholder="Если нужно уточнить детали"></textarea>
+            </div>
+          </div>
+
+<div class="noc-modal__footer">
+  <div class="noc-footer__note">
+    Нажимая «Отправить», вы подтверждаете согласие на обработку персональных данных
+    и принимаете {% chunk "personal_data_policy" "Политику обработки персональных данных" %}.
+  </div>
+  <button type="submit" class="noc-submit">Отправить</button>
+</div>
+
+        </form>
+      </div>
+
+      <div class="noc-success d-none" id="nocUploadSuccess">
+        <h5>Файл отправлен</h5>
+        <img src="{% static 'landing/img/check.svg' %}" class="success-icon" alt="✓">
+      </div>
+
+    </div>
+  </div>
+</div>
