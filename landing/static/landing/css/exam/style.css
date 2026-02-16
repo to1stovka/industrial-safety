@@ -1,18 +1,4 @@
 @charset "UTF-8";
-.noc-modal {
-  /* Header */
-  /* Body scroll */
-  /* Footer sticky */
-  /* Sections */
-  /* Grids */
-  /* Field */
-  /* Choice pills */
-  /* Directions */
-  /* File */
-  /* Errors */
-  /* Submit */
-  /* Success */
-}
 .noc-modal .modal-dialog {
   max-width: 1100px;
   width: calc(100% - 28px);
@@ -23,6 +9,9 @@
   border: none;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.14);
   overflow: hidden;
+}
+.noc-modal {
+  /* Header */
 }
 .noc-modal .noc-modal__header {
   position: relative;
@@ -53,10 +42,16 @@
 .noc-modal .noc-close:hover {
   opacity: 1;
 }
+.noc-modal {
+  /* Body scroll */
+}
 .noc-modal .noc-modal__body {
   padding: 14px 18px 18px;
   max-height: min(72vh, 760px);
   overflow: auto;
+}
+.noc-modal {
+  /* Footer sticky */
 }
 .noc-modal .noc-modal__footer {
   display: grid;
@@ -71,6 +66,9 @@
 .noc-modal .noc-footer__note {
   font-size: 0.92rem;
   color: rgba(15, 23, 42, 0.65);
+}
+.noc-modal {
+  /* Sections */
 }
 .noc-modal .noc-section {
   background: rgba(255, 255, 255, 0.7);
@@ -101,6 +99,9 @@
   color: #af4100;
   font-weight: 800;
 }
+.noc-modal {
+  /* Grids */
+}
 .noc-modal .noc-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -111,6 +112,9 @@
 }
 .noc-modal .noc-grid--3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.noc-modal {
+  /* Field */
 }
 .noc-modal .noc-field {
   background: #fff;
@@ -152,6 +156,9 @@
   min-height: 92px;
   line-height: 1.4;
 }
+.noc-modal {
+  /* Choice pills */
+}
 .noc-modal .noc-choice-row {
   display: flex;
   gap: 10px;
@@ -179,6 +186,9 @@
   transform: translateY(-1px);
   border-color: rgba(175, 65, 0, 0.35);
 }
+.noc-modal {
+  /* Directions */
+}
 .noc-modal .noc-directions {
   display: grid;
   gap: 10px;
@@ -200,12 +210,18 @@
   font-weight: 600;
   line-height: 1.35;
 }
+.noc-modal {
+  /* File */
+}
 .noc-modal .noc-file input[type=file] {
   width: 100%;
   background: #fff;
   border-radius: 14px;
   border: 1px dashed rgba(15, 23, 42, 0.18);
   padding: 12px;
+}
+.noc-modal {
+  /* Errors */
 }
 .noc-modal .noc-field.error {
   border-color: #af4100 !important;
@@ -216,6 +232,9 @@
   color: #af4100;
   margin-top: 8px;
   min-height: 18px;
+}
+.noc-modal {
+  /* Submit */
 }
 .noc-modal .noc-submit {
   height: 52px;
@@ -233,6 +252,9 @@
 }
 .noc-modal .noc-submit:active {
   transform: translateY(1px);
+}
+.noc-modal {
+  /* Success */
 }
 .noc-modal .noc-success {
   text-align: center;

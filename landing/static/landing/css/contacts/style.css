@@ -2,9 +2,6 @@
 .contacts {
   background: #fff;
   color: #000;
-  /* телефон, почта, время */
-  /* адреса  реквизиты */
-  /* карта */
 }
 .contacts .contacts-title {
   font-weight: 600;
@@ -18,6 +15,9 @@
   line-height: 1.6;
   text-align: left;
   font-size: 1.125rem;
+}
+.contacts {
+  /* телефон, почта, время */
 }
 .contacts .contacts-grid {
   display: flex;
@@ -59,6 +59,9 @@
 }
 .contacts .contacts-grid .contact-card .value a:hover {
   text-decoration: underline;
+}
+.contacts {
+  /* адреса  реквизиты */
 }
 .contacts .contacts-addresses {
   display: grid;
@@ -109,6 +112,9 @@
 .contacts .contacts-addresses .address-card .btn-requisites:hover {
   background: rgba(179, 61, 11, 0.8);
 }
+.contacts {
+  /* карта */
+}
 .contacts .contacts-map {
   border-top: 1px solid #e5e5e5;
 }
@@ -138,4 +144,35 @@
   .contacts .contacts-map iframe {
     width: 100%;
   }
+}
+
+.contacts-video {
+  width: 70%;
+  max-width: 1200px;
+  margin: 0 auto 24px;
+}
+
+.contacts-video__player {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  background: #000;
+}
+
+.contacts-video {
+  position: relative;
+}
+
+.video-start-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.92);
 }/*# sourceMappingURL=style.css.map */

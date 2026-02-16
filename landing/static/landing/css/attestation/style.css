@@ -231,24 +231,22 @@
     line-height: 1.3;
   }
 }
-.requirements-section {
-  /* Заголовки групп */
-  /* Голубой блок */
-  /* Аккордеоны */
-  /* Серые панели внутри второго блока */
-  /* Таблицы внутри синего блока */
-  /* Последний список (без аккордеонов) */
-}
 .requirements-section .requirements-wrapper {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+.requirements-section {
+  /* Заголовки групп */
 }
 .requirements-section .requirements-title {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
   color: #000;
+}
+.requirements-section {
+  /* Голубой блок */
 }
 .requirements-section .blue-bg {
   position: relative;
@@ -271,6 +269,9 @@
   font-size: 1.125rem;
   font-weight: 600;
   color: #000;
+}
+.requirements-section {
+  /* Аккордеоны */
 }
 .requirements-section .accordion-item {
   border: none;
@@ -307,6 +308,9 @@
   line-height: 1.5;
   color: #000;
 }
+.requirements-section {
+  /* Серые панели внутри второго блока */
+}
 .requirements-section .gray-panel {
   background: #e3e1e1 !important;
   border-radius: 40px;
@@ -332,9 +336,15 @@
   margin-bottom: 0;
   font-weight: 400;
 }
+.requirements-section {
+  /* Таблицы внутри синего блока */
+}
 .requirements-section .table-wrap {
   overflow-x: auto;
   padding: 1rem;
+}
+.requirements-section {
+  /* Последний список (без аккордеонов) */
 }
 .requirements-section .requirements-list {
   list-style: disc;

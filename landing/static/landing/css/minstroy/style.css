@@ -287,15 +287,6 @@
   }
 }
 
-.prep-modal {
-  /* Кнопка закрытия */
-  /* Заголовок */
-  /* Поля формы */
-  /* Текстовое поле */
-  /* Кнопка отправки */
-  /* Успешная отправка */
-  /* Анимация успеха */
-}
 .prep-modal .modal-dialog {
   max-width: 480px;
 }
@@ -306,6 +297,9 @@
   border: none;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
+.prep-modal {
+  /* Кнопка закрытия */
+}
 .prep-modal .btn-close {
   filter: invert(0.5);
   width: 14px;
@@ -313,11 +307,17 @@
   margin-left: auto;
   margin-bottom: 10px;
 }
+.prep-modal {
+  /* Заголовок */
+}
 .prep-modal .prep-title {
   font-size: 1.25rem;
   font-weight: 600;
   text-align: center;
   margin-bottom: 1.5rem;
+}
+.prep-modal {
+  /* Поля формы */
 }
 .prep-modal .prep-field {
   background: #fff;
@@ -346,6 +346,9 @@
 .prep-modal .prep-field.error {
   border-color: #af4100 !important;
 }
+.prep-modal {
+  /* Текстовое поле */
+}
 .prep-modal .prep-message {
   height: auto;
   padding-top: 18px;
@@ -355,6 +358,9 @@
   resize: none;
   min-height: 120px;
   line-height: 1.45;
+}
+.prep-modal {
+  /* Кнопка отправки */
 }
 .prep-modal .prep-submit {
   width: 100%;
@@ -374,6 +380,9 @@
 .prep-modal .prep-submit:active {
   transform: translateY(1px);
 }
+.prep-modal {
+  /* Успешная отправка */
+}
 .prep-modal .prep-success {
   text-align: center;
   padding: 60px 0;
@@ -390,6 +399,9 @@
   width: 60px;
   height: 60px;
   animation: pop 0.3s ease-out;
+}
+.prep-modal {
+  /* Анимация успеха */
 }
 @keyframes pop {
   0% {

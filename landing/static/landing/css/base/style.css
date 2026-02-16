@@ -254,10 +254,6 @@
   padding-right: 45px;
 }
 
-.form-item.large textarea {
-  scrollbar-width: thin;
-  scrollbar-color: #4e4e4e transparent;
-}
 .form-item.large textarea::-webkit-scrollbar {
   width: 6px;
 }
@@ -272,6 +268,10 @@
 }
 .form-item.large textarea::-webkit-scrollbar-thumb:hover {
   background: #3d3d3d;
+}
+.form-item.large textarea {
+  scrollbar-width: thin;
+  scrollbar-color: #4e4e4e transparent;
 }
 
 .form-wrapper {

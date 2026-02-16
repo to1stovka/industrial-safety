@@ -84,6 +84,22 @@
     </div>
   </div>
 
+<div class="contacts-video">
+  <video id="contactsVideo"
+         class="contacts-video__player"
+         playsinline
+         loop
+         preload="auto"
+         controls>
+    <source src="{% static 'landing/video/contacts.mp4' %}" type="video/mp4">
+  </video>
+
+  <button type="button" class="video-start-btn" id="contactsVideoBtn" hidden>
+    ▶ Запустить видео
+  </button>
+</div>
+
+
   <div class="contacts-map">
 <iframe
   src="https://yandex.ru/map-widget/v1/?ll=37.653280%2C55.708620&z=17&pt=37.653280,55.708620,pm2rdl"
@@ -96,67 +112,34 @@
 
   </div>
 </section>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById("contactsVideo");
+    const btn = document.getElementById("contactsVideoBtn");
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+
+    const tryPlay = async () => {
+      try {
+        await video.play();
+        if (btn) btn.hidden = true;
+      } catch (e) {
+        if (btn) btn.hidden = false;
+      }
+    };
+
+    tryPlay();
+
+    if (btn) {
+      btn.addEventListener("click", () => {
+        video.play();
+        btn.hidden = true;
+      });
+    }
+  });
+</script>
+
 {% endblock %}
 
-
-
-
-
-{% comment %} {% block content %}
-<section class="contact-section">
-  <div class="container">
-    <h1 class="contact-title">Контакты</h1>
-
-    <!-- О центре -->
-    <div class="about-center">
-      <h2 class="contact-info-title">О центре</h2>
-      {% chunk 'contact_about' '<p>Экзаменационный центр АНО ДПО «УЦ «Безопасность в промышленности» является экзаменационной площадкой (ЭП-2749) Центра оценки квалификации (АО «НТЦ «Промышленная безопасность»)</p><p>Одним из важнейших условий безопасной деятельности опасного производственного предприятия является качественная и своевременная подготовка руководителей и специалистов в области промышленной безопасности. Учебный центр предлагает свою помощь руководителям, экспертам, инженерам и специалистам организаций, поднадзорных Федеральной службе по экологическому, технологическому и атомному надзору (Ростехнадзор) в прохождении подготовки к профессиональному экзамену в рамках независимой оценки квалификации.</p><p>На нашей базе проводится профессиональный экзамен в рамках независимой оценки квалификаций по Профессиональному стандарту «Специалист в сфере промышленной безопасности» Приказ Министерства труда и социальной защиты Российской Федерации от 16.12.2020 № 911н.</p>' %}
-    </div>
-
-    <div class="row">
-      <!-- Контактная информация -->
-      <div class="col-lg-6">
-        <div class="contact-info-card">
-          <h2 class="contact-info-title">Контактная информация</h2>
-
-          <div class="contact-detail">
-            <img src="{% static 'landing/img/location.svg' %}" class="contact-detail-icon" alt="Адрес">
-            <div class="contact-detail-content">
-              <div class="contact-detail-label">Адрес:</div>
-              <div class="contact-detail-value">{% chunk 'contact_address' 'Россия, 115280, Москва, 3-й Автозаводский проезд д.4, корп.1' %}</div>
-            </div>
-          </div>
-
-          <div class="contact-detail">
-            <img src="{% static 'landing/img/phone.svg' %}" class="contact-detail-icon" alt="Телефон">
-            <div class="contact-detail-content">
-              <div class="contact-detail-label">Телефон:</div>
-              <div class="contact-detail-value">{% chunk 'contact_phone' '8 (495) 230-12-14' %}</div>
-            </div>
-          </div>
-
-          <div class="contact-detail">
-            <img src="{% static 'landing/img/email.svg' %}" class="contact-detail-icon" alt="Email">
-            <div class="contact-detail-content">
-              <div class="contact-detail-label">Электронная почта:</div>
-              <div class="contact-detail-value">{% chunk 'contact_email' 'ucbp@bezopprom.ru' %}</div>
-            </div>
-          </div>
-
-          <div class="working-hours">
-            <div class="working-hours-title">График работы:</div>
-            {% chunk 'contact_hours' '<div class="working-hours-item"><span>Понедельник - Четверг</span><span>9:00 - 18:00</span></div><div class="working-hours-item"><span>Пятница</span><span>9:00 - 16:45</span></div>' %}
-          </div>
-        </div>
-      </div>
-
-      <!-- Карта -->
-      <div class="col-lg-6">
-        <div class="map-container">
-          {% chunk 'contact_map' '<div class="map-placeholder"><p>Карта (интеграция с Яндекс.Картами или Google Maps)</p></div>' %}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{% endblock %} {% endcomment %}

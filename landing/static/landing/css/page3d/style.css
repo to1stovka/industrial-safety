@@ -377,7 +377,6 @@
 .threed-gallery {
   max-width: 1400px;
   margin: auto;
-  /* Стрелки */
 }
 .threed-gallery .threed-gallery-swiper {
   max-width: 1200px;
@@ -399,6 +398,9 @@
   display: block;
   object-fit: contain;
   border-radius: 20px;
+}
+.threed-gallery {
+  /* Стрелки */
 }
 .threed-gallery .threed-gallery-prev,
 .threed-gallery .threed-gallery-next {
