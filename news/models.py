@@ -23,7 +23,12 @@ class News(models.Model):
         null=True,
         verbose_name="Категория"
     )
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата публикации")
+    created_at = models.DateTimeField(
+        verbose_name="Дата публикации",
+        null=True,
+        blank=True,
+        db_index=True,
+    )
 
     class Meta:
         verbose_name = "Новость"
