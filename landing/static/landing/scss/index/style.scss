@@ -9,3 +9,14 @@
 @use '_threed-promo' as *;
 
 @use '../partials/modal_prep' as *; // модалка "оформить заявку"
+
+.full-banner {
+  width: 100%;
+  overflow: hidden;
+}
+
+.full-banner__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
