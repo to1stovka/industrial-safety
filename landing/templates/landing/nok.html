@@ -1,6 +1,7 @@
 {% extends "landing/base.html" %}
 {% load static %}
-{% load accordion_tags%}
+{% load accordions %}
+{% load chunk_tags %}
 
 {% block title %}Подготовка экспертов и специалистов к Независимой оценке квалификации (НОК){% endblock %}
 
@@ -13,8 +14,7 @@
 <div class="nok-page">
     <section class="container py-5">
         <h2 class="nok-title">
-            Подготовка экспертов и специалистов<br>
-            к Независимой оценке квалификации (НОК)
+            {% chunk '10' 'Подготовка экспертов и специалистов<br>к Независимой оценке квалификации (НОК)'%}
         </h2>
     <h2 class="steps-title">Как отправить заявку</h2>
     </section>
@@ -64,7 +64,8 @@
   <!-- Оставить заявку -->
   {% include "landing/partials/form_request.html" %}
 
-{% render_accordion "normative-toggle" "Нормативные документы в сфере обучения работников по ОТ" "landing/partials/accordions/accordion_normative_content.html" %}
+{% comment %} {% render_accordion "normative-toggle" "Нормативные документы в сфере обучения работников по ОТ" "landing/partials/accordions/accordion_normative_content.html" %} {% endcomment %}
+{% render_accordion_db "normative-toggle" "accordion_normative_content" "Нормативные документы в сфере обучения работников по ОТ" %}
 
 {% include "landing/partials/modal_prep.html" %}
 </div>

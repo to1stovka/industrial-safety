@@ -1,6 +1,6 @@
 {% extends 'landing/base.html' %}
 {% load static %}
-{% load accordion_tags %} 
+{% load accordions %}
 
 {% block title %}Сдача профессионального экзамена{% endblock %}
 
@@ -73,9 +73,9 @@
     </div>
 </section>
 
-{% render_accordion "normative-toggle" "Нормативные документы в сфере независимой оценки квалификации" "landing/partials/accordions/accordion_normative_content.html" %}
+{% comment %} {% render_accordion "normative-toggle" "Нормативные документы в сфере независимой оценки квалификации" "landing/partials/accordions/accordion_normative_content.html" %} {% endcomment %}
 
-
+{% render_accordion_db "normative-toggle" "normative_nok" "Нормативные документы в сфере независимой оценки квалификации" %}
 
 {% endblock %}
 

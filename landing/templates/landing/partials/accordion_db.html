@@ -1,0 +1,26 @@
+{% load static %}
+
+<section class="container py-3">
+  <div class="accordion-wrapper">
+    <button type="button" class="accordion-toggle" id="{{ accordion_id }}">
+      {{ accordion_title }}
+      <img src="{% static 'landing/img/Vector.svg' %}" alt="toggle" class="accordion-icon" />
+    </button>
+
+    <div class="accordion-content" id="{{ accordion_content_id }}">
+      <ul class="content">
+        {% for item in accordion_items %}
+          <li>
+            {% if item.link %}
+              <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">
+                {{ item.text }}
+              </a>
+            {% else %}
+              {{ item.text }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
