@@ -1,6 +1,7 @@
 {% extends 'landing/base.html' %}
 {% load static %}
 {% load accordions %}
+{% load chunk_tags %}
 
 {% block title %}Сдача профессионального экзамена{% endblock %}
 
@@ -29,12 +30,12 @@
         <div class="exam-cta__text">
           <h3 class="exam-cta__title mb-2">Подготовка к НОК</h3>
           <div class="text-muted">
-            Поможем подобрать квалификацию, сориентируем по срокам и списку документов.
+            {% chunk '40' 'Поможем подобрать квалификацию, сориентируем по срокам и списку документов.' %}
           </div>
           <div class="exam-cta__bullets mt-3">
-            <div class="exam-cta__bullet"><span class="exam-cta__check"></span> Подбор квалификации</div>
-            <div class="exam-cta__bullet"><span class="exam-cta__check"></span> Проверка документов</div>
-            <div class="exam-cta__bullet"><span class="exam-cta__check"></span> Консультация по экзамену</div>
+            <div class="exam-cta__bullet"><span class="exam-cta__check"></span> {% chunk '41' 'Подбор квалификации' %}</div>
+            <div class="exam-cta__bullet"><span class="exam-cta__check"></span> {% chunk '42' 'Проверка документов' %}</div>
+            <div class="exam-cta__bullet"><span class="exam-cta__check"></span> {% chunk '43' 'Консультация по экзамену' %}</div>
           </div>
         </div>
 

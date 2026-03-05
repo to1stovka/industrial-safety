@@ -1,4 +1,5 @@
 {% load static %}
+{% load chunk_tags %}
 
 <div class="modal fade noc-modal" id="nocExamModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -295,13 +296,13 @@
             <button type="submit" class="noc-submit">Сгенерировать заявку</button>
           </div>
 
-{% comment %} <div class="noc-modal__footer">
+<div class="noc-modal__footer">
   <div class="noc-footer__note">
-    Нажимая «Отправить», вы подтверждаете согласие на обработку персональных данных
-    и принимаете {% chunk "personal_data_policy" "Политику обработки персональных данных" %}.
+    Отправляя заявку, вы подтверждаете согласие на обработку персональных данных
+    и принимаете <br>{% chunk "personal_data_policy" "Политику обработки персональных данных" %}.
   </div>
   <button type="submit" class="noc-submit">Сгенерировать заявку</button>
-</div> {% endcomment %}
+</div>
 
 
 
