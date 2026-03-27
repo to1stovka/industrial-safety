@@ -112,21 +112,21 @@ def prep_request(request):
     return JsonResponse({"error": "Invalid method"}, status=405)
 
 
-def minstroy_page(request):
-    programs = MinstroyProgram.objects.all().order_by("id")[:4]
-    form = NOCRequestForm()
-    context = {
-        "programs": programs,
-        "form": form,
-    }
-    return render(request, "landing/minstroy.html", context)
+# def minstroy_page(request):
+#     programs = MinstroyProgram.objects.all().order_by("id")[:4]
+#     form = NOCRequestForm()
+#     context = {
+#         "programs": programs,
+#         "form": form,
+#     }
+#     return render(request, "landing/minstroy.html", context)
 
-def minstroy_list(request):
-    programs = MinstroyProgram.objects.all().order_by("id")
-    paginator = Paginator(programs, 14)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    return render(request, "landing/minstroy_list.html", {"page_obj": page_obj})
+# def minstroy_list(request):
+#     programs = MinstroyProgram.objects.all().order_by("id")
+#     paginator = Paginator(programs, 14)
+#     page_number = request.GET.get("page")
+#     page_obj = paginator.get_page(page_number)
+#     return render(request, "landing/minstroy_list.html", {"page_obj": page_obj})
 
 def exam(request):
     qs = MinstroyProgram.objects.all()
