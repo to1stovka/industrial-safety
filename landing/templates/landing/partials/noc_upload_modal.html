@@ -8,7 +8,7 @@
       <div class="noc-modal__header">
         <div class="noc-modal__titlewrap">
           <h5 class="noc-title">Отправить подписанную заявку</h5>
-          <p class="noc-subtitle">Прикрепите файл и оставьте комментарий (по желанию).</p>
+          <p class="noc-subtitle">Прикрепите файлы и оставьте комментарий (по желанию).</p>
         </div>
         <button type="button" class="btn-close noc-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
@@ -24,6 +24,11 @@
               <div class="noc-error" data-error-for="file"></div>
             </div>
 
+            <div class="noc-field mb-3" data-field="consent_file">
+              <label class="form-label">Файл согласия на обработку персональных данных <span class="noc-req">*</span></label>
+              <input type="file" name="consent_file" required>
+              <div class="noc-error" data-error-for="consent_file"></div>
+            </div>
             <div class="noc-field noc-field--area">
               <label class="form-label">Комментарий</label>
               <textarea name="comment" placeholder="Если нужно уточнить детали"></textarea>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from news.models import News
-from landing.models import CourseDirection, Review, Expert, MinstroyProgram, Qualification, UnifiedRequest, ThreedGalleryImage, NocPreparationDirection
+from landing.models import CourseDirection, Review, Expert, MinstroyProgram, Qualification, UnifiedRequest, ThreedGalleryImage, NocPreparationDirection, NocMailSettings
 from landing.forms import CallbackForm, NOCRequestForm
 from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
@@ -10,6 +10,19 @@ from django.views.decorators.http import require_POST
 from django.urls import reverse
 from datetime import datetime
 from django.core.mail import EmailMessage
+from zipfile import ZipFile, ZIP_DEFLATED
+
+def get_noc_email_recipients():
+    mail_settings = NocMailSettings.objects.first()
+
+    if mail_settings:
+        to = mail_settings.parse_emails(mail_settings.to_emails)
+        cc = mail_settings.parse_emails(mail_settings.cc_emails)
+    else:
+        to = getattr(settings, "NOC_UPLOAD_TO", []) or []
+        cc = getattr(settings, "NOC_UPLOAD_CC", []) or []
+
+    return to, cc
 
 def index(request):
     if request.method == "POST":
@@ -302,7 +315,6 @@ def noc_exam_print(request):
     def g(name):
         return (request.POST.get(name) or "").strip()
 
-    # ---- валидация (как у тебя) ----
     applicant_type = g("applicant_type")
     candidate_fio = g("candidate_fio")
     candidate_phone = g("candidate_phone")
@@ -334,19 +346,21 @@ def noc_exam_print(request):
     direction_ids = request.POST.getlist("directions")
     selected_dirs = list(NocPreparationDirection.objects.filter(id__in=direction_ids)) if direction_ids else []
 
-    tpl_path = Path(settings.BASE_DIR) / "landing" / "docx_templates" / "noc_request_template.docx"
-    doc = DocxTemplate(str(tpl_path))
+    edo_enabled = (g("edo_enabled") == "1")
+    today = datetime.now().strftime("%d.%m.%Y")
 
-    experts_subdoc = doc.new_subdoc()
+# заявка
+    request_tpl_path = Path(settings.BASE_DIR) / "landing" / "docx_templates" / "noc_request_template.docx"
+    request_doc = DocxTemplate(str(request_tpl_path))
+
+    experts_subdoc = request_doc.new_subdoc()
     build_experts_table(experts_subdoc, selected_dirs)
 
-    auditors_subdoc = doc.new_subdoc()
+    auditors_subdoc = request_doc.new_subdoc()
     build_auditors_table(auditors_subdoc, selected_dirs)
 
-    edo_enabled = (g("edo_enabled") == "1")
-
-    context = {
-        "today": datetime.now().strftime("%d.%m.%Y"),
+    request_context = {
+        "today": today,
         "applicant_type_label": "Предприятие-плательщик" if applicant_type == "company" else "Частное лицо",
 
         "applicant_name": g("applicant_name"),
@@ -357,9 +371,8 @@ def noc_exam_print(request):
         "edo_enabled_label": "Да" if edo_enabled else "Нет",
         "edo_service": g("edo_service") if edo_enabled else "",
         "edo_yes": "☑" if edo_enabled else "☐",
-        "edo_no":  "☐" if edo_enabled else "☑",
+        "edo_no": "☐" if edo_enabled else "☑",
 
-        # реквизиты
         "rs": g("rs"),
         "bank": g("bank"),
         "ks": g("ks"),
@@ -369,7 +382,6 @@ def noc_exam_print(request):
         "okpo": g("okpo"),
         "okved": g("okved"),
 
-        # соискатель
         "candidate_fio": candidate_fio,
         "birth_date": birth_date,
         "position": g("position"),
@@ -378,29 +390,56 @@ def noc_exam_print(request):
         "candidate_phone": candidate_phone,
         "candidate_email": candidate_email,
 
-        # контактное лицо
         "contact_fio": g("contact_fio"),
         "contact_phone": g("contact_phone"),
         "contact_email": g("contact_email"),
         "comment": g("comment"),
 
-        # списки
         "experts_table": experts_subdoc,
         "auditors_table": auditors_subdoc,
     }
 
-    doc.render(context)
+    request_doc.render(request_context)
 
-    buff = BytesIO()
-    doc.save(buff)
-    buff.seek(0)
+    request_buff = BytesIO()
+    request_doc.save(request_buff)
+    request_bytes = request_buff.getvalue()
 
-    filename = f"zayavka-nok-{datetime.now():%Y-%m-%d}.docx"
+# согласие
+    consent_tpl_path = Path(settings.BASE_DIR) / "landing" / "docx_templates" / "noc_consent_template.docx"
+    consent_doc = DocxTemplate(str(consent_tpl_path))
+
+    consent_context = {
+        "candidate_fio": candidate_fio,
+        "passport_data": g("passport_data"),
+        "residence": g("residence"),
+        "today": today,
+    }
+
+    consent_doc.render(consent_context)
+
+    consent_buff = BytesIO()
+    consent_doc.save(consent_buff)
+    consent_bytes = consent_buff.getvalue()
+
+# упаковка в zip
+    zip_buff = BytesIO()
+
+    request_filename = f"zayavka-nok-{datetime.now():%Y-%m-%d}.docx"
+    consent_filename = f"soglasie-na-obrabotku-pd-{datetime.now():%Y-%m-%d}.docx"
+    zip_filename = f"dokumenty-nok-{datetime.now():%Y-%m-%d}.zip"
+
+    with ZipFile(zip_buff, "w", compression=ZIP_DEFLATED) as zf:
+        zf.writestr(request_filename, request_bytes)
+        zf.writestr(consent_filename, consent_bytes)
+
+    zip_buff.seek(0)
+
     resp = HttpResponse(
-        buff.getvalue(),
-        content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        zip_buff.getvalue(),
+        content_type="application/zip",
     )
-    resp["Content-Disposition"] = f"attachment; filename*=UTF-8''{filename}"
+    resp["Content-Disposition"] = f"attachment; filename*=UTF-8''{zip_filename}"
     return resp
 
 # # приём подписанной заявки НОК
@@ -479,42 +518,75 @@ MAX_UPLOAD_MB = 20
 @require_POST
 def noc_exam_upload(request):
     uploaded = request.FILES.get("file")
+    consent_uploaded = request.FILES.get("consent_file")
     comment = (request.POST.get("comment") or "").strip()
 
     errors = {}
     if not uploaded:
         errors["file"] = "Прикрепите файл подписанной заявки"
 
+    if not consent_uploaded:
+        errors["consent_file"] = "Прикрепите файл согласия на обработку персональных данных"
+
     if uploaded and uploaded.size > MAX_UPLOAD_MB * 1024 * 1024:
         errors["file"] = f"Файл слишком большой. Максимум {MAX_UPLOAD_MB} МБ."
+
+    if consent_uploaded and consent_uploaded.size > MAX_UPLOAD_MB * 1024 * 1024:
+        errors["consent_file"] = f"Файл слишком большой. Максимум {MAX_UPLOAD_MB} МБ."
 
     if errors:
         return JsonResponse({"success": False, "errors": errors}, status=400)
 
+    try:
+        saved_request = UnifiedRequest.objects.create(
+            request_type="noc_signed",
+            name="Загрузка подписанной заявки НОК",
+            message=comment,
+            file=uploaded,
+            consent_file=consent_uploaded,
+        )
+    except Exception:
+        return JsonResponse(
+            {"success": False, "errors": {"file": "Не удалось сохранить заявку"}},
+            status=500
+        )
+
     # защита от ситуации, когда забыли настроить SMTP
     if not getattr(settings, "EMAIL_HOST_USER", "") or not getattr(settings, "EMAIL_HOST_PASSWORD", ""):
         return JsonResponse(
-            {"success": False, "errors": {"file": "Почта не настроена (EMAIL_HOST_USER/PASSWORD)."}},
-            status=500
+            {
+                "success": True,
+                "warning": "Заявка сохранена, но почта не настроена."
+            }
         )
 
     subject = "Подписанная заявка на подготовку к НОК"
     body = "\n".join([
         "Здравствуйте!",
         "",
-        "Поступила подписанная заявка на НОК с сайта ucbp.ru.",
+        "Поступила подписанная заявка на подготовку к НОК с сайта ucbp.ru.",
         "",
         f"Комментарий пользователя: {comment or '—'}",
+        "",
         f"Файл заявки: {uploaded.name}",
-        f"Размер: {uploaded.size} байт",
+        f"Размер файла заявки: {uploaded.size} байт",
+        f"Файл согласия: {consent_uploaded.name}",
+        f"Размер файла согласия: {consent_uploaded.size} байт",
+        f"ID заявки в базе: {saved_request.id}",
         "",
         "Примечание: некоторые почтовые сервисы не отображают таблицы в предпросмотре Word-документов корректно. Пожалуйста, скачайте файл — в скачанном документе таблица направлений отображается правильно.",
-        "Это уведомление отправлено на два адреса: ucbp@bezopprom.ru и ucbp@yandex.ru — для удобства обработки заявок и резервного получения.",
     ])
 
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "") or getattr(settings, "EMAIL_HOST_USER", "")
-    to = getattr(settings, "NOC_UPLOAD_TO", []) or []
-    cc = getattr(settings, "NOC_UPLOAD_CC", []) or []
+    to, cc = get_noc_email_recipients()
+
+    if not to:
+        return JsonResponse(
+            {
+                "success": True,
+                "warning": "Заявка сохранена, но не указаны получатели письма."
+            }
+        )
 
     msg = EmailMessage(
         subject=subject,
@@ -524,20 +596,30 @@ def noc_exam_upload(request):
         cc=cc,
     )
 
+    uploaded.seek(0)
+    consent_uploaded.seek(0)
+
     msg.attach(
         uploaded.name,
         uploaded.read(),
         uploaded.content_type or "application/octet-stream"
     )
 
+    msg.attach(
+        consent_uploaded.name,
+        consent_uploaded.read(),
+        consent_uploaded.content_type or "application/octet-stream"
+    )
+
     try:
         msg.send(fail_silently=False)
     except Exception:
-      return JsonResponse(
-          {"success": False, "errors": {"file": f"Не удалось отправить письмо"}},
-          status=500
-      )
-
+        return JsonResponse(
+            {
+                "success": True,
+                "warning": "Заявка сохранена, но письмо отправить не удалось."
+            }
+        )
 
     return JsonResponse({"success": True})
 

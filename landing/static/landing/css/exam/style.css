@@ -397,6 +397,17 @@
     grid-template-columns: 1fr;
   }
 }
+.noc-chunk-btn,
+.noc-chunk-btn a {
+  color: #6c757d !important;
+  text-decoration: none;
+}
+
+.noc-chunk-btn:hover,
+.noc-chunk-btn:hover a {
+  color: white !important;
+}
+
 .exam {
   max-width: 1400px;
   margin: auto;

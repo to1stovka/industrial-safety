@@ -1,4 +1,5 @@
 {% load static %}
+{% load chunk_tags %}
 
 <div class="modal fade noc-modal" id="nocChoiceModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" style="max-width: 760px;">
@@ -25,14 +26,30 @@
           </button>
         </div>
 
-        <div class="card border-0 rounded-4 p-3">
+        <div class="card border-0 rounded-4 p-3 mb-3">
           <div class="fw-semibold mb-1">Нужно создать заявку сейчас?</div>
           <div class="text-muted mb-3">
             Заполните форму — мы сформируем документ для печати и подписи.
           </div>
-          <button type="button" class="btn-orange" data-noc-open="create">
+          <button type="button" class="btn btn-outline-secondary rounded-4" data-noc-open="create">
             Создать заявку
           </button>
+        </div>
+
+        <div class="card border-0 rounded-4 p-3">
+          <div class="fw-semibold mb-1">Хотите заполнить заявку вручную?</div>
+          <div class="text-muted mb-3">
+            Скачайте форму заявки и заполните самостоятельно. Обратите внимание, что для обработки заявки необходимо согласие на обработку персональных данных.
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <div class="btn btn-outline-secondary rounded-4 noc-chunk-btn">
+              {% chunk 'request' %}
+            </div>
+            <div class="btn btn-outline-secondary rounded-4 noc-chunk-btn">
+              {% chunk 'personnel' %}
+            </div>
+          </div>
         </div>
       </div>
 

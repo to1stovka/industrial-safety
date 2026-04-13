@@ -141,6 +141,12 @@ class UnifiedRequest(models.Model):
     message = models.TextField("Сообщение", blank=True, null=True)
     file = models.FileField("Прикреплённый файл",
                             upload_to="requests/", blank=True, null=True)
+    consent_file = models.FileField(
+        "Файл согласия на обработку персональных данных",
+        upload_to="requests/",
+        blank=True,
+        null=True
+    )
     created_at = models.DateTimeField("Дата отправки", auto_now_add=True)
 
     class Meta:
@@ -201,3 +207,30 @@ class NocPreparationDirection(models.Model):
         if self.code:
             parts.append(f"код {self.code}")
         return " • ".join(parts)
+
+
+class NocMailSettings(models.Model):
+    to_emails = models.TextField(
+        "Основные получатели",
+        help_text="Укажите email через запятую. Например: ucbp@yandex.ru, second@example.com",
+        blank=True,
+        default="",
+    )
+    cc_emails = models.TextField(
+        "Копия",
+        help_text="Укажите email через запятую. Например: ucbp@bezopprom.ru",
+        blank=True,
+        default="",
+    )
+    updated_at = models.DateTimeField("Обновлено", auto_now=True)
+
+    class Meta:
+        verbose_name = "Настройки отправки НОК"
+        verbose_name_plural = "Настройки отправки НОК"
+
+    def __str__(self):
+        return "Настройки отправки НОК"
+
+    @staticmethod
+    def parse_emails(value: str):
+        return [email.strip() for email in (value or "").split(",") if email.strip()]

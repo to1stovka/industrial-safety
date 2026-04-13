@@ -8,6 +8,7 @@ from landing.models import (CourseDirection,
                             UnifiedRequest,
                             ThreedGalleryImage,
                             NocPreparationDirection,
+                            NocMailSettings,
                             )
 from django.utils.html import format_html
 from django.utils.html import mark_safe
@@ -60,9 +61,20 @@ class QualificationAdmin(admin.ModelAdmin):
 
 @admin.register(UnifiedRequest)
 class UnifiedRequestAdmin(admin.ModelAdmin):
-    list_display = ("name", "colored_type", "phone", "email", "created_at")
+    list_display = ("name", "colored_type", "phone", "email", "has_file", "has_consent_file", "created_at")
     list_filter = ("request_type", "created_at")
     search_fields = ("name", "phone", "email")
+    readonly_fields = ("file", "consent_file", "created_at")
+
+    def has_file(self, obj):
+        return bool(obj.file)
+    has_file.short_description = "Есть файл заявки"
+    has_file.boolean = True
+
+    def has_consent_file(self, obj):
+        return bool(obj.consent_file)
+    has_consent_file.short_description = "Есть согласие"
+    has_consent_file.boolean = True
 
     def colored_type(self, obj):
         colors = {
@@ -112,3 +124,19 @@ class NocPreparationDirectionAdmin(admin.ModelAdmin):
     search_fields = ("title", "code")
     ordering = ("kind", "id")
 
+
+@admin.register(NocMailSettings)
+class NocMailSettingsAdmin(admin.ModelAdmin):
+    list_display = ("__str__", "updated_at")
+    readonly_fields = ("admin_hint",)
+    fields = ("admin_hint", "to_emails", "cc_emails")
+
+    def admin_hint(self, obj=None):
+        return format_html(
+            "Если поля пустые, письмо отправится на ucbp@yandex.ru и ucbp@bezopprom.ru.<br>"
+            "Если заполнен только основной получатель, письмо уйдёт только ему."
+        )
+    admin_hint.short_description = "Примечание"
+
+    def has_add_permission(self, request):
+        return not NocMailSettings.objects.exists()
