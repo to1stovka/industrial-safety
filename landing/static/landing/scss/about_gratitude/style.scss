@@ -1,0 +1,183 @@
+@use '../variables' as *;
+
+.about-gratitude {
+  background: $white;
+  color: #111;
+  min-height: 500px;
+  padding: 39px 0 38px;
+
+  &__container {
+    max-width: 1110px;
+  }
+
+  &__title {
+    color: #111;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    margin: 0 0 16px;
+  }
+
+  &__intro,
+  &__empty-text,
+  &__manual-content {
+    color: #111;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 895px;
+
+    p {
+      margin: 0 0 16px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  &__intro:empty,
+  &__empty-text:empty,
+  &__manual-content:empty {
+    display: none;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 12px;
+    max-width: 895px;
+  }
+
+  &__card {
+    min-width: 0;
+  }
+
+  &__media-link {
+    color: inherit;
+    display: block;
+    text-decoration: none;
+  }
+
+  &__media,
+  &__chunk-image {
+    align-items: center;
+    aspect-ratio: 3 / 4;
+    background: #dedede;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+
+    img {
+      display: block;
+      height: 100%;
+      object-fit: contain;
+      width: 100%;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__chunk-image {
+    min-height: 0;
+
+    p {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &__file-placeholder {
+    align-items: center;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    gap: 8px;
+    justify-content: center;
+    min-height: 100%;
+    padding: 24px;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__file-label {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  &__file-hint {
+    font-size: 14px;
+    opacity: 0.72;
+  }
+
+  &__card-body {
+    margin-top: 12px;
+  }
+
+  &__card-title {
+    color: #111;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 6px;
+  }
+
+  &__date {
+    color: #666;
+    display: block;
+    font-size: 14px;
+    margin: 0 0 8px;
+  }
+
+  &__description {
+    color: #111;
+    font-size: 15px;
+    line-height: 1.45;
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  &__manual-content {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .about-gratitude {
+    padding: 32px 0 44px;
+
+    &__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .about-gratitude {
+    &__title {
+      font-size: 24px;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

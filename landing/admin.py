@@ -9,6 +9,7 @@ from landing.models import (CourseDirection,
                             ThreedGalleryImage,
                             NocPreparationDirection,
                             NocMailSettings,
+                            GratitudeItem,
                             )
 from django.utils.html import format_html
 from django.utils.html import mark_safe
@@ -42,6 +43,75 @@ class ChunkAdmin(admin.ModelAdmin):
         if 'key' in request.GET:
             initial['key'] = request.GET['key']
         return initial
+
+
+@admin.register(GratitudeItem)
+class GratitudeItemAdmin(admin.ModelAdmin):
+    list_display = (
+        "preview",
+        "display_title",
+        "is_active",
+        "order",
+        "date",
+        "has_file",
+        "has_external_url",
+    )
+    list_display_links = ("preview", "display_title")
+    list_editable = ("is_active", "order")
+    list_filter = ("is_active", "date")
+    search_fields = ("title", "description", "external_url")
+    ordering = ("order", "-date", "-created_at")
+    readonly_fields = ("preview_large", "created_at", "updated_at")
+    fields = (
+        "is_active",
+        "order",
+        "title",
+        "description",
+        "date",
+        "image",
+        "preview_large",
+        "file",
+        "external_url",
+        "created_at",
+        "updated_at",
+    )
+
+    def display_title(self, obj):
+        return obj.title or "Без названия"
+
+    display_title.short_description = "Название"
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" style="width: 54px; height: 74px; object-fit: cover; border: 1px solid #ddd;" />',
+                obj.image.url,
+            )
+        return "—"
+
+    preview.short_description = "Превью"
+
+    def preview_large(self, obj):
+        if obj and obj.image:
+            return format_html(
+                '<img src="{}" style="max-width: 360px; max-height: 520px; object-fit: contain; border: 1px solid #ddd;" />',
+                obj.image.url,
+            )
+        return "Превью появится после загрузки картинки и сохранения."
+
+    preview_large.short_description = "Текущее превью"
+
+    def has_file(self, obj):
+        return bool(obj.file)
+
+    has_file.boolean = True
+    has_file.short_description = "Файл"
+
+    def has_external_url(self, obj):
+        return bool(obj.external_url)
+
+    has_external_url.boolean = True
+    has_external_url.short_description = "Внешняя ссылка"
 
 @admin.register(Expert)
 class CallbackExpertAdmin(admin.ModelAdmin):

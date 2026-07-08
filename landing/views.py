@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from news.models import News
-from landing.models import CourseDirection, Review, Expert, MinstroyProgram, Qualification, UnifiedRequest, ThreedGalleryImage, NocPreparationDirection, NocMailSettings
+from landing.models import CourseDirection, Review, Expert, MinstroyProgram, Qualification, UnifiedRequest, ThreedGalleryImage, NocPreparationDirection, NocMailSettings, GratitudeItem
 from landing.forms import CallbackForm, NOCRequestForm
 from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
@@ -551,7 +551,12 @@ def about_impartiality(request):
 
 
 def about_gratitude(request):
-    return render(request, "landing/about_gratitude.html")
+    gratitude_items = GratitudeItem.objects.filter(is_active=True).order_by("order", "-date", "-created_at")
+    return render(
+        request,
+        "landing/about_gratitude.html",
+        {"gratitude_items": gratitude_items},
+    )
 
 
 MAX_UPLOAD_MB = 20

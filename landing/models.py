@@ -76,6 +76,67 @@ class Chunk(models.Model):
         return self.key
 
 
+class GratitudeItem(models.Model):
+    """Благодарность, диплом, письмо, отзыв или другой документ для страницы «Благодарности»."""
+
+    title = models.CharField(
+        "Название",
+        max_length=255,
+        blank=True,
+        help_text="Например: Благодарственное письмо от ООО «Ромашка». Можно оставить пустым, если нужен только скан.",
+    )
+    description = RichTextUploadingField("Описание", blank=True)
+    image = models.ImageField(
+        "Картинка / превью",
+        upload_to="gratitude/images/",
+        blank=True,
+        null=True,
+        help_text="Скан благодарности или картинка для карточки.",
+    )
+    file = models.FileField(
+        "Файл документа",
+        upload_to="gratitude/files/",
+        blank=True,
+        null=True,
+        help_text="PDF, DOCX или оригинальный файл. Если заполнен, карточка будет ссылаться на него.",
+    )
+    external_url = models.URLField(
+        "Внешняя ссылка",
+        blank=True,
+        help_text="Если документ лежит на внешнем ресурсе, укажите ссылку. Имеет приоритет над файлом и картинкой.",
+    )
+    date = models.DateField("Дата", blank=True, null=True)
+    order = models.PositiveIntegerField("Порядок", default=100)
+    is_active = models.BooleanField("Показывать на сайте", default=True)
+    created_at = models.DateTimeField("Создано", auto_now_add=True)
+    updated_at = models.DateTimeField("Обновлено", auto_now=True)
+
+    class Meta:
+        verbose_name = "Благодарность"
+        verbose_name_plural = "Благодарности"
+        ordering = ("order", "-date", "-created_at")
+        indexes = [
+            models.Index(fields=("is_active", "order")),
+        ]
+
+    def __str__(self):
+        return self.title or f"Благодарность #{self.pk or 'новая'}"
+
+    @property
+    def link_url(self):
+        if self.external_url:
+            return self.external_url
+        if self.file:
+            return self.file.url
+        if self.image:
+            return self.image.url
+        return ""
+
+    @property
+    def has_document(self):
+        return bool(self.external_url or self.file)
+
+
 # Эксперты на странице НОК (Фото + ФИО)
 class Expert(models.Model):
     full_name = models.CharField("ФИО", max_length=255)
