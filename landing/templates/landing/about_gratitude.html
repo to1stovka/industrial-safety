@@ -1,0 +1,30 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% load chunk_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'landing/css/base/style.css' %}" />
+<link rel="stylesheet" href="{% static 'landing/css/about_education/style.css' %}" />
+{% endblock %}
+
+{% block title %}Благодарности{% endblock %}
+
+{% block content %}
+<section class="about-static-page about-static-page--gratitude">
+  <div class="container about-static-page__container">
+    <h1 class="about-static-page__title">{% chunk "about_gratitude_title" "Благодарности" %}</h1>
+
+    <div class="about-static-page__gratitude-grid">
+      <div class="about-static-page__gratitude-card">
+        {% chunk_image "about_gratitude_image_1" "" "Благодарность 1" "about-static-page__gratitude-image" %}
+      </div>
+      <div class="about-static-page__gratitude-card">
+        {% chunk_image "about_gratitude_image_2" "" "Благодарность 2" "about-static-page__gratitude-image" %}
+      </div>
+      <div class="about-static-page__gratitude-card">
+        {% chunk_image "about_gratitude_image_3" "" "Благодарность 3" "about-static-page__gratitude-image" %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

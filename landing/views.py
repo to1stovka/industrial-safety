@@ -513,6 +513,47 @@ def threed(request):
     return render(request, 'landing/threed.html', context)
 
 
+ABOUT_EDUCATION_SLUGS = {
+    "basic-information",
+    "structure",
+    "documents",
+    "education",
+    "leadership",
+    "paid-services",
+    "international-cooperation",
+    "material-and-technical-support",
+    "vacancies",
+    "financial-activity",
+}
+
+def about_education_index(request):
+    return redirect("about_education_page", slug="basic-information")
+
+
+def about_education_page(request, slug):
+    if slug not in ABOUT_EDUCATION_SLUGS:
+        raise Http404
+
+    return render(
+        request,
+        "landing/about_education.html",
+        {
+            "active_slug": slug,
+        },
+    )
+
+def about_complaints(request):
+    return render(request, "landing/about_complaints.html")
+
+
+def about_impartiality(request):
+    return render(request, "landing/about_impartiality.html")
+
+
+def about_gratitude(request):
+    return render(request, "landing/about_gratitude.html")
+
+
 MAX_UPLOAD_MB = 20
 
 @require_POST

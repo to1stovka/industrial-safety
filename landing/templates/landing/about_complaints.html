@@ -1,0 +1,24 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% load chunk_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'landing/css/base/style.css' %}" />
+<link rel="stylesheet" href="{% static 'landing/css/about_education/style.css' %}" />
+{% endblock %}
+
+{% block title %}Жалобы и апелляции{% endblock %}
+
+{% block content %}
+<section class="about-static-page about-static-page--documents">
+  <div class="container about-static-page__container">
+    <h1 class="about-static-page__title">{% chunk "about_complaints_title" "Жалобы и апелляции" %}</h1>
+
+    <div class="about-static-page__links">
+      <div class="about-static-page__link-row">
+        {% chunk "about_complaints_dispute_resolution_link" "Положение по урегулированию споров между участниками образовательных отношений" %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

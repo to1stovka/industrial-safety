@@ -1,0 +1,335 @@
+.about-education {
+  background: white;
+  color: #151515;
+  padding: 46px 0 64px;
+}
+.about-education__container {
+  max-width: 1110px;
+}
+.about-education__layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 52px;
+  align-items: flex-start;
+}
+.about-education__sidebar {
+  padding-top: 2px;
+}
+.about-education__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+.about-education__nav-link {
+  color: #000000;
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.22;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+.about-education__nav-link:hover, .about-education__nav-link:focus {
+  color: #af4100 !important;
+  text-decoration: none !important;
+}
+.about-education__nav-link--active {
+  color: #af4100 !important;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+.about-education__nav-link--placeholder {
+  cursor: default;
+}
+.about-education__content {
+  max-width: 760px;
+}
+.about-education__title {
+  color: #111;
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 31px;
+}
+.about-education__rich-text, .about-education__documents, .about-education__people, .about-education__material, .about-education__basic {
+  color: #000000;
+  font-size: 18px;
+}
+.about-education__rich-text {
+  max-width: 760px;
+}
+.about-education__rich-text p {
+  margin: 0 0 21px;
+}
+.about-education__basic {
+  max-width: 760px;
+}
+.about-education__basic p {
+  margin: 0 0 18px;
+  color: #000000;
+  font-size: 18px;
+}
+.about-education__basic-block {
+  margin: 0 0 24px;
+}
+.about-education__basic-block--last {
+  margin-bottom: 26px;
+}
+.about-education__basic-label {
+  font-weight: 700;
+  margin-bottom: 0 !important;
+}
+.about-education__license-image {
+  display: block;
+  height: auto;
+  margin: 10px 0 19px;
+  width: 165px;
+}
+.about-education__license-image img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+.about-education__license-image p {
+  margin: 0;
+}
+.about-education__link-line {
+  margin: 0 0 19px;
+}
+.about-education__map {
+  border-top: 1px solid #e5e5e5;
+  margin: 18px 0 0 calc(-1 * ((100vw - 1110px) / 2 + 322px));
+  width: 100vw;
+}
+.about-education__map iframe {
+  border: none;
+  display: block;
+  height: 270px;
+  width: 100%;
+}
+.about-education__route-image {
+  display: block;
+  height: auto;
+  margin: 0 0 0 calc(-1 * ((100vw - 1110px) / 2 + 322px));
+  max-width: none;
+  width: 100vw;
+}
+.about-education__route-image img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+.about-education__route-image p {
+  margin: 0;
+}
+.about-education__section-title {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  line-height: 1.25;
+  margin: 0 0 22px;
+}
+.about-education__intro {
+  margin: 0 0 19px;
+}
+.about-education__document-list {
+  list-style-position: outside;
+  margin: 0;
+  padding-left: 25px;
+}
+.about-education__document-list li {
+  margin: 0 0 6px;
+  padding-left: 3px;
+}
+.about-education__people {
+  max-width: 710px;
+}
+.about-education__person {
+  margin-bottom: 53px;
+}
+.about-education__person p {
+  margin: 0 0 19px;
+}
+.about-education__teachers-link, .about-education__full-list-link, .about-education__note {
+  margin-top: 20px;
+}
+.about-education a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.about-education__material {
+  max-width: 820px;
+}
+.about-education__classroom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 377px;
+  gap: 54px;
+  align-items: start;
+  margin-bottom: 56px;
+}
+.about-education__classroom--2 {
+  grid-template-columns: 377px minmax(0, 1fr);
+  gap: 76px;
+  margin-bottom: 27px;
+}
+.about-education__classroom--2 .about-education__classroom-text {
+  grid-column: 2;
+  grid-row: 1;
+}
+.about-education__classroom--2 .about-education__classroom-image {
+  grid-column: 1;
+  grid-row: 1;
+}
+.about-education__classroom-text p {
+  margin: 0 0 21px;
+}
+.about-education__classroom-image {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  width: 377px;
+}
+
+@media (max-width: 991.98px) {
+  .about-education {
+    padding: 32px 0 48px;
+  }
+  .about-education__layout {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .about-education__nav {
+    gap: 14px;
+  }
+  .about-education__content {
+    max-width: 100%;
+  }
+  .about-education__title {
+    font-size: 27px;
+    letter-spacing: 0.035em;
+    margin-bottom: 24px;
+  }
+  .about-education__classroom, .about-education__classroom--2 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .about-education__classroom .about-education__classroom-text,
+  .about-education__classroom .about-education__classroom-image, .about-education__classroom--2 .about-education__classroom-text,
+  .about-education__classroom--2 .about-education__classroom-image {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .about-education__classroom-image {
+    width: 100%;
+  }
+  .about-education__map, .about-education__route-image {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+@media (max-width: 575.98px) {
+  .about-education__title {
+    font-size: 23px;
+  }
+  .about-education__nav-link, .about-education__rich-text, .about-education__documents, .about-education__people, .about-education__material, .about-education__basic, .about-education__section-title {
+    font-size: 16px;
+  }
+}
+.about-static-page {
+  background: white;
+  color: #111;
+  min-height: 493px;
+  padding: 39px 0 28px;
+}
+.about-static-page__container {
+  max-width: 1110px;
+}
+.about-static-page__title {
+  color: #111;
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  margin: 0 0 16px;
+}
+.about-static-page__links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.about-static-page__link-row {
+  color: #111;
+  font-size: 15px;
+  line-height: 1.25;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.about-static-page__link-row a,
+.about-static-page__link-row .chunk-editable {
+  color: inherit;
+  text-decoration: inherit;
+  text-underline-offset: inherit;
+}
+.about-static-page__gratitude-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, 289px);
+}
+.about-static-page__gratitude-card {
+  background: #ffffff;
+  height: 380px;
+  overflow: hidden;
+  width: 289px;
+}
+.about-static-page__gratitude-image {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.about-static-page__gratitude-image img,
+.about-static-page__gratitude-image picture,
+.about-static-page__gratitude-image video,
+.about-static-page__gratitude-image iframe,
+.about-static-page__gratitude-image object,
+.about-static-page__gratitude-image embed {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.about-static-page__gratitude-image p {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+@media (max-width: 991.98px) {
+  .about-static-page {
+    min-height: auto;
+    padding: 32px 0 48px;
+  }
+  .about-static-page__gratitude-grid {
+    grid-template-columns: repeat(2, minmax(0, 289px));
+  }
+}
+@media (max-width: 575.98px) {
+  .about-static-page__title {
+    font-size: 23px;
+  }
+  .about-static-page__link-row {
+    font-size: 14px;
+  }
+  .about-static-page__gratitude-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-static-page__gratitude-card {
+    aspect-ratio: 289/380;
+    height: auto;
+    max-width: 289px;
+    width: 100%;
+  }
+}/*# sourceMappingURL=style.css.map */

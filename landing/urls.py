@@ -19,12 +19,22 @@ from landing.views import (
     threed,
     noc_exam_print,
     noc_exam_upload,
+    about_education_index,
+    about_education_page,
+    about_complaints,
+    about_impartiality,
+    about_gratitude,
     )
 
 urlpatterns = [
     path("callback/", callback_request, name="callback_request"),
     path('', index, name='index'),
     path('contact/', contact, name='contact'),
+    path("about/education-info/", about_education_index, name="about_education"),
+    path("about/education-info/<slug:slug>/", about_education_page, name="about_education_page"),
+    path("about/complaints-and-appeals/", about_complaints, name="about_complaints"),
+    path("about/impartiality-policy/", about_impartiality, name="about_impartiality"),
+    path("about/gratitude/", about_gratitude, name="about_gratitude"),
     path("nok/", nok_page, name="nok"),
     # path("minstroy/", minstroy_page, name="minstroy"),
     # path('minstroy/list/', minstroy_list, name='list'),

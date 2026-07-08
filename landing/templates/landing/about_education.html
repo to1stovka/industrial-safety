@@ -1,0 +1,341 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% load chunk_tags %}
+
+{% block title %}
+  {% if active_slug == 'basic-information' %}Основные сведения{% elif active_slug == 'structure' %}Структура и органы управления образовательной организацией{% elif active_slug == 'documents' %}Документы{% elif active_slug == 'education' %}Образование{% elif active_slug == 'leadership' %}Руководство. Педагогический состав{% elif active_slug == 'paid-services' %}Платные образовательные услуги{% elif active_slug == 'international-cooperation' %}Международное сотрудничество{% elif active_slug == 'material-and-technical-support' %}Материально-техническое обеспечение{% elif active_slug == 'vacancies' %}Вакантные места для приема{% elif active_slug == 'financial-activity' %}Финансово-хозяйственная деятельность{% else %}Сведения об образовательной организации{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'landing/css/base/style.css' %}" />
+<link rel="stylesheet" href="{% static 'landing/css/about_education/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="about-education">
+  <div class="container about-education__container">
+    <div class="about-education__layout">
+      <aside class="about-education__sidebar" aria-label="Разделы сведений об образовательной организации">
+        <nav class="about-education__nav">
+          <a class="about-education__nav-link {% if active_slug == 'basic-information' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'basic-information' %}">{% chunk "about_edu_nav_basic" "Основные сведения" %}</a>
+          <a class="about-education__nav-link {% if active_slug == 'structure' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'structure' %}">{% chunk "about_edu_nav_structure" "Структура и органы управления образовательной организацией" %}</a>
+          <a class="about-education__nav-link {% if active_slug == 'documents' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'documents' %}">{% chunk "about_edu_nav_documents" "Документы" %}</a>
+          <a class="about-education__nav-link {% if active_slug == 'education' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'education' %}">{% chunk "about_edu_nav_education" "Образование" %}</a>
+          <a class="about-education__nav-link {% if active_slug == 'leadership' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'leadership' %}">{% chunk "about_edu_nav_leadership" "Руководство. Педагогический состав" %}</a>
+          <a class="about-education__nav-link {% if active_slug == 'paid-services' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'paid-services' %}">{% chunk "about_edu_nav_paid_services" "Платные образовательные услуги" %}</a>
+          <a class="about-education__nav-link {% if active_slug == 'international-cooperation' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'international-cooperation' %}">{% chunk "about_edu_nav_international" "Международное сотрудничество" %}</a>
+          <a class="about-education__nav-link {% if active_slug == 'material-and-technical-support' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'material-and-technical-support' %}">{% chunk "about_edu_nav_material" "Материально-техническое обеспечение" %}</a>
+          <a class="about-education__nav-link {% if active_slug == 'vacancies' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'vacancies' %}">{% chunk "about_edu_nav_vacancies" "Вакантные места для приема" %}</a>
+          <a class="about-education__nav-link {% if active_slug == 'financial-activity' %}about-education__nav-link--active{% endif %}" href="{% url 'about_education_page' 'financial-activity' %}">{% chunk "about_edu_nav_financial" "Финансово-хозяйственная деятельность" %}</a>
+        </nav>
+      </aside>
+
+      <article class="about-education__content">
+        {% if active_slug == 'basic-information' %}
+          <h1 class="about-education__title">{% chunk "about_edu_basic_title" "Основные сведения" %}</h1>
+          <div class="about-education__basic">
+            <div class="about-education__rich-text">
+              {% chunkblock "about_edu_basic_intro" %}
+                <p>В соответствии с требованиями Федерального закона «Об образовании в Российской Федерации» от 29 декабря 2012 года № 273-ФЗ (статья 29), Постановления Правительства Российской Федерации от 10 июля 2013 г. № 582 и Приказа Федеральной службы по надзору в сфере образования и науки от 29 мая 2014 г. №785</p>
+              {% endchunkblock %}
+            </div>
+
+            <section class="about-education__basic-block">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_name_label" "Полное (краткое) наименование:" %}</p>
+              {% chunkblock "about_edu_basic_name" %}
+                <p>Автономная некоммерческая организация дополнительного профессионального образования «Учебный центр «Безопасность в промышленности»<br>(АНО ДПО «УЦ «Безопасность в промышленности»)</p>
+              {% endchunkblock %}
+            </section>
+
+            <section class="about-education__basic-block">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_license_label" "Лицензия на право ведения образовательной деятельности" %}</p>
+              {% chunkblock "about_edu_basic_license" %}
+                <p>Регистрационный № 041004 от 25 сентября 2020 г.<br>Срок действия: бессрочно</p>
+              {% endchunkblock %}
+              {% chunk_image "about_edu_basic_license_image" "landing/img/about/license.jpg" "Лицензия на право ведения образовательной деятельности" "about-education__license-image" %}
+              <div class="about-education__link-line">
+                {% chunk "about_edu_basic_license_registry" "<a href='#'>Реестр лицензий образовательных организаций</a>" %}
+              </div>
+            </section>
+
+            <section class="about-education__basic-block">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_charter_label" "Из устава:" %}</p>
+              {% chunkblock "about_edu_basic_charter" %}
+                <p>Автономная некоммерческая организация дополнительного профессионального образования «Учебный центр «Безопасность в промышленности» — учрежденная в соответствии с законодательством Российской Федерации унитарная некоммерческая организация не имеющая членства созданная на основе добровольных имущественных взносов, осуществляющая на основании лицензии на право ведения образовательной деятельности (далее лицензия) образовательную деятельность по программам дополнительного профессионального образования в качестве основного вида деятельности, в соответствии с целями и задачами, предусмотренными Уставом Учебного центра (далее - Устав)</p>
+              {% endchunkblock %}
+            </section>
+
+            <section class="about-education__basic-block">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_sout_label" "СОУТ:" %}</p>
+              {% chunkblock "about_edu_basic_sout" %}
+                <p>Автономная негосударственная организация дополнительного профессионального образования «Учебный центр «Безопасность в промышленности» успешно прошла процедуру специальной оценки условий труда сотрудников в марте 2026 года</p>
+              {% endchunkblock %}
+              <p>{% chunk "about_edu_basic_sout_file" "Сводная ведомость результатов проведения СОУТ УЦ.pdf" %}</p>
+            </section>
+
+            <section class="about-education__basic-block">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_founding_date_label" "Дата образования:" %}</p>
+              {% chunkblock "about_edu_basic_founding_date" %}
+                <p>июнь 2011 года</p>
+              {% endchunkblock %}
+              <div class="about-education__link-line">
+                {% chunk "about_edu_basic_sout_registry" "Реестр деклараций соответствия условий труда" %}
+              </div>
+            </section>
+
+            <section class="about-education__basic-block">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_founders_label" "Учредители:" %}</p>
+              {% chunkblock "about_edu_basic_founders" %}
+                <p>Котельников Владимир Владимирович<br>Белова Юлия Игоревна<br>ООО «Безопасность в промышленности»</p>
+              {% endchunkblock %}
+            </section>
+
+            <section class="about-education__basic-block">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_address_label" "Адрес образовательной организации (место нахождения):" %}</p>
+              {% chunkblock "about_edu_basic_address" %}
+                <p>Российская Федерация, 115280, город Москва,<br>ул. Ленинская Слобода, дом 19</p>
+              {% endchunkblock %}
+            </section>
+
+            <section class="about-education__basic-block">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_schedule_label" "График работы, режим:" %}</p>
+              {% chunkblock "about_edu_basic_schedule" %}
+                <p>понедельник-четверг с 9.00 до 18.00<br>пятница с 9.00 до 16.45</p>
+              {% endchunkblock %}
+            </section>
+
+            <section class="about-education__basic-block">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_contacts_label" "Контакты:" %}</p>
+              {% chunkblock "about_edu_basic_contacts" %}
+                <p>телефон: +7 (495) 230-12-14<br>электронная почта: <a href="mailto:ucbp@bezopprom.ru">ucbp@bezopprom.ru</a></p>
+              {% endchunkblock %}
+            </section>
+
+            <section class="about-education__basic-block about-education__basic-block--last">
+              <p class="about-education__basic-label">{% chunk "about_edu_basic_activity_place_label" "Место осуществления образовательной деятельности:" %}</p>
+              {% chunkblock "about_edu_basic_activity_place" %}
+                <p>Российская Федерация, 115280, город Москва,<br>ул. Ленинская Слобода, дом 19, помещение 41/1/4</p>
+              {% endchunkblock %}
+            </section>
+
+            <div class="about-education__map">
+              {% chunkblock "about_edu_basic_yandex_map" %}
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=37.653280%2C55.708620&z=17&pt=37.653280,55.708620,pm2rdl" width="100%" height="270" frameborder="0" allowfullscreen></iframe>
+              {% endchunkblock %}
+            </div>
+
+            {% chunk_image "about_edu_basic_route_image" "landing/img/about/route-scheme.png" "Схема прохода" "about-education__route-image" %}
+          </div>
+
+        {% elif active_slug == 'structure' %}
+          <h1 class="about-education__title">{% chunk "about_edu_structure_title" "Структура и органы управления образовательной организацией" %}</h1>
+          <div class="about-education__rich-text">
+            {% chunkblock "about_edu_structure_01" %}
+              <p><strong><u>ОРГАНИЗАЦИОННАЯ СТРУКТУРА</u></strong></p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_structure_02" %}
+              <p><strong>ДИРЕКТОР</strong> АНО ДПО «УЦ «Безопасность в промышленности»<br>Кравченко Олег Валерьевич<br>e-mail: <a href="mailto:ucbp@bezopprom.ru">ucbp@bezopprom.ru</a>, <a href="mailto:ucbp@yandex.ru">ucbp@yandex.ru</a></p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_structure_03" %}
+              <p><strong>ЗАМЕСТИТЕЛИ ДИРЕКТОРА</strong><br>Котельников Владимир Владимирович<br>Андреева Галина Леонидовна<br>e-mail: <a href="mailto:ucbp@bezopprom.ru">ucbp@bezopprom.ru</a>, <a href="mailto:ucbp@yandex.ru">ucbp@yandex.ru</a></p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_structure_04" %}
+              <p><strong>НАЧАЛЬНИК ОТДЕЛА ОЦЕНКИ СООТВЕТСТВИЯ</strong><br>Астахов Василий Васильевич<br>e-mail: <a href="mailto:ucbp@bezopprom.ru">ucbp@bezopprom.ru</a>, <a href="mailto:ucbp@yandex.ru">ucbp@yandex.ru</a></p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_structure_05" %}
+              <p><strong>НАЧАЛЬНИК ОТДЕЛА АТТЕСТАЦИИ СПЕЦИАЛИСТОВ</strong><br>Литвиненко Оксана Александровна<br>e-mail: <a href="mailto:ucbp@bezopprom.ru">ucbp@bezopprom.ru</a>, <a href="mailto:ucbp@yandex.ru">ucbp@yandex.ru</a></p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_structure_06" %}
+              <p>ПОЛОЖЕНИЕ О СТРУКТУРНЫХ ПОДРАЗДЕЛЕНИЯХ</p>
+            {% endchunkblock %}
+          </div>
+
+        {% elif active_slug == 'documents' %}
+          <h1 class="about-education__title">{% chunk "about_edu_documents_title" "Документы" %}</h1>
+          <div class="about-education__documents">
+            <h2 class="about-education__section-title">{% chunk "about_edu_documents_subtitle" "Локальные акты" %}</h2>
+            <ol class="about-education__document-list">
+              <li>{% chunk "about_edu_documents_internal_rules" "Правила внутреннего распорядка для обучающихся" %}</li>
+              <li>{% chunk "about_edu_documents_dispute_resolution" "Положение о беспристрастности и урегулировании споров. Положение по урегулированию споров между участниками образовательных отношений" %}</li>
+              <li>{% chunk "about_edu_documents_admission_rules" "Правила приема и обучения по программам повышения квалификации" %}</li>
+              <li>{% chunk "about_edu_documents_distance_learning" "Положение об использовании дистанционных образовательных технологий" %}</li>
+              <li>{% chunk "about_edu_documents_labor_safety" "Положение по охране труда" %}</li>
+              <li>{% chunk "about_edu_documents_personal_data" "Положение об обработке и защите персональных данных" %}</li>
+              <li>{% chunk "about_edu_documents_confidentiality" "Положение о конфиденциальной информации" %}</li>
+            </ol>
+            <div class="about-education__note">{% chunk "about_edu_documents_note" "*Ознакомление с документами по запросу" %}</div>
+          </div>
+
+        {% elif active_slug == 'education' %}
+          <h1 class="about-education__title">{% chunk "about_edu_education_title" "Образование" %}</h1>
+          <div class="about-education__rich-text">
+            {% chunkblock "about_edu_education_01" %}
+              <p>АНО ДПО «УЦ «Безопасность в промышленности» проводит образовательную деятельность на основании лицензии на осуществление образовательной деятельности серии 77Л01 № 0011942 (номер лицензии, присвоенный в Едином реестре учета лицензий: Л035-01298-77/00180425), выданной Департаментом образования и науки города Москвы от 25.09.2020г.</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_education_02" %}
+              <p>Реестр лицензий образовательных организаций</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_education_03" %}
+              <p>Программы АНО ДПО «Учебного центра «Безопасность в промышленности» рассчитаны на 16, 40 и 72 часа по очной форме обучения. Возможна разработка индивидуальных программ по договоренности с Заказчиком, а также обучение по заочной форме обучения (с применением дистанционных технологий)</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_education_04" %}
+              <p>Список программ обучения</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_education_05" %}
+              <p>К освоению дополнительных профессиональных программ допускаются: лица, имеющие среднее профессиональное и (или) высшее образование, а также лица, получающие среднее профессиональное и (или) высшее образование</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_education_06" %}
+              <p>Повышение квалификации проводится:<br>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;с отрывом от работы (очно);<br>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;без отрыва от работы заочно с применением дистанционных технологий;<br>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;по согласованию с организацией-заявителем возможен частичный отрыв от работы (изучение нормативно-технической документации дистанционно; тестирование - очно)</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_education_07" %}
+              <p>Для обеспечения процесса обучения с применением дистанционных образовательных технологий используются учебные материалы в электронном формате. С учетом наличия технических возможностей входное тестирование, промежуточное и итоговое тестирование могут проводиться с обучающимися в режиме on-line, а также с использованием электронных отправлений. После успешной итоговой аттестации в течение 14 дней выдается удостоверение о повышении квалификации с указанием названия курса и количества часов. Сведения о выданных удостоверениях по повышению квалификации вносятся в «Федеральный реестр сведений о документах об образовании и (или) о квалификации, документах об обучении (ФИС ФРДО) в течение 60 дней со дня выдачи удостоверения о повышении квалификации</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_education_08" %}
+              <p>Ограничений по количеству мест для обучения нет. Обучение предоставляется на коммерческой основе — по договору о платных образовательных услугах. Оплатить обучение может юридическое лицо</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_education_09" %}
+              <p>Обучение проводится на русском языке</p>
+            {% endchunkblock %}
+          </div>
+
+        {% elif active_slug == 'leadership' %}
+          <h1 class="about-education__title">{% chunk "about_edu_leadership_title" "Руководство. Педагогический состав" %}</h1>
+          <div class="about-education__people">
+            <section class="about-education__person">
+              {% chunkblock "about_edu_leadership_kravchenko_01" %}
+                <p><strong>КРАВЧЕНКО<br>Олег Валерьевич</strong></p>
+              {% endchunkblock %}
+              {% chunkblock "about_edu_leadership_kravchenko_02" %}
+                <p><strong>Директор</strong> АНО ДПО «УЦ «Безопасность в промышленности»<br>Профессиональное высшее образование: Государственное образовательное учреждение высшего профессионального образования Московский государственный вечерний институт, специальность «Материаловедение в машиностроении», 2004 г.</p>
+              {% endchunkblock %}
+              {% chunkblock "about_edu_leadership_kravchenko_03" %}
+                <p>телефон: 8 (495) 230 12 14<br>e-mail: ucbp@bezopprom.ru</p>
+              {% endchunkblock %}
+            </section>
+
+            <section class="about-education__person">
+              {% chunkblock "about_edu_leadership_kotelnikov_01" %}
+                <p><strong>КОТЕЛЬНИКОВ<br>Владимир Владимирович</strong></p>
+              {% endchunkblock %}
+              {% chunkblock "about_edu_leadership_kotelnikov_02" %}
+                <p><strong>Заместитель директора</strong> АНО ДПО «УЦ «Безопасность в промышленности»<br>Доктор технических наук.<br>Профессиональное высшее образование: МВТУ им. Баумана, специальность «Оборудование и технология сварочного производства», 2005 г.</p>
+              {% endchunkblock %}
+              {% chunkblock "about_edu_leadership_kotelnikov_03" %}
+                <p>телефон: 8 (495) 230 12 14<br>e-mail: ucbp@bezopprom.ru</p>
+              {% endchunkblock %}
+            </section>
+
+            <section class="about-education__person">
+              {% chunkblock "about_edu_leadership_andreeva_01" %}
+                <p><strong>АНДРЕЕВА<br>Галина Леонидовна</strong></p>
+              {% endchunkblock %}
+              {% chunkblock "about_edu_leadership_andreeva_02" %}
+                <p><strong>Заместитель директора</strong> АНО ДПО «УЦ «Безопасность в промышленности».<br>Профессиональное высшее образование: Московский ордена Ленина и ордена Октябрьской Революции авиационный институт им. С. Орджоникидзе по специальности: «Гироскопические приборы и устройства», квалификация инженер электромеханик, 1985 г.</p>
+              {% endchunkblock %}
+              {% chunkblock "about_edu_leadership_andreeva_03" %}
+                <p>телефон: 8 (495) 230 12 14<br>e-mail: ucbp@bezopprom.ru</p>
+              {% endchunkblock %}
+            </section>
+
+            <div class="about-education__teachers-link">
+              {% chunk "about_edu_teachers_list_link" "СПИСОК ПРЕПОДАВАТЕЛЕЙ" %}
+            </div>
+          </div>
+
+        {% elif active_slug == 'paid-services' %}
+          <h1 class="about-education__title">{% chunk "about_edu_paid_title" "Платные образовательные услуги" %}</h1>
+          <div class="about-education__documents">
+            <p class="about-education__intro">{% chunk "about_edu_paid_intro" "О порядке оказания платных образовательных услуг" %}</p>
+            <ol class="about-education__document-list">
+              <li>{% chunk "about_edu_paid_regulation" "Положение о порядке оказания платных образовательных услуг" %}</li>
+              <li>{% chunk "about_edu_paid_training_requests" "Заявки на обучение" %}</li>
+              <li>{% chunk "about_edu_paid_price_order" "Приказ об утверждении базовой стоимости обучения по каждой образовательной программе" %}</li>
+              <li>{% chunk "about_edu_paid_contract" "Договор об оказании платных образовательных услуг" %}</li>
+            </ol>
+          </div>
+
+        {% elif active_slug == 'international-cooperation' %}
+          <h1 class="about-education__title">{% chunk "about_edu_international_title" "Международное сотрудничество" %}</h1>
+          <div class="about-education__rich-text">
+            {% chunkblock "about_edu_international_content" %}
+              <p>Заключенных договоров с иностранными и (или) международными организациями по вопросам образования и науки не имеем.<br>Международной аккредитации по образовательным программам не имеем</p>
+            {% endchunkblock %}
+          </div>
+
+        {% elif active_slug == 'material-and-technical-support' %}
+          <h1 class="about-education__title">{% chunk "about_edu_material_title" "Материально-техническое обеспечение" %}</h1>
+          <div class="about-education__material">
+            <section class="about-education__classroom about-education__classroom--1">
+              <div class="about-education__classroom-text">
+                {% chunkblock "about_edu_material_classroom_1_01" %}
+                  <p><strong>Учебный класс №1 (38,5 м2)</strong></p>
+                {% endchunkblock %}
+                {% chunkblock "about_edu_material_classroom_1_02" %}
+                  <p>МЕБЕЛЬ<br>Стол ученический/ учительский – 6<br>Стулья с откидными столиками – 21<br>Доска магнитно-маркерная – 1</p>
+                {% endchunkblock %}
+                {% chunkblock "about_edu_material_classroom_1_03" %}
+                  <p>ТЕХНИЧЕСКИЕ СРЕДСТВА<br>Проектор – 1<br>Проекционный экран – 1<br>Принтер – 1<br>Компьютер – 1<br>Ноутбуки – 13</p>
+                {% endchunkblock %}
+                {% chunkblock "about_edu_material_classroom_1_04" %}
+                  <p>НАГЛЯДНЫЕ УЧЕБНЫЕ ПОСОБИЯ<br>Плакат – 3</p>
+                {% endchunkblock %}
+              </div>
+              {% chunk_image "about_edu_material_classroom_1_image" "landing/img/about/classroom-1.jpg" "Учебный класс №1" "about-education__classroom-image" %}
+            </section>
+
+            <section class="about-education__classroom about-education__classroom--2">
+              <div class="about-education__classroom-text">
+                {% chunkblock "about_edu_material_classroom_2_01" %}
+                  <p><strong>Учебный класс №2 (35,8 м2)</strong></p>
+                {% endchunkblock %}
+                {% chunkblock "about_edu_material_classroom_2_02" %}
+                  <p>МЕБЕЛЬ<br>Стол ученический/ учительский – 6<br>Стулья – 10<br>Доска магнитно-маркерная – 1</p>
+                {% endchunkblock %}
+                {% chunkblock "about_edu_material_classroom_2_03" %}
+                  <p>НАГЛЯДНЫЕ УЧЕБНЫЕ ПОСОБИЯ<br>Плакат – 15</p>
+                {% endchunkblock %}
+              </div>
+              {% chunk_image "about_edu_material_classroom_2_image" "landing/img/about/classroom-2.jpg" "Учебный класс №2" "about-education__classroom-image" %}
+            </section>
+
+            <div class="about-education__full-list-link">
+              {% chunk "about_edu_material_full_list" "<strong>ПОСМОТРЕТЬ ПОЛНЫЙ СПИСОК</strong>&nbsp;&nbsp;Материально-технического обеспечения" %}
+            </div>
+          </div>
+
+        {% elif active_slug == 'vacancies' %}
+          <h1 class="about-education__title">{% chunk "about_edu_vacancies_title" "Вакантные места для приема (перевода) обучающихся" %}</h1>
+          <div class="about-education__rich-text">
+            {% chunkblock "about_edu_vacancies_01" %}
+              <p>Обучение в УЦ «Безопасность в промышленности» проводится на платной основе<br>(Локальный акт «Положение о порядке оказания платных образовательных услуг»)</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_vacancies_02" %}
+              <p>Количество вакантных мест для приема (перевода) за счет средств физических и (или) юридических лиц не ограничено. При проведении занятий (лекций, семинаров) в учебных классах по адресу: Москва, ул. Ленинская слобода, 19, - не более 30 обучающихся</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_vacancies_03" %}
+              <p>Группы обучающихся формируются до 30 человек (Локальный акт «Положение о зачислении и отчислении обучающихся»)</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_vacancies_04" %}
+              <p>Имеется возможность формирования дополнительной группы к основному графику «Курсов повышения квалификации» по заявкам организаций</p>
+            {% endchunkblock %}
+          </div>
+
+        {% elif active_slug == 'financial-activity' %}
+          <h1 class="about-education__title">{% chunk "about_edu_financial_title" "Финансово-хозяйственная деятельность" %}</h1>
+          <div class="about-education__rich-text">
+            {% chunkblock "about_edu_financial_01" %}
+              <p>Отчет о финансово-хозяйственной деятельности за 2025 год*</p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_financial_02" %}
+              <p><strong>Образовательная деятельность за счет бюджетных ассигнований федерального бюджета; за счет бюджетов субъектов Российской Федерации НЕ ПРОВОДИТСЯ</strong></p>
+            {% endchunkblock %}
+            {% chunkblock "about_edu_financial_03" %}
+              <p class="about-education__note">*Ознакомление с документами по запросу</p>
+            {% endchunkblock %}
+          </div>
+        {% endif %}
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock %}
