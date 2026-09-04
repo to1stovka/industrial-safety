@@ -1,0 +1,147 @@
+.about-gratitude {
+  background: white;
+  color: #111;
+  min-height: 500px;
+  padding: 39px 0 38px;
+}
+.about-gratitude__container {
+  max-width: 1110px;
+}
+.about-gratitude__title {
+  color: #111;
+  font-family: "Montserrat", sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+.about-gratitude__intro, .about-gratitude__empty-text, .about-gratitude__manual-content {
+  color: #111;
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 895px;
+}
+.about-gratitude__intro p, .about-gratitude__empty-text p, .about-gratitude__manual-content p {
+  margin: 0 0 16px;
+}
+.about-gratitude__intro a, .about-gratitude__empty-text a, .about-gratitude__manual-content a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.about-gratitude__intro:empty, .about-gratitude__empty-text:empty, .about-gratitude__manual-content:empty {
+  display: none;
+}
+.about-gratitude__grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 12px;
+  max-width: 895px;
+}
+.about-gratitude__card {
+  min-width: 0;
+}
+.about-gratitude__media-link {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+.about-gratitude__media, .about-gratitude__chunk-image {
+  align-items: center;
+  aspect-ratio: 3/4;
+  background: #dedede;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+.about-gratitude__media img, .about-gratitude__chunk-image img {
+  display: block;
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+.about-gratitude__media p, .about-gratitude__chunk-image p {
+  margin: 0;
+}
+.about-gratitude__chunk-image {
+  min-height: 0;
+}
+.about-gratitude__chunk-image p {
+  height: 100%;
+  width: 100%;
+}
+.about-gratitude__file-placeholder {
+  align-items: center;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  gap: 8px;
+  justify-content: center;
+  min-height: 100%;
+  padding: 24px;
+  text-align: center;
+  width: 100%;
+}
+.about-gratitude__file-label {
+  font-size: 20px;
+  font-weight: 600;
+}
+.about-gratitude__file-hint {
+  font-size: 14px;
+  opacity: 0.72;
+}
+.about-gratitude__card-body {
+  margin-top: 12px;
+}
+.about-gratitude__card-title {
+  color: #111;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 6px;
+}
+.about-gratitude__date {
+  color: #666;
+  display: block;
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+.about-gratitude__description {
+  color: #111;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.about-gratitude__description p {
+  margin: 0 0 10px;
+}
+.about-gratitude__description a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.about-gratitude__manual-content {
+  margin-top: 24px;
+}
+
+@media (max-width: 991.98px) {
+  .about-gratitude {
+    padding: 32px 0 44px;
+  }
+  .about-gratitude__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 100%;
+  }
+}
+@media (max-width: 575.98px) {
+  .about-gratitude__title {
+    font-size: 24px;
+  }
+  .about-gratitude__grid {
+    grid-template-columns: 1fr;
+  }
+}/*# sourceMappingURL=style.css.map */

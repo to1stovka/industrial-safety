@@ -715,7 +715,7 @@
   align-items: center;
 }
 .top-bar.top-bar-with-bg {
-  background: url("/static/landing/img/ingener3.svg") center center/cover no-repeat;
+  background: url("/static/landing/img/1banner2.svg") center center/cover no-repeat;
 }
 .top-bar.top-bar-with-bg::before {
   content: "";
